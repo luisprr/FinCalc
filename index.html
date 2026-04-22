@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinCalc -Calculadora Financiera</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>FinCalc - Calculadora Financiera</h1>
+    <p>Interés simple, interés compuesto, tasa por componentes y pago diferido.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Conceptos de Mercado Bursátil y Bolsa de Valores</h2>
+      <ul>
+        <li>Mercado bursátil: compra y venta de valores emitidos en la bolsa.</li>
+        <li>Bolsa de valores: sistema organizado que promueve la inversión y facilita la liquidación.</li>
+        <li>Relación clave: Inversionistas ↔ Comisionistas ↔ Creadores de mercado.</li>
+        <li>Bolsa de Valores de Lima: regula listado de títulos y facilita liquidación de operaciones.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Determinantes de Tasa de Interés</h2>
+      <p class="formula">r = RR + IP + DP + MP + LP + EP (+ RP opcional)</p>
+      <div class="grid grid-3">
+        <label>RR (%)<input id="rr" type="number" step="any" value="2"></label>
+        <label>IP (%)<input id="ip" type="number" step="any" value="3"></label>
+        <label>DP (%)<input id="dp" type="number" step="any" value="1"></label>
+        <label>MP (%)<input id="mp" type="number" step="any" value="0.5"></label>
+        <label>LP (%)<input id="lp" type="number" step="any" value="0.8"></label>
+        <label>EP (%)<input id="ep" type="number" step="any" value="0.7"></label>
+        <label>RP País (%) opcional<input id="rp" type="number" step="any" value="0"></label>
+      </div>
+      <button id="btnTasa">Calcular r</button>
+      <p id="outTasa" class="result"></p>
+    </section>
+
+    <section class="card">
+      <h2>Interés Simple</h2>
+      <p class="formula">S = C * (1 + i * t) | I = C * i * t</p>
+
+      <div class="grid grid-2">
+        <label>Modo
+          <select id="simpleModo">
+            <option value="stock">Calcular Stock (S) e Interés (I)</option>
+            <option value="tasa">Calcular Tasa Simple (i)</option>
+            <option value="capital">Calcular Capital (C)</option>
+            <option value="tiempo">Calcular Tiempo (t)</option>
+          </select>
+        </label>
+        <label>Base anual
+          <select id="simpleBase">
+            <option value="360">Ordinario (360)</option>
+            <option value="365">Exacto (365)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="grid grid-3">
+        <label>Capital C<input id="simpleC" type="number" step="any"></label>
+        <label>Stock S<input id="simpleS" type="number" step="any"></label>
+        <label>Interés I<input id="simpleI" type="number" step="any"></label>
+        <label>Tasa i (% anual)<input id="simpleRate" type="number" step="any"></label>
+        <label>Días<input id="simpleDias" type="number" step="1"></label>
+        <label>Tiempo t (periodos)<input id="simpleT" type="number" step="any" placeholder="opcional"></label>
+      </div>
+
+      <small>Si ingresas Días, se usa t = días/base. Si ingresas Tiempo t, se usa ese valor directamente.</small>
+      <button id="btnSimple">Calcular Interés Simple</button>
+      <p id="outSimple" class="result"></p>
+    </section>
+
+    <section class="card">
+      <h2>Interés Compuesto</h2>
+      <p class="formula">S = C * (1 + TN/m)^n</p>
+
+      <div class="grid grid-2">
+        <label>Modo
+          <select id="compModo">
+            <option value="stock">Calcular Stock (S)</option>
+            <option value="capital">Calcular Capital (C)</option>
+            <option value="n">Calcular n (periodos)</option>
+            <option value="tn">Calcular TN nominal</option>
+          </select>
+        </label>
+        <label>m (capitalizaciones por periodo de TN)<input id="compM" type="number" step="1" value="360"></label>
+      </div>
+
+      <div class="grid grid-3">
+        <label>Capital C<input id="compC" type="number" step="any"></label>
+        <label>Stock S<input id="compS" type="number" step="any"></label>
+        <label>TN nominal (% del periodo)<input id="compTN" type="number" step="any"></label>
+        <label>n (periodos de capitalización)<input id="compN" type="number" step="any"></label>
+      </div>
+
+      <small>Sugerencia de clase: TN anual y capitalización diaria, entonces m ≈ 360.</small>
+      <button id="btnComp">Calcular Interés Compuesto</button>
+      <p id="outComp" class="result"></p>
+    </section>
+
+    <section class="card">
+      <h2>Pago Diferido y Descuento por Pronto Pago</h2>
+      <p class="formula">i_max = (S/C - 1) / t</p>
+      <div class="grid grid-3">
+        <label>Precio de lista<input id="pdPrecio" type="number" step="any"></label>
+        <label>Descuento (%)<input id="pdDesc" type="number" step="any"></label>
+        <label>Día límite descuento<input id="pdDiaDesc" type="number" step="1"></label>
+        <label>Día neto (n/x)<input id="pdDiaNeto" type="number" step="1"></label>
+        <label>Tasa banco (% anual)<input id="pdTasaBanco" type="number" step="any"></label>
+        <label>Base anual
+          <select id="pdBase">
+            <option value="360">360</option>
+            <option value="365">365</option>
+          </select>
+        </label>
+      </div>
+      <button id="btnPD">Evaluar Operación</button>
+      <p id="outPD" class="result"></p>
+    </section>
+
+    <section class="card">
+      <h2>Pago con Cuota Inicial (Tasa Implícita)</h2>
+      <p class="formula">i = (S/C - 1) / t</p>
+      <div class="grid grid-3">
+        <label>Precio contado<input id="ciContado" type="number" step="any"></label>
+        <label>Recargo (%)<input id="ciRecargo" type="number" step="any"></label>
+        <label>Cuota inicial<input id="ciInicial" type="number" step="any"></label>
+        <label>Tiempo t (periodos)<input id="ciT" type="number" step="any"></label>
+      </div>
+      <button id="btnCI">Calcular Tasa Implícita</button>
+      <p id="outCI" class="result"></p>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
