@@ -1,142 +1,1299 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FinCalc -Calculadora Financiera</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinCalc — Calculadora de Matemática Financiera</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a40;
+    --accent: #5b5fff;
+    --accent2: #ff5b8a;
+    --accent3: #5bffb8;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --input-bg: #0f0f18;
+    --result-bg: #0d1a15;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* GRID NOISE BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(91,95,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,95,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* HEADER */
+  header {
+    margin-bottom: 48px;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .logo span {
+    color: var(--accent);
+  }
+
+  .logo-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    background: var(--surface);
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+  }
+
+  .tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab:hover { color: var(--text); }
+
+  .tab.active {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(91,95,255,0.4);
+  }
+
+  /* CALC PANELS */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* SECTION GRID */
+  .section-title {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+
+  /* MODE SELECTOR */
+  .mode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .mode-btn {
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  .mode-btn:hover {
+    border-color: var(--accent);
+    color: var(--text);
+    background: var(--surface2);
+  }
+
+  .mode-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(91,95,255,0.08);
+  }
+
+  .mode-btn .icon {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* HINT BOX */
+  .hint {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .hint strong {
+    color: var(--accent3);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* INPUTS */
+  .form-area { display: none; }
+  .form-area.active { display: block; }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media(max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  input[type="number"], select {
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.92rem;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    -moz-appearance: textfield;
+    width: 100%;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  input[type="number"]:focus, select:focus {
+    border-color: var(--accent);
+    background: rgba(91,95,255,0.05);
+  }
+
+  select {
+    cursor: pointer;
+  }
+
+  select option {
+    background: var(--surface);
+  }
+
+  /* CALCULATE BTN */
+  .calc-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calc-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  }
+
+  .calc-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(91,95,255,0.5);
+  }
+
+  .calc-btn:active { transform: translateY(0); }
+
+  /* RESULTS */
+  .result-box {
+    display: none;
+    background: var(--result-bg);
+    border: 1px solid rgba(91,255,184,0.2);
+    border-radius: 14px;
+    padding: 24px;
+    animation: slideIn 0.3s ease;
+  }
+
+  .result-box.show { display: block; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent3);
+    margin-bottom: 4px;
+  }
+
+  .result-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent3);
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .result-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .result-item {
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+
+  .result-item-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .result-item-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.92rem;
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .error-box {
+    display: none;
+    background: rgba(255,91,138,0.08);
+    border: 1px solid rgba(255,91,138,0.3);
+    border-radius: 10px;
+    padding: 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent2);
+  }
+
+  .error-box.show { display: block; }
+
+  /* FORMULA BADGE */
+  .formula {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: rgba(91,95,255,0.08);
+    border: 1px solid rgba(91,95,255,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .formula span {
+    color: var(--muted);
+    font-size: 0.65rem;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+</style>
 </head>
 <body>
-  <header class="app-header">
-    <h1>FinCalc - Calculadora Financiera</h1>
-    <p>Interés simple, interés compuesto, tasa por componentes y pago diferido.</p>
+<div class="container">
+
+  <header>
+    <div>
+      <div class="logo-sub">Matemática Financiera</div>
+      <div class="logo">Fin<span>Calc</span></div>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="card">
-      <h2>Conceptos de Mercado Bursátil y Bolsa de Valores</h2>
-      <ul>
-        <li>Mercado bursátil: compra y venta de valores emitidos en la bolsa.</li>
-        <li>Bolsa de valores: sistema organizado que promueve la inversión y facilita la liquidación.</li>
-        <li>Relación clave: Inversionistas ↔ Comisionistas ↔ Creadores de mercado.</li>
-        <li>Bolsa de Valores de Lima: regula listado de títulos y facilita liquidación de operaciones.</li>
-      </ul>
-    </section>
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('simple')">Interés Simple</button>
+    <button class="tab" onclick="switchTab('compuesto')">Interés Compuesto</button>
+    <button class="tab" onclick="switchTab('diferido')">Pago Diferido</button>
+    <button class="tab" onclick="switchTab('tasa')">Tasas</button>
+  </div>
 
-    <section class="card">
-      <h2>Determinantes de Tasa de Interés</h2>
-      <p class="formula">r = RR + IP + DP + MP + LP + EP (+ RP opcional)</p>
-      <div class="grid grid-3">
-        <label>RR (%)<input id="rr" type="number" step="any" value="2"></label>
-        <label>IP (%)<input id="ip" type="number" step="any" value="3"></label>
-        <label>DP (%)<input id="dp" type="number" step="any" value="1"></label>
-        <label>MP (%)<input id="mp" type="number" step="any" value="0.5"></label>
-        <label>LP (%)<input id="lp" type="number" step="any" value="0.8"></label>
-        <label>EP (%)<input id="ep" type="number" step="any" value="0.7"></label>
-        <label>RP País (%) opcional<input id="rp" type="number" step="any" value="0"></label>
+  <!-- ============================================================ -->
+  <!-- PANEL: INTERÉS SIMPLE -->
+  <!-- ============================================================ -->
+  <div id="panel-simple" class="panel active">
+    <div class="section-title">Selecciona el escenario</div>
+
+    <div class="mode-grid">
+      <button class="mode-btn active" onclick="setMode('simple','stock')" id="simple-mode-stock">
+        <span class="icon">📈</span>Calcular Stock (S)<br><small style="color:var(--muted);font-size:0.7rem">Tengo C, i, t</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('simple','interes')" id="simple-mode-interes">
+        <span class="icon">💰</span>Calcular Interés (I)<br><small style="color:var(--muted);font-size:0.7rem">Tengo C, i, t</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('simple','capital')" id="simple-mode-capital">
+        <span class="icon">🏦</span>Calcular Capital (C)<br><small style="color:var(--muted);font-size:0.7rem">Pre-pagar deuda: S, i, t</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('simple','tasa')" id="simple-mode-tasa">
+        <span class="icon">📊</span>Calcular Tasa (i)<br><small style="color:var(--muted);font-size:0.7rem">Tengo C, S, t</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('simple','tiempo')" id="simple-mode-tiempo">
+        <span class="icon">⏱</span>Calcular Tiempo (t)<br><small style="color:var(--muted);font-size:0.7rem">Tengo C, S, i</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('simple','cuota')" id="simple-mode-cuota">
+        <span class="icon">🧾</span>Con Cuota Inicial<br><small style="color:var(--muted);font-size:0.7rem">Precio contado + recargo</small>
+      </button>
+    </div>
+
+    <!-- STOCK -->
+    <div class="form-area active" id="simple-form-stock">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Busca en el problema: <b>el capital inicial</b> (lo que se invierte/presta hoy), <b>la tasa de interés</b> (% anual o periódico), y <b>el tiempo</b> (cuántos días/meses/años dura la operación). Resultado: cuánto dinero habrá al final.
       </div>
-      <button id="btnTasa">Calcular r</button>
-      <p id="outTasa" class="result"></p>
-    </section>
-
-    <section class="card">
-      <h2>Interés Simple</h2>
-      <p class="formula">S = C * (1 + i * t) | I = C * i * t</p>
-
-      <div class="grid grid-2">
-        <label>Modo
-          <select id="simpleModo">
-            <option value="stock">Calcular Stock (S) e Interés (I)</option>
-            <option value="tasa">Calcular Tasa Simple (i)</option>
-            <option value="capital">Calcular Capital (C)</option>
-            <option value="tiempo">Calcular Tiempo (t)</option>
+      <div class="formula"><span>Fórmula</span>S = C × (1 + i × t) &nbsp;|&nbsp; I = C × i × t</div>
+      <div class="form-grid">
+        <div class="field"><label>Capital C (S/. o $)</label><input type="number" id="ss-c" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Tasa i (% anual)</label><input type="number" id="ss-i" placeholder="Ej: 12"></div>
+        <div class="field"><label>Tiempo (días)</label><input type="number" id="ss-t" placeholder="Ej: 90"></div>
+        <div class="field"><label>Tipo de año</label>
+          <select id="ss-tipo">
+            <option value="360">Ordinario (360 días)</option>
+            <option value="365">Exacto (365 días)</option>
           </select>
-        </label>
-        <label>Base anual
-          <select id="simpleBase">
-            <option value="360">Ordinario (360)</option>
-            <option value="365">Exacto (365)</option>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcSimpleStock()">CALCULAR →</button>
+      <div class="result-box" id="res-simple-stock"></div>
+      <div class="error-box" id="err-simple-stock"></div>
+    </div>
+
+    <!-- INTERÉS -->
+    <div class="form-area" id="simple-form-interes">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Igual que calcular el stock, el <b>Interés (I)</b> es simplemente la diferencia: Stock final menos Capital inicial. Necesitas C, i y t.
+      </div>
+      <div class="formula"><span>Fórmula</span>I = C × i × t</div>
+      <div class="form-grid">
+        <div class="field"><label>Capital C</label><input type="number" id="si-c" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Tasa i (% anual)</label><input type="number" id="si-i" placeholder="Ej: 12"></div>
+        <div class="field"><label>Tiempo (días)</label><input type="number" id="si-t" placeholder="Ej: 90"></div>
+        <div class="field"><label>Tipo de año</label>
+          <select id="si-tipo">
+            <option value="360">Ordinario (360 días)</option>
+            <option value="365">Exacto (365 días)</option>
           </select>
-        </label>
+        </div>
       </div>
+      <button class="calc-btn" onclick="calcSimpleInteres()">CALCULAR →</button>
+      <div class="result-box" id="res-simple-interes"></div>
+      <div class="error-box" id="err-simple-interes"></div>
+    </div>
 
-      <div class="grid grid-3">
-        <label>Capital C<input id="simpleC" type="number" step="any"></label>
-        <label>Stock S<input id="simpleS" type="number" step="any"></label>
-        <label>Interés I<input id="simpleI" type="number" step="any"></label>
-        <label>Tasa i (% anual)<input id="simpleRate" type="number" step="any"></label>
-        <label>Días<input id="simpleDias" type="number" step="1"></label>
-        <label>Tiempo t (periodos)<input id="simpleT" type="number" step="any" placeholder="opcional"></label>
+    <!-- CAPITAL -->
+    <div class="form-area" id="simple-form-capital">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Úsalo cuando quieres <b>pre-pagar una deuda hoy</b> y conoces el monto futuro (S), la tasa y cuántos días faltan. Resultado: cuánto pagas hoy (valor presente).
       </div>
-
-      <small>Si ingresas Días, se usa t = días/base. Si ingresas Tiempo t, se usa ese valor directamente.</small>
-      <button id="btnSimple">Calcular Interés Simple</button>
-      <p id="outSimple" class="result"></p>
-    </section>
-
-    <section class="card">
-      <h2>Interés Compuesto</h2>
-      <p class="formula">S = C * (1 + TN/m)^n</p>
-
-      <div class="grid grid-2">
-        <label>Modo
-          <select id="compModo">
-            <option value="stock">Calcular Stock (S)</option>
-            <option value="capital">Calcular Capital (C)</option>
-            <option value="n">Calcular n (periodos)</option>
-            <option value="tn">Calcular TN nominal</option>
+      <div class="formula"><span>Fórmula</span>C = S / (1 + i × t)</div>
+      <div class="form-grid">
+        <div class="field"><label>Stock S (monto futuro)</label><input type="number" id="sc-s" placeholder="Ej: 12000"></div>
+        <div class="field"><label>Tasa i (% anual)</label><input type="number" id="sc-i" placeholder="Ej: 12"></div>
+        <div class="field"><label>Tiempo (días)</label><input type="number" id="sc-t" placeholder="Ej: 90"></div>
+        <div class="field"><label>Tipo de año</label>
+          <select id="sc-tipo">
+            <option value="360">Ordinario (360 días)</option>
+            <option value="365">Exacto (365 días)</option>
           </select>
-        </label>
-        <label>m (capitalizaciones por periodo de TN)<input id="compM" type="number" step="1" value="360"></label>
+        </div>
       </div>
+      <button class="calc-btn" onclick="calcSimpleCapital()">CALCULAR →</button>
+      <div class="result-box" id="res-simple-capital"></div>
+      <div class="error-box" id="err-simple-capital"></div>
+    </div>
 
-      <div class="grid grid-3">
-        <label>Capital C<input id="compC" type="number" step="any"></label>
-        <label>Stock S<input id="compS" type="number" step="any"></label>
-        <label>TN nominal (% del periodo)<input id="compTN" type="number" step="any"></label>
-        <label>n (periodos de capitalización)<input id="compN" type="number" step="any"></label>
+    <!-- TASA -->
+    <div class="form-area" id="simple-form-tasa">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Úsalo cuando el problema te da <b>cuánto invirtieron (C)</b>, <b>cuánto recibieron (S)</b> y <b>en cuánto tiempo</b>, y pide la tasa implícita.
       </div>
-
-      <small>Sugerencia de clase: TN anual y capitalización diaria, entonces m ≈ 360.</small>
-      <button id="btnComp">Calcular Interés Compuesto</button>
-      <p id="outComp" class="result"></p>
-    </section>
-
-    <section class="card">
-      <h2>Pago Diferido y Descuento por Pronto Pago</h2>
-      <p class="formula">i_max = (S/C - 1) / t</p>
-      <div class="grid grid-3">
-        <label>Precio de lista<input id="pdPrecio" type="number" step="any"></label>
-        <label>Descuento (%)<input id="pdDesc" type="number" step="any"></label>
-        <label>Día límite descuento<input id="pdDiaDesc" type="number" step="1"></label>
-        <label>Día neto (n/x)<input id="pdDiaNeto" type="number" step="1"></label>
-        <label>Tasa banco (% anual)<input id="pdTasaBanco" type="number" step="any"></label>
-        <label>Base anual
-          <select id="pdBase">
-            <option value="360">360</option>
-            <option value="365">365</option>
+      <div class="formula"><span>Fórmula</span>i = (S/C − 1) / t</div>
+      <div class="form-grid">
+        <div class="field"><label>Capital C</label><input type="number" id="st-c" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Stock S</label><input type="number" id="st-s" placeholder="Ej: 10300"></div>
+        <div class="field"><label>Tiempo (días)</label><input type="number" id="st-t" placeholder="Ej: 90"></div>
+        <div class="field"><label>Tipo de año</label>
+          <select id="st-tipo">
+            <option value="360">Ordinario (360 días)</option>
+            <option value="365">Exacto (365 días)</option>
           </select>
-        </label>
+        </div>
       </div>
-      <button id="btnPD">Evaluar Operación</button>
-      <p id="outPD" class="result"></p>
-    </section>
+      <button class="calc-btn" onclick="calcSimpleTasa()">CALCULAR →</button>
+      <div class="result-box" id="res-simple-tasa"></div>
+      <div class="error-box" id="err-simple-tasa"></div>
+    </div>
 
-    <section class="card">
-      <h2>Pago con Cuota Inicial (Tasa Implícita)</h2>
-      <p class="formula">i = (S/C - 1) / t</p>
-      <div class="grid grid-3">
-        <label>Precio contado<input id="ciContado" type="number" step="any"></label>
-        <label>Recargo (%)<input id="ciRecargo" type="number" step="any"></label>
-        <label>Cuota inicial<input id="ciInicial" type="number" step="any"></label>
-        <label>Tiempo t (periodos)<input id="ciT" type="number" step="any"></label>
+    <!-- TIEMPO -->
+    <div class="form-area" id="simple-form-tiempo">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Te dicen cuánto pusiste (C), cuánto quieres tener (S) y a qué tasa; el resultado es <b>cuántos días necesitas</b> para lograrlo. Redondear al entero superior.
       </div>
-      <button id="btnCI">Calcular Tasa Implícita</button>
-      <p id="outCI" class="result"></p>
-    </section>
+      <div class="formula"><span>Fórmula</span>t = (S/C − 1) / i</div>
+      <div class="form-grid">
+        <div class="field"><label>Capital C</label><input type="number" id="sti-c" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Stock S</label><input type="number" id="sti-s" placeholder="Ej: 10300"></div>
+        <div class="field"><label>Tasa i (% anual)</label><input type="number" id="sti-i" placeholder="Ej: 12"></div>
+        <div class="field"><label>Tipo de año</label>
+          <select id="sti-tipo">
+            <option value="360">Ordinario (360 días)</option>
+            <option value="365">Exacto (365 días)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcSimpleTiempo()">CALCULAR →</button>
+      <div class="result-box" id="res-simple-tiempo"></div>
+      <div class="error-box" id="err-simple-tiempo"></div>
+    </div>
 
-  </main>
+    <!-- CUOTA INICIAL -->
+    <div class="form-area" id="simple-form-cuota">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Problemas con <b>"precio de contado"</b>, <b>"recargo del X%"</b>, <b>"cuota inicial"</b> y <b>"saldo a N días"</b>. Calcula la tasa de interés simple implícita del crédito. Recuerda: C = Precio contado − Cuota inicial, S = Precio lista − Cuota inicial.
+      </div>
+      <div class="formula"><span>Fórmulas</span>PL = PC × (1 + recargo) &nbsp;|&nbsp; C = PC − CI &nbsp;|&nbsp; S = PL − CI &nbsp;|&nbsp; i = (S/C − 1)/t</div>
+      <div class="form-grid">
+        <div class="field"><label>Precio de Contado (PC)</label><input type="number" id="scu-pc" placeholder="Ej: 5000"></div>
+        <div class="field"><label>Recargo (%)</label><input type="number" id="scu-rec" placeholder="Ej: 20"></div>
+        <div class="field"><label>Cuota Inicial (CI)</label><input type="number" id="scu-ci" placeholder="Ej: 1000"></div>
+        <div class="field"><label>Tiempo (días)</label><input type="number" id="scu-t" placeholder="Ej: 90"></div>
+        <div class="field"><label>Tipo de año</label>
+          <select id="scu-tipo">
+            <option value="360">Ordinario (360 días)</option>
+            <option value="365">Exacto (365 días)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcSimpleCuota()">CALCULAR →</button>
+      <div class="result-box" id="res-simple-cuota"></div>
+      <div class="error-box" id="err-simple-cuota"></div>
+    </div>
+  </div>
 
-  <script src="app.js"></script>
+  <!-- ============================================================ -->
+  <!-- PANEL: INTERÉS COMPUESTO -->
+  <!-- ============================================================ -->
+  <div id="panel-compuesto" class="panel">
+    <div class="section-title">Selecciona el escenario</div>
+
+    <div class="mode-grid">
+      <button class="mode-btn active" onclick="setMode('comp','stock')" id="comp-mode-stock">
+        <span class="icon">📈</span>Calcular Stock (S)<br><small style="color:var(--muted);font-size:0.7rem">Tengo C, TN, t</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('comp','capital')" id="comp-mode-capital">
+        <span class="icon">🏦</span>Calcular Capital (C)<br><small style="color:var(--muted);font-size:0.7rem">Pre-pagar: S, TN, t</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('comp','tasa')" id="comp-mode-tasa">
+        <span class="icon">📊</span>Calcular TN<br><small style="color:var(--muted);font-size:0.7rem">Tengo C, S, t</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('comp','tiempo')" id="comp-mode-tiempo">
+        <span class="icon">⏱</span>Calcular Tiempo (n)<br><small style="color:var(--muted);font-size:0.7rem">Tengo C, S, TN</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('comp','cuota')" id="comp-mode-cuota">
+        <span class="icon">🧾</span>Con Cuota Inicial<br><small style="color:var(--muted);font-size:0.7rem">Precio contado + recargo</small>
+      </button>
+    </div>
+
+    <!-- STOCK COMPUESTO -->
+    <div class="form-area active" id="comp-form-stock">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Busca: <b>capital</b>, <b>tasa nominal</b> (anual por defecto), <b>período de capitalización</b> (diario por defecto) y <b>tiempo total en días</b>. m = días de la tasa / días del período de cap. n = tiempo / período de cap.
+      </div>
+      <div class="formula"><span>Fórmulas</span>i' = TN/m &nbsp;|&nbsp; S = C × (1 + TN/m)^n &nbsp;|&nbsp; TEP = S/C − 1</div>
+      <div class="form-grid">
+        <div class="field"><label>Capital C</label><input type="number" id="cs-c" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Tasa Nominal TN (%)</label><input type="number" id="cs-tn" placeholder="Ej: 12"></div>
+        <div class="field"><label>Periodo de la Tasa (días)</label>
+          <select id="cs-pt">
+            <option value="360">Anual (360 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="1">Diario (1 día)</option>
+          </select>
+        </div>
+        <div class="field"><label>Periodo Capitalización (días)</label>
+          <select id="cs-pc">
+            <option value="1">Diario (1 día)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="360">Anual (360 días)</option>
+          </select>
+        </div>
+        <div class="field"><label>Tiempo total (días)</label><input type="number" id="cs-t" placeholder="Ej: 90"></div>
+      </div>
+      <button class="calc-btn" onclick="calcCompStock()">CALCULAR →</button>
+      <div class="result-box" id="res-comp-stock"></div>
+      <div class="error-box" id="err-comp-stock"></div>
+    </div>
+
+    <!-- CAPITAL COMPUESTO -->
+    <div class="form-area" id="comp-form-capital">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        El problema te dice cuánto deberás en el futuro (S) y te pide cuánto pagas <b>hoy</b> (valor presente / pre-pago). Necesitas la tasa nominal y el período de capitalización.
+      </div>
+      <div class="formula"><span>Fórmula</span>C = S / (1 + TN/m)^n</div>
+      <div class="form-grid">
+        <div class="field"><label>Stock S (monto futuro)</label><input type="number" id="cc-s" placeholder="Ej: 12000"></div>
+        <div class="field"><label>Tasa Nominal TN (%)</label><input type="number" id="cc-tn" placeholder="Ej: 12"></div>
+        <div class="field"><label>Periodo de la Tasa (días)</label>
+          <select id="cc-pt">
+            <option value="360">Anual (360 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="1">Diario (1 día)</option>
+          </select>
+        </div>
+        <div class="field"><label>Periodo Capitalización (días)</label>
+          <select id="cc-pc">
+            <option value="1">Diario (1 día)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="360">Anual (360 días)</option>
+          </select>
+        </div>
+        <div class="field"><label>Tiempo total (días)</label><input type="number" id="cc-t" placeholder="Ej: 90"></div>
+      </div>
+      <button class="calc-btn" onclick="calcCompCapital()">CALCULAR →</button>
+      <div class="result-box" id="res-comp-capital"></div>
+      <div class="error-box" id="err-comp-capital"></div>
+    </div>
+
+    <!-- TASA COMPUESTO -->
+    <div class="form-area" id="comp-form-tasa">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        El problema te da <b>C</b> (lo que pusiste), <b>S</b> (lo que recibiste) y <b>el tiempo</b>. Calcula la Tasa Nominal implícita. Necesitas también el período de capitalización.
+      </div>
+      <div class="formula"><span>Fórmula</span>TN = m × (ⁿ√(S/C) − 1)</div>
+      <div class="form-grid">
+        <div class="field"><label>Capital C</label><input type="number" id="ct-c" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Stock S</label><input type="number" id="ct-s" placeholder="Ej: 11000"></div>
+        <div class="field"><label>Periodo de la Tasa (días)</label>
+          <select id="ct-pt">
+            <option value="360">Anual (360 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="1">Diario (1 día)</option>
+          </select>
+        </div>
+        <div class="field"><label>Periodo Capitalización (días)</label>
+          <select id="ct-pc">
+            <option value="1">Diario (1 día)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="360">Anual (360 días)</option>
+          </select>
+        </div>
+        <div class="field"><label>Tiempo total (días)</label><input type="number" id="ct-t" placeholder="Ej: 90"></div>
+      </div>
+      <button class="calc-btn" onclick="calcCompTasa()">CALCULAR →</button>
+      <div class="result-box" id="res-comp-tasa"></div>
+      <div class="error-box" id="err-comp-tasa"></div>
+    </div>
+
+    <!-- TIEMPO COMPUESTO -->
+    <div class="form-area" id="comp-form-tiempo">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Te dan C (lo que inviertes), S (meta) y la tasa. El resultado es cuántos <b>períodos de capitalización</b> necesitas, que luego conviertes a días. Redondear hacia arriba.
+      </div>
+      <div class="formula"><span>Fórmula</span>n = ln(S/C) / ln(1 + TN/m)</div>
+      <div class="form-grid">
+        <div class="field"><label>Capital C</label><input type="number" id="cti-c" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Stock S (meta)</label><input type="number" id="cti-s" placeholder="Ej: 12000"></div>
+        <div class="field"><label>Tasa Nominal TN (%)</label><input type="number" id="cti-tn" placeholder="Ej: 12"></div>
+        <div class="field"><label>Periodo de la Tasa (días)</label>
+          <select id="cti-pt">
+            <option value="360">Anual (360 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="1">Diario (1 día)</option>
+          </select>
+        </div>
+        <div class="field"><label>Periodo Capitalización (días)</label>
+          <select id="cti-pc">
+            <option value="1">Diario (1 día)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="360">Anual (360 días)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcCompTiempo()">CALCULAR →</button>
+      <div class="result-box" id="res-comp-tiempo"></div>
+      <div class="error-box" id="err-comp-tiempo"></div>
+    </div>
+
+    <!-- CUOTA INICIAL COMPUESTO -->
+    <div class="form-area" id="comp-form-cuota">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Mismo esquema que interés simple con cuota inicial, pero la tasa resultante será Nominal (TN) compuesta. C = PC − CI, S = PL − CI, PL = PC × (1 + recargo%).
+      </div>
+      <div class="formula"><span>Fórmulas</span>PL = PC × (1 + recargo) &nbsp;|&nbsp; C = PC − CI &nbsp;|&nbsp; S = PL − CI &nbsp;|&nbsp; TN = m × (ⁿ√(S/C) − 1)</div>
+      <div class="form-grid">
+        <div class="field"><label>Precio de Contado (PC)</label><input type="number" id="ccu-pc" placeholder="Ej: 5000"></div>
+        <div class="field"><label>Recargo (%)</label><input type="number" id="ccu-rec" placeholder="Ej: 20"></div>
+        <div class="field"><label>Cuota Inicial (CI)</label><input type="number" id="ccu-ci" placeholder="Ej: 1000"></div>
+        <div class="field"><label>Tiempo (días)</label><input type="number" id="ccu-t" placeholder="Ej: 90"></div>
+        <div class="field"><label>Periodo de la Tasa (días)</label>
+          <select id="ccu-pt">
+            <option value="360">Anual (360 días)</option>
+            <option value="30">Mensual (30 días)</option>
+          </select>
+        </div>
+        <div class="field"><label>Periodo Capitalización (días)</label>
+          <select id="ccu-pc2">
+            <option value="1">Diario (1 día)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcCompCuota()">CALCULAR →</button>
+      <div class="result-box" id="res-comp-cuota"></div>
+      <div class="error-box" id="err-comp-cuota"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- PANEL: PAGO DIFERIDO -->
+  <!-- ============================================================ -->
+  <div id="panel-diferido" class="panel">
+    <div class="section-title">Selecciona el escenario</div>
+
+    <div class="mode-grid">
+      <button class="mode-btn active" onclick="setMode('dif','tasa')" id="dif-mode-tasa">
+        <span class="icon">🔍</span>Tasa Máxima Banco<br><small style="color:var(--muted);font-size:0.7rem">¿Vale pedir préstamo?</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('dif','ahorro')" id="dif-mode-ahorro">
+        <span class="icon">💸</span>Ahorro con Préstamo<br><small style="color:var(--muted);font-size:0.7rem">¿Cuánto gano aprovechando el descuento?</small>
+      </button>
+    </div>
+
+    <!-- TASA MÁXIMA -->
+    <div class="form-area active" id="dif-form-tasa">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        El problema tiene formato tipo <b>"3/10, n/30"</b>: descuento del 3% si pagas antes del día 10, precio total al día 30. El precio de lista es el S (lo que pagarías sin descuento), el saldo con descuento es el C (lo que pagas si aprovechas). Tiempo = día límite sin descuento − día límite con descuento.
+      </div>
+      <div class="formula"><span>Fórmulas</span>VF = PL × desc% &nbsp;|&nbsp; Saldo = PL − VF &nbsp;|&nbsp; S = PL &nbsp;|&nbsp; C = Saldo &nbsp;|&nbsp; i = (S/C − 1) / t</div>
+      <div class="form-grid">
+        <div class="field"><label>Precio de Lista / Factura (PL)</label><input type="number" id="dt-pl" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Descuento por Pronto Pago (%)</label><input type="number" id="dt-desc" placeholder="Ej: 3"></div>
+        <div class="field"><label>Último día CON descuento</label><input type="number" id="dt-d1" placeholder="Ej: 10"></div>
+        <div class="field"><label>Último día SIN descuento</label><input type="number" id="dt-d2" placeholder="Ej: 30"></div>
+        <div class="field"><label>Tipo de año</label>
+          <select id="dt-tipo">
+            <option value="360">Ordinario (360 días)</option>
+            <option value="365">Exacto (365 días)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcDifTasa()">CALCULAR TASA MÁXIMA →</button>
+      <div class="result-box" id="res-dif-tasa"></div>
+      <div class="error-box" id="err-dif-tasa"></div>
+    </div>
+
+    <!-- AHORRO CON PRÉSTAMO -->
+    <div class="form-area" id="dif-form-ahorro">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        El banco te ofrece una tasa específica. ¿Cuánto ahorras comparado con pagar el precio de lista? Calcula el stock del préstamo y compara con el precio de lista original.
+      </div>
+      <div class="formula"><span>Fórmulas</span>Préstamo = Saldo = PL × (1 − desc%) &nbsp;|&nbsp; S = C × (1 + i×t) &nbsp;|&nbsp; Ahorro = PL − S</div>
+      <div class="form-grid">
+        <div class="field"><label>Precio de Lista (PL)</label><input type="number" id="da-pl" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Descuento (%)</label><input type="number" id="da-desc" placeholder="Ej: 3"></div>
+        <div class="field"><label>Tasa del banco (% anual)</label><input type="number" id="da-i" placeholder="Ej: 8"></div>
+        <div class="field"><label>Último día CON descuento</label><input type="number" id="da-d1" placeholder="Ej: 10"></div>
+        <div class="field"><label>Último día SIN descuento</label><input type="number" id="da-d2" placeholder="Ej: 30"></div>
+        <div class="field"><label>Tipo de año</label>
+          <select id="da-tipo">
+            <option value="360">Ordinario (360 días)</option>
+            <option value="365">Exacto (365 días)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcDifAhorro()">CALCULAR AHORRO →</button>
+      <div class="result-box" id="res-dif-ahorro"></div>
+      <div class="error-box" id="err-dif-ahorro"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- PANEL: TASAS -->
+  <!-- ============================================================ -->
+  <div id="panel-tasa" class="panel">
+    <div class="section-title">Selecciona el escenario</div>
+
+    <div class="mode-grid">
+      <button class="mode-btn active" onclick="setMode('tas','tep')" id="tas-mode-tep">
+        <span class="icon">📐</span>Calcular TEP<br><small style="color:var(--muted);font-size:0.7rem">Tasa Efectiva del Período</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('tas','tn-tep')" id="tas-mode-tn-tep">
+        <span class="icon">🔄</span>TN → TEP<br><small style="color:var(--muted);font-size:0.7rem">Convertir nominal a efectiva</small>
+      </button>
+      <button class="mode-btn" onclick="setMode('tas','ip')" id="tas-mode-ip">
+        <span class="icon">📉</span>Tasa Real (inflada/real)<br><small style="color:var(--muted);font-size:0.7rem">Tasa nominal vs inflación</small>
+      </button>
+    </div>
+
+    <!-- TEP -->
+    <div class="form-area active" id="tas-form-tep">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        Si tienes el Capital (C) y el Stock (S) al final de un período, la TEP es la rentabilidad real de ese período. No importa si fue días, meses o años: es S/C − 1.
+      </div>
+      <div class="formula"><span>Fórmula</span>TEP = S/C − 1</div>
+      <div class="form-grid">
+        <div class="field"><label>Capital C</label><input type="number" id="tp-c" placeholder="Ej: 10000"></div>
+        <div class="field"><label>Stock S</label><input type="number" id="tp-s" placeholder="Ej: 10100"></div>
+      </div>
+      <button class="calc-btn" onclick="calcTEP()">CALCULAR →</button>
+      <div class="result-box" id="res-tas-tep"></div>
+      <div class="error-box" id="err-tas-tep"></div>
+    </div>
+
+    <!-- TN → TEP -->
+    <div class="form-area" id="tas-form-tn-tep">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        El problema te da una <b>Tasa Nominal</b> (ej: 12% anual) y un <b>período de capitalización</b>. Calcula la TEP (tasa efectiva del período) y la Tasa Efectiva Anual (TEA).
+      </div>
+      <div class="formula"><span>Fórmulas</span>i' = TN/m &nbsp;|&nbsp; TEA = (1 + i')^m − 1</div>
+      <div class="form-grid">
+        <div class="field"><label>Tasa Nominal TN (%)</label><input type="number" id="tn-tn" placeholder="Ej: 12"></div>
+        <div class="field"><label>Periodo de la Tasa (días)</label>
+          <select id="tn-pt">
+            <option value="360">Anual (360 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="30">Mensual (30 días)</option>
+          </select>
+        </div>
+        <div class="field"><label>Periodo Capitalización (días)</label>
+          <select id="tn-pc">
+            <option value="1">Diario (1 día)</option>
+            <option value="30">Mensual (30 días)</option>
+            <option value="90">Trimestral (90 días)</option>
+            <option value="180">Semestral (180 días)</option>
+            <option value="360">Anual (360 días)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcTNaTEP()">CALCULAR →</button>
+      <div class="result-box" id="res-tas-tn-tep"></div>
+      <div class="error-box" id="err-tas-tn-tep"></div>
+    </div>
+
+    <!-- TASA REAL -->
+    <div class="form-area" id="tas-form-ip">
+      <div class="hint">
+        <strong>📌 Identifica las variables</strong>
+        La <b>tasa nominal</b> es la que te pagan. La <b>inflación</b> erosiona ese valor. La <b>tasa real</b> es lo que realmente ganas en términos de poder adquisitivo. Fórmula de Fisher: (1 + r_nominal) = (1 + r_real) × (1 + inflación).
+      </div>
+      <div class="formula"><span>Fórmula de Fisher</span>r_real = (1 + r_nominal)/(1 + inflación) − 1</div>
+      <div class="form-grid">
+        <div class="field"><label>Tasa Nominal (% anual)</label><input type="number" id="ip-rn" placeholder="Ej: 12"></div>
+        <div class="field"><label>Inflación (% anual)</label><input type="number" id="ip-inf" placeholder="Ej: 5"></div>
+      </div>
+      <button class="calc-btn" onclick="calcTasaReal()">CALCULAR →</button>
+      <div class="result-box" id="res-tas-ip"></div>
+      <div class="error-box" id="err-tas-ip"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─── UTILS ────────────────────────────────────────────────────────
+// Regla 2+3: monetario → 2 decimales, punto decimal, SIN comas ni signo
+const fmtMoney = v => {
+  const rounded = Math.round(v * 100) / 100;
+  return rounded.toFixed(2); // punto decimal, sin comas, sin símbolo
+};
+
+// Regla 4+5: tasas → 7 decimales internos para cálculo, 4 para mostrar
+// pct4: muestra tasa en % con 4 decimales (ej: "12.3456%")
+const pct4 = v => (v * 100).toFixed(4) + '%';
+
+// Para cálculos internos de tasa usamos precisión completa de JS (15 sig digits)
+// r7 redondea a 7 decimales para valores intermedios de tasa mostrados
+const r7 = v => parseFloat(v.toFixed(7));
+
+// Regla 6: años, meses, días → enteros
+const fmtInt = v => Math.ceil(v).toString();
+
+// r2 sigue usándose internamente para monetario
+const r2 = v => Math.round(v * 100) / 100;
+
+function showResult(id, html) {
+  const el = document.getElementById(id);
+  el.innerHTML = html;
+  el.classList.add('show');
+  document.getElementById(id.replace('res-', 'err-')).classList.remove('show');
+}
+
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = '⚠ ' + msg;
+  el.classList.add('show');
+  document.getElementById(id.replace('err-', 'res-')).classList.remove('show');
+}
+
+function resultHTML(mainLabel, mainVal, items) {
+  let rows = items.map(([l, v]) =>
+    `<div class="result-item"><div class="result-item-label">${l}</div><div class="result-item-value">${v}</div></div>`
+  ).join('');
+  return `
+    <div class="result-label">${mainLabel}</div>
+    <div class="result-value">${mainVal}</div>
+    <div class="result-breakdown">${rows}</div>
+  `;
+}
+
+// ─── TABS ─────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ─── MODES ────────────────────────────────────────────────────────
+function setMode(panel, mode) {
+  // hide all forms in this panel
+  document.querySelectorAll(`#panel-${panel} .form-area`).forEach(f => f.classList.remove('active'));
+  // deactivate all mode btns
+  document.querySelectorAll(`#panel-${panel} .mode-btn`).forEach(b => b.classList.remove('active'));
+  // show target
+  document.getElementById(`${panel}-form-${mode}`).classList.add('active');
+  document.getElementById(`${panel}-mode-${mode}`).classList.add('active');
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  INTERÉS SIMPLE
+// ─────────────────────────────────────────────────────────────────
+function getSimpleT(t_dias, tipo) { return t_dias / parseInt(tipo); }
+
+function calcSimpleStock() {
+  const C = parseFloat(document.getElementById('ss-c').value);
+  const i = parseFloat(document.getElementById('ss-i').value) / 100;
+  const t_dias = parseFloat(document.getElementById('ss-t').value);
+  const tipo = document.getElementById('ss-tipo').value;
+  if ([C, i, t_dias].some(isNaN) || C <= 0 || i <= 0 || t_dias <= 0)
+    return showError('err-simple-stock', 'Completa todos los campos con valores positivos.');
+  const t = getSimpleT(t_dias, tipo);
+  const I = r2(C * i * t);
+  const S = r2(C + I);
+  showResult('res-simple-stock', resultHTML('STOCK / VALOR FUTURO (S)', fmtMoney(S),
+    [['Capital (C)', fmtMoney(C)], ['Interés (I)', fmtMoney(I)], ['t (fracción año)', r7(t).toFixed(7)], ['i (7 dec.)', r7(i).toFixed(7)]]
+  ));
+}
+
+function calcSimpleInteres() {
+  const C = parseFloat(document.getElementById('si-c').value);
+  const i = parseFloat(document.getElementById('si-i').value) / 100;
+  const t_dias = parseFloat(document.getElementById('si-t').value);
+  const tipo = document.getElementById('si-tipo').value;
+  if ([C, i, t_dias].some(isNaN)) return showError('err-simple-interes', 'Completa todos los campos.');
+  const t = getSimpleT(t_dias, tipo);
+  const I = r2(C * i * t);
+  const S = r2(C + I);
+  showResult('res-simple-interes', resultHTML('INTERÉS (I)', fmtMoney(I),
+    [['Capital (C)', fmtMoney(C)], ['Stock (S)', fmtMoney(S)], ['t (fracción año)', r7(t).toFixed(7)]]
+  ));
+}
+
+function calcSimpleCapital() {
+  const S = parseFloat(document.getElementById('sc-s').value);
+  const i = parseFloat(document.getElementById('sc-i').value) / 100;
+  const t_dias = parseFloat(document.getElementById('sc-t').value);
+  const tipo = document.getElementById('sc-tipo').value;
+  if ([S, i, t_dias].some(isNaN)) return showError('err-simple-capital', 'Completa todos los campos.');
+  const t = getSimpleT(t_dias, tipo);
+  const C = r2(S / (1 + i * t));
+  const ahorro = r2(S - C);
+  showResult('res-simple-capital', resultHTML('CAPITAL PRESENTE (C)', fmtMoney(C),
+    [['Stock (S)', fmtMoney(S)], ['Ahorro al pagar hoy', fmtMoney(ahorro)], ['t (fracción año)', r7(t).toFixed(7)]]
+  ));
+}
+
+function calcSimpleTasa() {
+  const C = parseFloat(document.getElementById('st-c').value);
+  const S = parseFloat(document.getElementById('st-s').value);
+  const t_dias = parseFloat(document.getElementById('st-t').value);
+  const tipo = document.getElementById('st-tipo').value;
+  if ([C, S, t_dias].some(isNaN) || S <= C) return showError('err-simple-tasa', 'Verifica los valores: S debe ser mayor que C.');
+  const t = getSimpleT(t_dias, tipo);
+  const i = (S / C - 1) / t;           // cálculo con precisión completa
+  const I = r2(S - C);
+  const S_verif = r2(C * (1 + i * t));
+  showResult('res-simple-tasa', resultHTML('TASA DE INTERÉS SIMPLE (i)', pct4(i),
+    [['Interés (I)', fmtMoney(I)], ['t (fracción año)', r7(t).toFixed(7)], ['i (7 dec.)', r7(i).toFixed(7)], ['Verificación S', fmtMoney(S_verif)]]
+  ));
+}
+
+function calcSimpleTiempo() {
+  const C = parseFloat(document.getElementById('sti-c').value);
+  const S = parseFloat(document.getElementById('sti-s').value);
+  const i = parseFloat(document.getElementById('sti-i').value) / 100;
+  const tipo = document.getElementById('sti-tipo').value;
+  if ([C, S, i].some(isNaN) || S <= C) return showError('err-simple-tiempo', 'Verifica los valores: S debe ser mayor que C.');
+  const t = (S / C - 1) / i;
+  const t_dias_exacto = t * parseInt(tipo);
+  const t_dias_ceil = Math.ceil(t_dias_exacto);   // Regla 6: entero superior
+  const S_check = r2(C * (1 + i * (t_dias_ceil / parseInt(tipo))));
+  showResult('res-simple-tiempo', resultHTML('TIEMPO (días, redondeado ↑)', t_dias_ceil.toString() + ' días',
+    [['t exacto (días)', t_dias_exacto.toFixed(7)], ['t redondeado (días)', t_dias_ceil.toString()], ['Verificación S', fmtMoney(S_check)]]
+  ));
+}
+
+function calcSimpleCuota() {
+  const PC = parseFloat(document.getElementById('scu-pc').value);
+  const rec = parseFloat(document.getElementById('scu-rec').value) / 100;
+  const CI = parseFloat(document.getElementById('scu-ci').value);
+  const t_dias = parseFloat(document.getElementById('scu-t').value);
+  const tipo = document.getElementById('scu-tipo').value;
+  if ([PC, rec, CI, t_dias].some(isNaN)) return showError('err-simple-cuota', 'Completa todos los campos.');
+  const PL = r2(PC * (1 + rec));
+  const C = r2(PC - CI);
+  const S = r2(PL - CI);
+  const t = getSimpleT(t_dias, tipo);
+  if (S <= C) return showError('err-simple-cuota', 'Error: S debe ser > C. Revisa los datos.');
+  const i = (S / C - 1) / t;
+  const S_verif = r2(C * (1 + i * t));
+  showResult('res-simple-cuota', resultHTML('TASA DE INTERÉS IMPLÍCITA (i)', pct4(i),
+    [['Precio Lista (PL)', fmtMoney(PL)], ['Capital efect. (C)', fmtMoney(C)], ['Stock efect. (S)', fmtMoney(S)], ['t (fracción año)', r7(t).toFixed(7)], ['i (7 dec.)', r7(i).toFixed(7)], ['Verificación S', fmtMoney(S_verif)]]
+  ));
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  INTERÉS COMPUESTO
+// ─────────────────────────────────────────────────────────────────
+function getMN(pt, pc) {
+  return parseInt(pt) / parseInt(pc);
+}
+function getN(t_dias, pc) {
+  return t_dias / parseInt(pc);
+}
+
+function calcCompStock() {
+  const C = parseFloat(document.getElementById('cs-c').value);
+  const TN = parseFloat(document.getElementById('cs-tn').value) / 100;
+  const pt = document.getElementById('cs-pt').value;
+  const pc = document.getElementById('cs-pc').value;
+  const t_dias = parseFloat(document.getElementById('cs-t').value);
+  if ([C, TN, t_dias].some(isNaN)) return showError('err-comp-stock', 'Completa todos los campos.');
+  const m = getMN(pt, pc);
+  const n = getN(t_dias, pc);
+  const ip = TN / m;                             // tasa periodo capitalización (7+ decimales internamente)
+  const S = r2(C * Math.pow(1 + ip, n));
+  const TEP = Math.pow(1 + ip, n) - 1;
+  const I = r2(S - C);
+  showResult('res-comp-stock', resultHTML('STOCK / VALOR FUTURO (S)', fmtMoney(S),
+    [['Capital (C)', fmtMoney(C)], ['Interés total (I)', fmtMoney(I)],
+     ['m (períodos)', m.toString()], ['n (períodos total)', n.toFixed(7)],
+     ['i\' = TN/m (7 dec.)', r7(ip).toFixed(7)], ['TEP', pct4(TEP)]]
+  ));
+}
+
+function calcCompCapital() {
+  const S = parseFloat(document.getElementById('cc-s').value);
+  const TN = parseFloat(document.getElementById('cc-tn').value) / 100;
+  const pt = document.getElementById('cc-pt').value;
+  const pc = document.getElementById('cc-pc').value;
+  const t_dias = parseFloat(document.getElementById('cc-t').value);
+  if ([S, TN, t_dias].some(isNaN)) return showError('err-comp-capital', 'Completa todos los campos.');
+  const m = getMN(pt, pc);
+  const n = getN(t_dias, pc);
+  const ip = TN / m;
+  const C = r2(S / Math.pow(1 + ip, n));
+  const ahorro = r2(S - C);
+  showResult('res-comp-capital', resultHTML('CAPITAL PRESENTE (C)', fmtMoney(C),
+    [['Stock (S)', fmtMoney(S)], ['Ahorro al pagar hoy', fmtMoney(ahorro)],
+     ['m', m.toString()], ['n', n.toFixed(7)], ['i\' (7 dec.)', r7(ip).toFixed(7)]]
+  ));
+}
+
+function calcCompTasa() {
+  const C = parseFloat(document.getElementById('ct-c').value);
+  const S = parseFloat(document.getElementById('ct-s').value);
+  const pt = document.getElementById('ct-pt').value;
+  const pc = document.getElementById('ct-pc').value;
+  const t_dias = parseFloat(document.getElementById('ct-t').value);
+  if ([C, S, t_dias].some(isNaN) || S <= C) return showError('err-comp-tasa', 'S debe ser mayor que C.');
+  const m = getMN(pt, pc);
+  const n = getN(t_dias, pc);
+  const TN = m * (Math.pow(S / C, 1 / n) - 1);   // precisión completa para cálculo
+  const ip = TN / m;
+  const TEA = Math.pow(1 + ip, m) - 1;
+  const S_verif = r2(C * Math.pow(1 + ip, n));
+  showResult('res-comp-tasa', resultHTML('TASA NOMINAL (TN)', pct4(TN),
+    [['m', m.toString()], ['n', n.toFixed(7)],
+     ['i\' = TN/m (7 dec.)', r7(ip).toFixed(7)], ['TEA', pct4(TEA)],
+     ['Verificación S', fmtMoney(S_verif)]]
+  ));
+}
+
+function calcCompTiempo() {
+  const C = parseFloat(document.getElementById('cti-c').value);
+  const S = parseFloat(document.getElementById('cti-s').value);
+  const TN = parseFloat(document.getElementById('cti-tn').value) / 100;
+  const pt = document.getElementById('cti-pt').value;
+  const pc = document.getElementById('cti-pc').value;
+  if ([C, S, TN].some(isNaN) || S <= C) return showError('err-comp-tiempo', 'S debe ser mayor que C.');
+  const m = getMN(pt, pc);
+  const ip = TN / m;
+  const n_exacto = Math.log(S / C) / Math.log(1 + ip);
+  const n_ceil = Math.ceil(n_exacto);              // Regla 6: entero superior
+  const t_dias = n_ceil * parseInt(pc);            // Regla 6: entero
+  const S_check = r2(C * Math.pow(1 + ip, n_ceil));
+  showResult('res-comp-tiempo', resultHTML('TIEMPO (n períodos ↑ → días)', n_ceil.toString() + ' períodos = ' + t_dias.toString() + ' días',
+    [['n exacto (períodos)', n_exacto.toFixed(7)], ['n redondeado ↑', n_ceil.toString()],
+     ['Días totales', t_dias.toString()], ['Verificación S', fmtMoney(S_check)]]
+  ));
+}
+
+function calcCompCuota() {
+  const PC = parseFloat(document.getElementById('ccu-pc').value);
+  const rec = parseFloat(document.getElementById('ccu-rec').value) / 100;
+  const CI = parseFloat(document.getElementById('ccu-ci').value);
+  const t_dias = parseFloat(document.getElementById('ccu-t').value);
+  const pt = document.getElementById('ccu-pt').value;
+  const pc = document.getElementById('ccu-pc2').value;
+  if ([PC, rec, CI, t_dias].some(isNaN)) return showError('err-comp-cuota', 'Completa todos los campos.');
+  const PL = r2(PC * (1 + rec));
+  const C = r2(PC - CI);
+  const S = r2(PL - CI);
+  const m = getMN(pt, pc);
+  const n = getN(t_dias, pc);
+  if (S <= C) return showError('err-comp-cuota', 'Error: S debe ser > C. Revisa los datos.');
+  const TN = m * (Math.pow(S / C, 1 / n) - 1);
+  const ip = TN / m;
+  const S_verif = r2(C * Math.pow(1 + ip, n));
+  showResult('res-comp-cuota', resultHTML('TASA NOMINAL IMPLÍCITA (TN)', pct4(TN),
+    [['Precio Lista (PL)', fmtMoney(PL)], ['C efectivo', fmtMoney(C)], ['S efectivo', fmtMoney(S)],
+     ['m', m.toString()], ['n', n.toFixed(7)],
+     ['i\' (7 dec.)', r7(ip).toFixed(7)], ['Verif. S', fmtMoney(S_verif)]]
+  ));
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  PAGO DIFERIDO
+// ─────────────────────────────────────────────────────────────────
+function calcDifTasa() {
+  const PL = parseFloat(document.getElementById('dt-pl').value);
+  const desc = parseFloat(document.getElementById('dt-desc').value) / 100;
+  const d1 = parseFloat(document.getElementById('dt-d1').value);
+  const d2 = parseFloat(document.getElementById('dt-d2').value);
+  const tipo = document.getElementById('dt-tipo').value;
+  if ([PL, desc, d1, d2].some(isNaN) || d2 <= d1) return showError('err-dif-tasa', 'Día final debe ser mayor al día de descuento.');
+  const VF = r2(PL * desc);
+  const C = r2(PL - VF);
+  const S = PL;
+  const t_dias = d2 - d1;                         // Regla 6: días enteros
+  const t = t_dias / parseInt(tipo);
+  const i = (S / C - 1) / t;                      // tasa con precisión completa
+  showResult('res-dif-tasa', resultHTML('TASA MÁXIMA BANCO (i)', pct4(i),
+    [['Descuento (VF)', fmtMoney(VF)], ['Saldo / C préstamo', fmtMoney(C)],
+     ['Precio lista / S', fmtMoney(S)], ['Tiempo (días)', t_dias.toString()],
+     ['i (7 dec.)', r7(i).toFixed(7)],
+     ['Banco con tasa < ' + pct4(i) + ' es RENTABLE', '✓']]
+  ));
+}
+
+function calcDifAhorro() {
+  const PL = parseFloat(document.getElementById('da-pl').value);
+  const desc = parseFloat(document.getElementById('da-desc').value) / 100;
+  const i = parseFloat(document.getElementById('da-i').value) / 100;
+  const d1 = parseFloat(document.getElementById('da-d1').value);
+  const d2 = parseFloat(document.getElementById('da-d2').value);
+  const tipo = document.getElementById('da-tipo').value;
+  if ([PL, desc, i, d1, d2].some(isNaN)) return showError('err-dif-ahorro', 'Completa todos los campos.');
+  const VF = r2(PL * desc);
+  const C_prestamo = r2(PL - VF);
+  const t_dias = d2 - d1;                         // Regla 6: entero
+  const t = t_dias / parseInt(tipo);
+  const S_prestamo = r2(C_prestamo * (1 + i * t));
+  const ahorro = r2(PL - S_prestamo);
+  showResult('res-dif-ahorro', resultHTML('AHORRO / UTILIDAD', fmtMoney(ahorro),
+    [['Préstamo (C)', fmtMoney(C_prestamo)], ['Stock del préstamo (S)', fmtMoney(S_prestamo)],
+     ['Precio lista (sin descuento)', fmtMoney(PL)], ['Tiempo (días)', t_dias.toString()],
+     [ahorro > 0 ? '✅ Conviene tomar el préstamo' : '❌ No conviene', ahorro > 0 ? '+' + fmtMoney(ahorro) : fmtMoney(ahorro)]]
+  ));
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  TASAS
+// ─────────────────────────────────────────────────────────────────
+function calcTEP() {
+  const C = parseFloat(document.getElementById('tp-c').value);
+  const S = parseFloat(document.getElementById('tp-s').value);
+  if ([C, S].some(isNaN) || S <= C) return showError('err-tas-tep', 'S debe ser mayor que C.');
+  const TEP = S / C - 1;
+  const I = r2(S - C);
+  showResult('res-tas-tep', resultHTML('TASA EFECTIVA DEL PERÍODO (TEP)', pct4(TEP),
+    [['Capital (C)', fmtMoney(C)], ['Stock (S)', fmtMoney(S)],
+     ['Interés (I)', fmtMoney(I)], ['TEP (7 dec.)', r7(TEP).toFixed(7)]]
+  ));
+}
+
+function calcTNaTEP() {
+  const TN = parseFloat(document.getElementById('tn-tn').value) / 100;
+  const pt = document.getElementById('tn-pt').value;
+  const pc = document.getElementById('tn-pc').value;
+  if (isNaN(TN)) return showError('err-tas-tn-tep', 'Ingresa la tasa nominal.');
+  const m = getMN(pt, pc);
+  const ip = TN / m;
+  const TEA = Math.pow(1 + ip, m) - 1;
+  showResult('res-tas-tn-tep', resultHTML('TASA EFECTIVA DEL PERÍODO (i\')', pct4(ip),
+    [['m (períodos en la tasa)', m.toString()], ['i\' = TN/m (7 dec.)', r7(ip).toFixed(7)],
+     ['TEA', pct4(TEA)], ['TEA (7 dec.)', r7(TEA).toFixed(7)]]
+  ));
+}
+
+function calcTasaReal() {
+  const rn = parseFloat(document.getElementById('ip-rn').value) / 100;
+  const inf = parseFloat(document.getElementById('ip-inf').value) / 100;
+  if ([rn, inf].some(isNaN)) return showError('err-tas-ip', 'Completa los campos.');
+  const r_real = (1 + rn) / (1 + inf) - 1;
+  showResult('res-tas-ip', resultHTML('TASA REAL (Fisher)', pct4(r_real),
+    [['Tasa Nominal', pct4(rn)], ['Inflación', pct4(inf)],
+     ['r_real (7 dec.)', r7(r_real).toFixed(7)],
+     [r_real > 0 ? '✅ Rentabilidad real positiva' : '⚠ Rentabilidad real negativa',
+      r_real > 0 ? '+' + pct4(r_real) : pct4(r_real)]]
+  ));
+}
+</script>
 </body>
 </html>
