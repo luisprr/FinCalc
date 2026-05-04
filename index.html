@@ -1323,10 +1323,10 @@ select:focus-visible,
 </head>
 <body>
 
-<nav class="sidebar"><div class="brand"><div class="brand-logo">F</div><div class="brand-text"><div class="brand-name">FinCalc</div><div class="brand-desc">Matemática Financiera</div></div></div><div class="nav-group"><div class="nav-group-label">Interés Simple</div><div class="nav-item active" data-p="ss" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="si" onclick="go(this)"><span class="nav-icon">💰</span>Interés (I)</div><div class="nav-item" data-p="sc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="st" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (i)</div><div class="nav-item" data-p="sti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (t)</div></div><div class="nav-group"><div class="nav-group-label">Interés Compuesto</div><div class="nav-item" data-p="cs" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="cc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="ct" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (TN)</div><div class="nav-item" data-p="cti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (n)</div></div><div class="nav-group"><div class="nav-group-label">Tasa Efectiva</div><div class="nav-item" data-p="tep" onclick="go(this)"><span class="nav-icon">⚡</span>Calcular con TEP</div><div class="nav-item" data-p="tas" onclick="go(this)"><span class="nav-icon">🔄</span>Convertir tasas</div></div><div class="nav-group"><div class="nav-group-label">Escenarios</div><div class="nav-item" data-p="fci" onclick="go(this)"><span class="nav-icon">🧾</span>Factura con Cuota Inicial</div><div class="nav-item" data-p="dif" onclick="go(this)"><span class="nav-icon">🔍</span>Pago Diferido (simple)</div></div><div class="nav-group"><div class="nav-group-label">Referencia</div><div class="nav-item" data-p="form" onclick="go(this)"><span class="nav-icon">📐</span>Formulario</div></div></nav>
+<nav class="sidebar"><div class="brand"><div class="brand-logo">F</div><div class="brand-text"><div class="brand-name">FinCalc</div><div class="brand-desc">Matemática Financiera</div></div></div><div class="nav-group"><div class="nav-group-label">Interés Simple</div><div class="nav-item active" data-p="ss" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="si" onclick="go(this)"><span class="nav-icon">💰</span>Interés (I)</div><div class="nav-item" data-p="sc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="st" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (i)</div><div class="nav-item" data-p="sti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (t)</div></div><div class="nav-group"><div class="nav-group-label">Interés Compuesto</div><div class="nav-item" data-p="cs" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="cc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="ct" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (TN)</div><div class="nav-item" data-p="cti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (n)</div></div><div class="nav-group"><div class="nav-group-label">Tasa Efectiva</div><div class="nav-item" data-p="tep" onclick="go(this)"><span class="nav-icon">⚡</span>Calcular con TEP</div><div class="nav-item" data-p="tas" onclick="go(this)"><span class="nav-icon">🔄</span>Convertir tasas</div></div><div class="nav-group"><div class="nav-group-label">Escenarios</div><div class="nav-item" data-p="fci" onclick="go(this)"><span class="nav-icon">🧾</span>Factura con Cuota Inicial</div><div class="nav-item" data-p="trea" onclick="go(this)"><span class="nav-icon">◇</span>Inversión 2 Bancos · TREA</div><div class="nav-item" data-p="dif" onclick="go(this)"><span class="nav-icon">🔍</span>Pago Diferido (simple)</div></div><div class="nav-group"><div class="nav-group-label">Referencia</div><div class="nav-item" data-p="form" onclick="go(this)"><span class="nav-icon">📐</span>Formulario</div></div></nav>
 
 <main class="main">
-<nav class="mobnav"><button class="mob-btn active" onclick="gm('ss',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('si',this)">💰 Interés (I)</button><button class="mob-btn" onclick="gm('sc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('st',this)">📊 Tasa (i)</button><button class="mob-btn" onclick="gm('sti',this)">⏱ Tiempo (t)</button><button class="mob-btn" onclick="gm('cs',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('cc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('ct',this)">📊 Tasa (TN)</button><button class="mob-btn" onclick="gm('cti',this)">⏱ Tiempo (n)</button><button class="mob-btn" onclick="gm('tep',this)">⚡ Calcular</button><button class="mob-btn" onclick="gm('tas',this)">🔄 Convertir tasas</button><button class="mob-btn" onclick="gm('fci',this)">🧾 Factura + CI</button><button class="mob-btn" onclick="gm('dif',this)">🔍 Pago Diferido</button><button class="mob-btn" onclick="gm('form',this)">📐 Formulario</button></nav>
+<nav class="mobnav"><button class="mob-btn active" onclick="gm('ss',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('si',this)">💰 Interés (I)</button><button class="mob-btn" onclick="gm('sc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('st',this)">📊 Tasa (i)</button><button class="mob-btn" onclick="gm('sti',this)">⏱ Tiempo (t)</button><button class="mob-btn" onclick="gm('cs',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('cc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('ct',this)">📊 Tasa (TN)</button><button class="mob-btn" onclick="gm('cti',this)">⏱ Tiempo (n)</button><button class="mob-btn" onclick="gm('tep',this)">⚡ Calcular</button><button class="mob-btn" onclick="gm('tas',this)">🔄 Convertir tasas</button><button class="mob-btn" onclick="gm('fci',this)">🧾 Factura + CI</button><button class="mob-btn" onclick="gm('trea',this)">◇ TREA 2 Bancos</button><button class="mob-btn" onclick="gm('dif',this)">🔍 Pago Diferido</button><button class="mob-btn" onclick="gm('form',this)">📐 Formulario</button></nav>
 <section id="p-ss" class="page active"><div class="page-header">
   <div class="page-crumb">Interés Simple</div>
   <h1 class="page-title">¿Cuánto tendré al final? <span class="accent">→ S</span></h1>
@@ -2523,6 +2523,166 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
 <button class="btn-primary" onclick="calc('fci')" type="button">Calcular ambos incisos<span class="arrow">→</span></button>
 <div class="result-box" id="res-fci"></div>
 <div class="error-box" id="err-fci"></div>
+</section><section id="p-trea" class="page">
+<div class="page-header">
+  <div class="page-crumb">Escenario</div>
+  <h1 class="page-title">Inversión 2 Bancos <span class="accent">· TREA</span></h1>
+  <p class="page-subtitle">Compara dos bancos durante dos años de inversión. La app elige el mayor rendimiento por año (tasa pasiva) y calcula la Tasa de Rendimiento Efectivo Anual (TREA) consolidada de la operación completa.</p>
+</div>
+
+<div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Por ser una <strong>inversión</strong>, se usa la <strong>tasa pasiva (TNP / TEP)</strong> de cada banco. La app maneja tasas Nominales y Efectivas mezcladas (típico cuando cambia la normativa entre años).<br>Fórmula final: <strong>TREA = (S₁/C)<sup>360/días totales</sup> − 1</strong></span></div>
+
+<div class="card highlight">
+  <div class="card-header">
+    <div class="card-num">1</div>
+    <div class="card-title">Capital inicial &amp; nombres</div>
+  </div>
+  <div class="card-body">
+    <div class="form-grid">
+      <div class="field full">
+        <div class="field-label"><span class="label-main">Capital inicial</span><span class="label-required">*</span><span class="label-chip">C</span></div>
+        <div class="label-hint">Lo que se invierte el día 0</div>
+        <input type="number" id="trea-c" placeholder="Ej: 20 985.00" step="any">
+      </div>
+      <div class="field">
+        <div class="field-label"><span class="label-main">Nombre Banco A</span><span class="label-chip">opc.</span></div>
+        <input type="text" id="trea-na" placeholder="Ej: Esperanza">
+      </div>
+      <div class="field">
+        <div class="field-label"><span class="label-main">Nombre Banco B</span><span class="label-chip">opc.</span></div>
+        <input type="text" id="trea-nb" placeholder="Ej: Nuevo Mundo">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-num">2</div>
+    <div class="card-title">Año 1 — Tasas pasivas</div>
+  </div>
+  <div class="card-body">
+    <div class="form-grid">
+      <div class="field full">
+        <div class="field-label"><span class="label-main">Días de inversión año 1</span><span class="label-required">*</span><span class="label-chip">d₁</span></div>
+        <div class="label-hint">Por defecto: 360 (un año comercial)</div>
+        <input type="number" id="trea-y1-inv" placeholder="360" value="360" step="any">
+      </div>
+    </div>
+
+    <div class="divider">▸ Banco A — Año 1</div>
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn active" onclick="treaTipo('y1a','nom',this)">Nominal (TNP)</button>
+        <button type="button" class="toggle-btn" onclick="treaTipo('y1a','efe',this)">Efectiva (TEP)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field">
+        <div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div>
+        <input type="number" id="trea-y1a-i" placeholder="Ej: 2.40" step="any">
+      </div>
+      <div class="field">
+        <div class="field-label"><span class="label-main">Período de la tasa</span></div>
+        <select id="trea-y1a-pt"><option value="360">Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrimestral (120)</option><option value="90">Trimestral (90)</option><option value="60" selected>Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select>
+      </div>
+      <div class="field full" id="trea-y1a-pc-wrap">
+        <div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div>
+        <select id="trea-y1a-pc"><option value="1" selected>Diaria (1) · default</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select>
+      </div>
+    </div>
+
+    <div class="divider">▸ Banco B — Año 1</div>
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn active" onclick="treaTipo('y1b','nom',this)">Nominal (TNP)</button>
+        <button type="button" class="toggle-btn" onclick="treaTipo('y1b','efe',this)">Efectiva (TEP)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field">
+        <div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div>
+        <input type="number" id="trea-y1b-i" placeholder="Ej: 1.23" step="any">
+      </div>
+      <div class="field">
+        <div class="field-label"><span class="label-main">Período de la tasa</span></div>
+        <select id="trea-y1b-pt"><option value="360">Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrimestral (120)</option><option value="90">Trimestral (90)</option><option value="60">Bimestral (60)</option><option value="30" selected>Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select>
+      </div>
+      <div class="field full" id="trea-y1b-pc-wrap">
+        <div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div>
+        <select id="trea-y1b-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30" selected>Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-num">3</div>
+    <div class="card-title">Año 2 — Tasas pasivas</div>
+  </div>
+  <div class="card-body">
+    <div class="form-grid">
+      <div class="field full">
+        <div class="field-label"><span class="label-main">Días de inversión año 2</span><span class="label-required">*</span><span class="label-chip">d₂</span></div>
+        <div class="label-hint">Por defecto: 360</div>
+        <input type="number" id="trea-y2-inv" placeholder="360" value="360" step="any">
+      </div>
+    </div>
+
+    <div class="divider">▸ Banco A — Año 2</div>
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn" onclick="treaTipo('y2a','nom',this)">Nominal (TNP)</button>
+        <button type="button" class="toggle-btn active" onclick="treaTipo('y2a','efe',this)">Efectiva (TEP)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field">
+        <div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div>
+        <input type="number" id="trea-y2a-i" placeholder="Ej: 1.70" step="any">
+      </div>
+      <div class="field">
+        <div class="field-label"><span class="label-main">Período de la tasa</span></div>
+        <select id="trea-y2a-pt"><option value="360">Anual (TEA, 360)</option><option value="180">Semestral (TES, 180)</option><option value="120">Cuatrimestral (TEC, 120)</option><option value="90">Trimestral (TET, 90)</option><option value="60">Bimestral (TEB, 60)</option><option value="30" selected>Mensual (TEM, 30)</option><option value="15">Quincenal (TEQ, 15)</option><option value="1">Diaria (TED, 1)</option><option value="custom">✏️ Otro</option></select>
+      </div>
+      <div class="field full" id="trea-y2a-pc-wrap" style="display:none">
+        <div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div>
+        <select id="trea-y2a-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select>
+      </div>
+    </div>
+
+    <div class="divider">▸ Banco B — Año 2</div>
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn" onclick="treaTipo('y2b','nom',this)">Nominal (TNP)</button>
+        <button type="button" class="toggle-btn active" onclick="treaTipo('y2b','efe',this)">Efectiva (TEP)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field">
+        <div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div>
+        <input type="number" id="trea-y2b-i" placeholder="Ej: 2.44" step="any">
+      </div>
+      <div class="field">
+        <div class="field-label"><span class="label-main">Período de la tasa</span></div>
+        <select id="trea-y2b-pt"><option value="360">Anual (TEA, 360)</option><option value="180">Semestral (TES, 180)</option><option value="120">Cuatrimestral (TEC, 120)</option><option value="90">Trimestral (TET, 90)</option><option value="60" selected>Bimestral (TEB, 60)</option><option value="30">Mensual (TEM, 30)</option><option value="15">Quincenal (TEQ, 15)</option><option value="1">Diaria (TED, 1)</option><option value="custom">✏️ Otro</option></select>
+      </div>
+      <div class="field full" id="trea-y2b-pc-wrap" style="display:none">
+        <div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div>
+        <select id="trea-y2b-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="calc('trea')" type="button">Calcular ganadores y TREA<span class="arrow">→</span></button>
+<div class="result-box" id="res-trea"></div>
+<div class="error-box" id="err-trea"></div>
 </section><section id="p-form" class="page"><div class="page-header">
   <div class="page-crumb">Referencia</div>
   <h1 class="page-title">Formulario Completo <span class="accent"></span></h1>
@@ -2793,7 +2953,7 @@ function gcP(p){
 
 // ═══ DISPATCHER ═══════════════════════════════════
 function calc(p){
-  ({ss:cSS,si:cSI,sc:cSC,st:cST,sti:cSTI,cs:cCS,cc:cCC,ct:cCT,cti:cCTI,dif:cDIF,tp:cTP,tn:cTN,ip:cIP,ttn:cTTN,ttep:cTTEP,ttt:cTTT,stp:cSTP,tep:calcTEP,fci:cFCI})[p]?.();
+  ({ss:cSS,si:cSI,sc:cSC,st:cST,sti:cSTI,cs:cCS,cc:cCC,ct:cCT,cti:cCTI,dif:cDIF,tp:cTP,tn:cTN,ip:cIP,ttn:cTTN,ttep:cTTEP,ttt:cTTT,stp:cSTP,tep:calcTEP,fci:cFCI,trea:cTREA})[p]?.();
 }
 
 // ═══ INTERÉS SIMPLE ═══════════════════════════════
@@ -3510,6 +3670,141 @@ function cFCI(){
   el.innerHTML = html;
   el.classList.add('show');
   document.getElementById('err-fci').classList.remove('show');
+  if(window.innerWidth < 860){
+    setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'center'}), 100);
+  }
+}
+
+// ═══ INVERSIÓN 2 BANCOS · TREA ═════════════════════
+// Para cada año compara dos bancos (tasa pasiva nominal o efectiva),
+// elige el de mayor rendimiento, y al final calcula:
+//   TREA = (S_final/C)^(360 / días_totales) − 1
+
+function treaTipo(pfx, tipo, btn){
+  // pfx: 'y1a' | 'y1b' | 'y2a' | 'y2b'
+  btn.closest('.toggle').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const capWrap = document.getElementById('trea-'+pfx+'-pc-wrap');
+  if(capWrap) capWrap.style.display = (tipo==='nom') ? '' : 'none';
+}
+
+function cTREA(){
+  const C = gv('trea-c');
+  if(isNaN(C)||C<=0) return showE('trea','Ingresa un capital válido.');
+  const inv1 = gv('trea-y1-inv') || 360;
+  const inv2 = gv('trea-y2-inv') || 360;
+  if(inv1<=0||inv2<=0) return showE('trea','Días de inversión deben ser positivos.');
+
+  const na = (document.getElementById('trea-na').value || 'Banco A').trim();
+  const nb = (document.getElementById('trea-nb').value || 'Banco B').trim();
+
+  // Calcula factor de crecimiento de un banco/año dado el prefijo
+  function bankFactor(pfx, inv){
+    // tipo activo
+    const wrap = document.getElementById('trea-'+pfx+'-pc-wrap');
+    const isNominal = wrap && wrap.style.display !== 'none';
+    const i = gv('trea-'+pfx+'-i')/100;
+    const pt = gs('trea-'+pfx+'-pt') || 360;
+    if(isNaN(i)||i<=0) return null;
+    if(isNominal){
+      const pc = gs('trea-'+pfx+'-pc') || 1;
+      const m = pt/pc, n = inv/pc;
+      return { factor: Math.pow(1+i/m, n), tipo:'Nominal', i, pt, pc, m, n };
+    } else {
+      const exp = inv/pt;
+      return { factor: Math.pow(1+i, exp), tipo:'Efectiva', i, pt, pc:null, m:null, n:exp };
+    }
+  }
+
+  // Año 1
+  const r1a = bankFactor('y1a', inv1);
+  const r1b = bankFactor('y1b', inv1);
+  if(!r1a) return showE('trea','Tasa Banco A año 1 inválida.');
+  if(!r1b) return showE('trea','Tasa Banco B año 1 inválida.');
+  const S1a = C * r1a.factor;
+  const S1b = C * r1b.factor;
+  const winner1 = (S1a >= S1b) ? 'A' : 'B';
+  const C1 = Math.max(S1a, S1b);
+  const winName1 = (winner1==='A') ? na : nb;
+
+  // Año 2
+  const r2a = bankFactor('y2a', inv2);
+  const r2b = bankFactor('y2b', inv2);
+  if(!r2a) return showE('trea','Tasa Banco A año 2 inválida.');
+  if(!r2b) return showE('trea','Tasa Banco B año 2 inválida.');
+  const S2a = C1 * r2a.factor;
+  const S2b = C1 * r2b.factor;
+  const winner2 = (S2a >= S2b) ? 'A' : 'B';
+  const SF = Math.max(S2a, S2b);
+  const winName2 = (winner2==='A') ? na : nb;
+
+  // TREA
+  const totalDays = inv1 + inv2;
+  const TREA = Math.pow(SF/C, 360/totalDays) - 1;
+
+  const checkSvg = '<svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  let html = '';
+  // Hero año 1
+  html += `<div class="result-hero">
+    <div class="result-head">
+      <div class="result-check">${checkSvg}</div>
+      <div class="result-label">AÑO 1 · ${winName1.toUpperCase()} (GANADOR)</div>
+    </div>
+    <div class="result-value is-money">${fmtM(C1)}</div>
+    <div class="result-extra"><span class="result-extra-label">Precisión extendida</span><span class="result-extra-value">${fmtM6(C1)}</span></div>
+  </div>`;
+  // Hero año 2
+  html += `<div class="result-hero" style="margin-top:14px">
+    <div class="result-head">
+      <div class="result-check">${checkSvg}</div>
+      <div class="result-label">AÑO 2 · ${winName2.toUpperCase()} (GANADOR)</div>
+    </div>
+    <div class="result-value is-money">${fmtM(SF)}</div>
+    <div class="result-extra"><span class="result-extra-label">Precisión extendida</span><span class="result-extra-value">${fmtM6(SF)}</span></div>
+  </div>`;
+  // Hero TREA
+  html += `<div class="result-hero" style="margin-top:14px">
+    <div class="result-head">
+      <div class="result-check">${checkSvg}</div>
+      <div class="result-label">TREA · TASA EFECTIVA ANUAL DE LA OPERACIÓN</div>
+    </div>
+    <div class="result-value is-rate">${pct4(TREA)}</div>
+    <div class="result-extra"><span class="result-extra-label">Precisión extendida</span><span class="result-extra-value">${pct10(TREA)}</span></div>
+  </div>`;
+
+  // Detalles
+  const tag = (pfx, win) => (winner1==='A'&&pfx==='y1a')||(winner1==='B'&&pfx==='y1b')||(winner2==='A'&&pfx==='y2a')||(winner2==='B'&&pfx==='y2b') ? ' ✓' : '';
+  const items = [
+    ['Capital inicial (C)',         fmtM(C)],
+    ['Días totales invertidos',     totalDays.toString()+' (d₁+d₂)'],
+    ['── Año 1 ──',                  ''],
+    [`${na} (${r1a.tipo})`,         'factor = '+r10(r1a.factor).toFixed(10)],
+    [`${na} → S año 1`,             fmtM6(S1a)+tag('y1a')],
+    [`${nb} (${r1b.tipo})`,         'factor = '+r10(r1b.factor).toFixed(10)],
+    [`${nb} → S año 1`,             fmtM6(S1b)+tag('y1b')],
+    ['Banco elegido año 1',         winName1+' (mayor rendimiento)'],
+    ['Capital al inicio año 2 (C₁)', fmtM6(C1)],
+    ['── Año 2 ──',                  ''],
+    [`${na} (${r2a.tipo})`,         'factor = '+r10(r2a.factor).toFixed(10)],
+    [`${na} → S año 2`,             fmtM6(S2a)+tag('y2a')],
+    [`${nb} (${r2b.tipo})`,         'factor = '+r10(r2b.factor).toFixed(10)],
+    [`${nb} → S año 2`,             fmtM6(S2b)+tag('y2b')],
+    ['Banco elegido año 2',         winName2+' (mayor rendimiento)'],
+    ['Monto final (S_F)',           fmtM6(SF)],
+    ['── TREA ──',                   ''],
+    ['Fórmula',                     '(S_F/C)^(360/d_total) − 1'],
+    ['S_F / C',                     r10(SF/C).toFixed(10)],
+    ['Exponente 360/d_total',       r10(360/totalDays).toFixed(10)],
+    ['TREA (10 dec)',               r10(TREA).toFixed(10)]
+  ];
+  const cells = items.map(([l,v])=>`<div class="result-item"><div class="result-item-label">${l}</div><div class="result-item-value">${v}</div></div>`).join('');
+  html += `<div class="result-grid" style="margin-top:14px">${cells}</div>`;
+
+  const el = document.getElementById('res-trea');
+  el.innerHTML = html;
+  el.classList.add('show');
+  document.getElementById('err-trea').classList.remove('show');
   if(window.innerWidth < 860){
     setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'center'}), 100);
   }
