@@ -12,7 +12,7 @@
   --bg-deep:      #080A09;
   --bg-elev:      #131614;
   --surface:      #181B19;
-  --surface-2:    #1F231F;
+    --surface-2:    #1F231F;
   --surface-3:    #262A26;
   --line:         rgba(232, 228, 220, 0.07);
   --line-2:       rgba(232, 228, 220, 0.13);
@@ -37,7 +37,7 @@
   --success-b:    var(--accent-line);
   --accent-b:     var(--accent-line);
   --warn-b:       var(--warn-line);
-  --danger-b:     var(--danger-line);
+    --danger-b:     var(--danger-line);
   --ff-display:   'Bebas Neue', Impact, 'Helvetica Neue', sans-serif;
   --ff-sans:      'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --ff-mono:      'DM Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
@@ -1323,10 +1323,10 @@ select:focus-visible,
 </head>
 <body>
 
-<nav class="sidebar"><div class="brand"><div class="brand-logo">F</div><div class="brand-text"><div class="brand-name">FinCalc</div><div class="brand-desc">Matemática Financiera</div></div></div><div class="nav-group"><div class="nav-group-label">Interés Simple</div><div class="nav-item active" data-p="ss" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="si" onclick="go(this)"><span class="nav-icon">💰</span>Interés (I)</div><div class="nav-item" data-p="sc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="st" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (i)</div><div class="nav-item" data-p="sti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (t)</div></div><div class="nav-group"><div class="nav-group-label">Interés Compuesto</div><div class="nav-item" data-p="cs" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="cc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="ct" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (TN)</div><div class="nav-item" data-p="cti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (n)</div></div><div class="nav-group"><div class="nav-group-label">Tasa Efectiva</div><div class="nav-item" data-p="tep" onclick="go(this)"><span class="nav-icon">⚡</span>Calcular con TEP</div><div class="nav-item" data-p="tas" onclick="go(this)"><span class="nav-icon">🔄</span>Convertir tasas</div></div><div class="nav-group"><div class="nav-group-label">Escenarios</div><div class="nav-item" data-p="fci" onclick="go(this)"><span class="nav-icon">🧾</span>Factura con Cuota Inicial</div><div class="nav-item" data-p="trea" onclick="go(this)"><span class="nav-icon">◇</span>Inversión 2 Bancos · TREA</div><div class="nav-item" data-p="dif" onclick="go(this)"><span class="nav-icon">🔍</span>Pago Diferido (simple)</div><div class="nav-item" data-p="eqv" onclick="go(this)"><span class="nav-icon">◇</span>Equivalencia Cronogramas</div></div><div class="nav-group"><div class="nav-group-label">Descuento &amp; Rentas</div><div class="nav-item" data-p="tdesc" onclick="go(this)"><span class="nav-icon">▸</span>Tasa Descontada (TCEA)</div><div class="nav-item" data-p="anu" onclick="go(this)"><span class="nav-icon">▸</span>Anualidades</div></div><div class="nav-group"><div class="nav-group-label">Referencia</div><div class="nav-item" data-p="form" onclick="go(this)"><span class="nav-icon">📐</span>Formulario</div></div></nav>
+<nav class="sidebar"><div class="brand"><div class="brand-logo">F</div><div class="brand-text"><div class="brand-name">FinCalc</div><div class="brand-desc">Matemática Financiera</div></div></div><div class="nav-group"><div class="nav-group-label">Interés Simple</div><div class="nav-item active" data-p="ss" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="si" onclick="go(this)"><span class="nav-icon">💰</span>Interés (I)</div><div class="nav-item" data-p="sc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="st" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (i)</div><div class="nav-item" data-p="sti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (t)</div></div><div class="nav-group"><div class="nav-group-label">Interés Compuesto</div><div class="nav-item" data-p="cs" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="cc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="ct" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (TN)</div><div class="nav-item" data-p="cti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (n)</div></div><div class="nav-group"><div class="nav-group-label">Tasa Efectiva</div><div class="nav-item" data-p="tep" onclick="go(this)"><span class="nav-icon">⚡</span>Calcular con TEP</div><div class="nav-item" data-p="tas" onclick="go(this)"><span class="nav-icon">🔄</span>Convertir tasas</div></div><div class="nav-group"><div class="nav-group-label">Escenarios</div><div class="nav-item" data-p="fci" onclick="go(this)"><span class="nav-icon">🧾</span>Factura con Cuota Inicial</div><div class="nav-item" data-p="trea" onclick="go(this)"><span class="nav-icon">◇</span>Inversión 2 Bancos · TREA</div><div class="nav-item" data-p="dif" onclick="go(this)"><span class="nav-icon">🔍</span>Pago Diferido (simple)</div><div class="nav-item" data-p="eqv" onclick="go(this)"><span class="nav-icon">◇</span>Equivalencia Cronogramas</div></div><div class="nav-group"><div class="nav-group-label">Descuento &amp; Rentas</div><div class="nav-item" data-p="tdesc" onclick="go(this)"><span class="nav-icon">▸</span>Tasa Descontada (TCEA)</div><div class="nav-item" data-p="anu" onclick="go(this)"><span class="nav-icon">▸</span>Anualidades</div><div class="nav-item" data-p="plz" onclick="go(this)"><span class="nav-icon">▸</span>Compra a Plazos / Crédito</div><div class="nav-item" data-p="aho" onclick="go(this)"><span class="nav-icon">▸</span>Ahorro / Rentas múltiples</div></div><div class="nav-group"><div class="nav-group-label">Flujo de Caja</div><div class="nav-item" data-p="mov" onclick="go(this)"><span class="nav-icon">▸</span>Depósitos / Retiros (línea de tiempo)</div></div><div class="nav-group"><div class="nav-group-label">Referencia</div><div class="nav-item" data-p="form" onclick="go(this)"><span class="nav-icon">📐</span>Formulario</div></div></nav>
 
 <main class="main">
-<nav class="mobnav"><button class="mob-btn active" onclick="gm('ss',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('si',this)">💰 Interés (I)</button><button class="mob-btn" onclick="gm('sc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('st',this)">📊 Tasa (i)</button><button class="mob-btn" onclick="gm('sti',this)">⏱ Tiempo (t)</button><button class="mob-btn" onclick="gm('cs',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('cc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('ct',this)">📊 Tasa (TN)</button><button class="mob-btn" onclick="gm('cti',this)">⏱ Tiempo (n)</button><button class="mob-btn" onclick="gm('tep',this)">⚡ Calcular</button><button class="mob-btn" onclick="gm('tas',this)">🔄 Convertir tasas</button><button class="mob-btn" onclick="gm('fci',this)">🧾 Factura + CI</button><button class="mob-btn" onclick="gm('trea',this)">◇ TREA 2 Bancos</button><button class="mob-btn" onclick="gm('dif',this)">🔍 Pago Diferido</button><button class="mob-btn" onclick="gm('eqv',this)">◇ Equivalencia</button><button class="mob-btn" onclick="gm('tdesc',this)">▸ Tasa Descontada</button><button class="mob-btn" onclick="gm('anu',this)">▸ Anualidades</button><button class="mob-btn" onclick="gm('form',this)">📐 Formulario</button></nav>
+<nav class="mobnav"><button class="mob-btn active" onclick="gm('ss',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('si',this)">💰 Interés (I)</button><button class="mob-btn" onclick="gm('sc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('st',this)">📊 Tasa (i)</button><button class="mob-btn" onclick="gm('sti',this)">⏱ Tiempo (t)</button><button class="mob-btn" onclick="gm('cs',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('cc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('ct',this)">📊 Tasa (TN)</button><button class="mob-btn" onclick="gm('cti',this)">⏱ Tiempo (n)</button><button class="mob-btn" onclick="gm('tep',this)">⚡ Calcular</button><button class="mob-btn" onclick="gm('tas',this)">🔄 Convertir tasas</button><button class="mob-btn" onclick="gm('fci',this)">🧾 Factura + CI</button><button class="mob-btn" onclick="gm('trea',this)">◇ TREA 2 Bancos</button><button class="mob-btn" onclick="gm('dif',this)">🔍 Pago Diferido</button><button class="mob-btn" onclick="gm('eqv',this)">◇ Equivalencia</button><button class="mob-btn" onclick="gm('tdesc',this)">▸ Tasa Descontada</button><button class="mob-btn" onclick="gm('anu',this)">▸ Anualidades</button><button class="mob-btn" onclick="gm('plz',this)">▸ Compra a Plazos</button><button class="mob-btn" onclick="gm('aho',this)">▸ Ahorro múltiple</button><button class="mob-btn" onclick="gm('mov',this)">▸ Flujo de Caja</button><button class="mob-btn" onclick="gm('form',this)">📐 Formulario</button></nav>
 <section id="p-ss" class="page active"><div class="page-header">
   <div class="page-crumb">Interés Simple</div>
   <h1 class="page-title">¿Cuánto tendré al final? <span class="accent">→ S</span></h1>
@@ -2157,6 +2157,7 @@ select:focus-visible,
   <button class="subtab" onclick="stm('tep-tep',this)">TEP → TEP</button>
   <button class="subtab" onclick="stm('tn-tn',this)">TN → TN</button>
   <button class="subtab" onclick="stm('simp-tep',this)">Simple → TEP</button>
+  <button class="subtab" onclick="stm('desc',this)">Descontadas</button>
   <button class="subtab" onclick="stm('real',this)">Tasa Real</button>
 </div>
 <div class="tab-content active" id="tas-form-tep"><div class="notice info"><span class="notice-icon">💡</span><span class="notice-body"><strong>TEP = S/C − 1</strong> · Rentabilidad real del período completo.</span></div>
@@ -2248,6 +2249,25 @@ select:focus-visible,
 <button class="btn-primary" onclick="calc('stp')" type="button">Calcular TEP<span class="arrow">→</span></button>
 <div class="result-box" id="res-stp"></div>
 <div class="error-box" id="err-stp"></div></div>
+<div class="tab-content" id="tas-form-desc"><div class="notice info"><span class="notice-icon">i</span><span class="notice-body"><strong>d% = TEP/(1+TEP)</strong> &nbsp;·&nbsp; <strong>TEP = d%/(1−d%)</strong> &nbsp;·&nbsp; entre plazos: dP1 → TEP1 → TEP2 → dP2.</span></div>
+<div class="card"><div class="card-body">
+  <div class="toggle-wrap"><div class="toggle-label">¿Qué conviertes?</div>
+    <div class="toggle">
+      <button type="button" class="toggle-btn active" onclick="dscMode('d2d',this)">d → d (otro plazo)</button>
+      <button type="button" class="toggle-btn" onclick="dscMode('d2t',this)">d → TEP</button>
+      <button type="button" class="toggle-btn" onclick="dscMode('t2d',this)">TEP → d</button>
+    </div>
+    <input type="hidden" id="dsc-mode" value="d2d">
+  </div>
+  <div class="form-grid">
+    <div class="field"><div class="field-label"><span class="label-main" id="dsc-vlbl">Tasa descontada origen</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="dsc-v" placeholder="Ej: 4" step="any"></div>
+    <div class="field"><div class="field-label"><span class="label-main">Período origen (días)</span></div><select id="dsc-p1"><option value="360">Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trim. (90)</option><option value="60">Bimestral (60)</option><option value="45">45 días</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+    <div class="field full" id="dsc-p2-wrap"><div class="field-label"><span class="label-main">Período destino (días)</span></div><select id="dsc-p2"><option value="360">Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90" selected>Trim. (90)</option><option value="60">Bimestral (60)</option><option value="45">45 días</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+  </div>
+</div></div>
+<button class="btn-primary" onclick="calc('dsc')" type="button">Convertir<span class="arrow">→</span></button>
+<div class="result-box" id="res-dsc"></div>
+<div class="error-box" id="err-dsc"></div></div>
 <div class="tab-content" id="tas-form-real"><div class="notice info"><span class="notice-icon">💡</span><span class="notice-body"><strong>Fisher:</strong> r_real = (1 + r_nominal) / (1 + inflación) − 1</span></div>
 <div class="card"><div class="card-body"><div class="form-grid">
   <div class="field"><div class="field-label"><span class="label-main">Tasa nominal</span><span class="label-chip">% anual</span></div><input type="number" id="ip-rn" placeholder="Ej: 12" step="any"></div>
@@ -2770,9 +2790,11 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
     <div class="toggle-wrap">
       <div class="toggle-label">Tipo de tasa</div>
       <div class="toggle">
-        <button type="button" class="toggle-btn" onclick="rateTipo('tdesc-comp','nom',this)">Nominal (TN)</button>
-        <button type="button" class="toggle-btn active" onclick="rateTipo('tdesc-comp','efe',this)">Efectiva (TEP)</button>
+        <button type="button" class="toggle-btn" onclick="rateTipo('tdesc-comp','nom',this)">Nominal</button>
+        <button type="button" class="toggle-btn active" onclick="rateTipo('tdesc-comp','efe',this)">Efectiva</button>
+        <button type="button" class="toggle-btn" onclick="rateTipo('tdesc-comp','desc',this)">Descontada</button>
       </div>
+      <input type="hidden" id="tdesc-comp-mode" value="efe">
     </div>
     <div class="form-grid">
       <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="tdesc-comp-i" placeholder="Ej: 28" step="any"></div>
@@ -2822,9 +2844,11 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
       <div class="toggle-wrap">
         <div class="toggle-label">Tipo de tasa moratoria</div>
         <div class="toggle">
-          <button type="button" class="toggle-btn active" onclick="rateTipo('tdesc-mora','nom',this)">Nominal (TN)</button>
-          <button type="button" class="toggle-btn" onclick="rateTipo('tdesc-mora','efe',this)">Efectiva (TEP)</button>
+          <button type="button" class="toggle-btn active" onclick="rateTipo('tdesc-mora','nom',this)">Nominal</button>
+          <button type="button" class="toggle-btn" onclick="rateTipo('tdesc-mora','efe',this)">Efectiva</button>
+          <button type="button" class="toggle-btn" onclick="rateTipo('tdesc-mora','desc',this)">Descontada</button>
         </div>
+        <input type="hidden" id="tdesc-mora-mode" value="nom">
       </div>
       <div class="form-grid">
         <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-chip">%</span></div><input type="number" id="tdesc-mora-i" placeholder="Ej: 65" step="any"></div>
@@ -2911,6 +2935,219 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
 <button class="btn-primary" onclick="calc('anu')" type="button">Calcular<span class="arrow">→</span></button>
 <div class="result-box" id="res-anu"></div>
 <div class="error-box" id="err-anu"></div>
+</section><section id="p-plz" class="page">
+<div class="page-header">
+  <div class="page-crumb">Operación</div>
+  <h1 class="page-title">Compra a Plazos <span class="accent">/ Crédito</span></h1>
+  <p class="page-subtitle">Caso general: cuota inicial + cuotas ordinarias (R, incógnita) + cuotas extraordinarias regulares + plazo de gracia. Resuelve R por la ecuación de valor y calcula el prepago en cualquier cuota.</p>
+</div>
+
+<div class="notice info"><span class="notice-icon">i</span><span class="notice-body">PV = %CI·PV + R·a(TEP,n) + Re·a(TEPe,ne) + … &nbsp; con &nbsp; a(i,n) = [(1+i)ⁿ−1] / [i·(1+i)ⁿ]. Las cuotas se asumen vencidas.</span></div>
+
+<div class="card highlight">
+  <div class="card-header"><div class="card-num">1</div><div class="card-title">Precio &amp; tasa</div></div>
+  <div class="card-body">
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Precio de venta (PV)</span><span class="label-required">*</span><span class="label-chip">PV</span></div><input type="number" id="plz-pv" placeholder="Ej: 4 500.00" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Cuota inicial</span><span class="label-chip">% PV</span></div><div class="label-hint">Vacío = 0</div><input type="number" id="plz-ci" placeholder="Ej: 10" step="any"></div>
+    </div>
+    <div class="divider">▸ Tasa de interés</div>
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn" onclick="rateTipo('plz','nom',this)">Nominal (TN)</button>
+        <button type="button" class="toggle-btn active" onclick="rateTipo('plz','efe',this)">Efectiva (TEP)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="plz-i" placeholder="Ej: 12.5" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="plz-pt"><option value="360">Anual (360)</option><option value="180" selected>Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trim. (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+      <div class="field full" id="plz-pc-wrap" style="display:none"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="plz-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trim. (90)</option><option value="120">Cuatrim. (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">2</div><div class="card-title">Cuotas ordinarias (R · incógnita)</div></div>
+  <div class="card-body">
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Frecuencia de pago</span><span class="label-required">*</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Frecuencia</span>Cada cuánto se paga R. La app calcula la TEP de ese período.</div></div></div><select id="plz-freq"><option value="30" selected>Mensual (30)</option><option value="15">Quincenal (15)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrim. (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+      <div class="field"><div class="field-label"><span class="label-main">Nº de cuotas ordinarias (n)</span><span class="label-required">*</span><span class="label-chip">n</span></div><input type="number" id="plz-n" placeholder="Ej: 16" step="any"></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">3</div><div class="card-title">Cuotas extraordinarias</div><span class="card-optional">Opcional</span></div>
+  <div class="card-body">
+    <div class="check-toggle" id="plz-ex-t" onclick="tog('plz-ex-t','plz-ex-b')">
+      <div class="check-box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Hay cuotas extraordinarias regulares</span>
+      <span class="check-meta">ej: anuales de 250</span>
+    </div>
+    <div class="cond" id="plz-ex-b" style="margin-top:12px">
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Monto extraordinaria (Re)</span><span class="label-chip">Re</span></div><input type="number" id="plz-re" placeholder="Ej: 250.00" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">Frecuencia extraordinaria</span></div><select id="plz-exfreq"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trimestral (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option></select></div>
+      </div>
+      <div class="label-hint" style="margin-top:6px">Nº de extraordinarias = se calcula automáticamente (n·freq_ord / freq_extra), o ajústalo abajo si difiere.</div>
+      <div class="form-grid"><div class="field full"><div class="field-label"><span class="label-main">Nº extraordinarias (ne)</span><span class="label-chip">opc.</span></div><input type="number" id="plz-ne" placeholder="auto" step="any"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">4</div><div class="card-title">Plazo de gracia</div><span class="card-optional">Opcional</span></div>
+  <div class="card-body">
+    <div class="check-toggle" id="plz-gr-t" onclick="tog('plz-gr-t','plz-gr-b')">
+      <div class="check-box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Hay plazo de gracia total</span>
+      <span class="check-meta">no se paga, el capital capitaliza</span>
+    </div>
+    <div class="cond" id="plz-gr-b" style="margin-top:12px">
+      <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">El capital se capitaliza durante la gracia: C' = C·(1+i)^(días/período). La app ajusta el nº de cuotas automáticamente según el tipo de gracia — tú solo pon el nº total de cuotas del plazo en la sección 2.</span></div>
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Días de gracia</span><span class="label-chip">días</span></div><div class="label-hint">Ej: 6 meses = 180</div><input type="number" id="plz-gr" placeholder="Ej: 180" step="any"></div>
+      </div>
+      <div class="toggle-wrap" style="margin-top:10px">
+        <div class="toggle-label">¿La gracia es parte del plazo o adicional?<div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Parte vs Adicional</span><strong>Parte del plazo:</strong> la gracia consume cuotas (ej: 6 años con 6 meses de gracia → se pagan menos cuotas). La app resta automáticamente.<br><br><strong>Adicional:</strong> la gracia se suma al plazo (se pagan todas las cuotas igual).</div></div></div>
+        <div class="toggle">
+          <button type="button" class="toggle-btn active" onclick="plzGr('parte',this)">Parte del plazo</button>
+          <button type="button" class="toggle-btn" onclick="plzGr('add',this)">Adicional</button>
+        </div>
+        <input type="hidden" id="plz-gr-mode" value="parte">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">5</div><div class="card-title">Prepago</div><span class="card-optional">Opcional</span></div>
+  <div class="card-body">
+    <div class="check-toggle" id="plz-pp-t" onclick="tog('plz-pp-t','plz-pp-b')">
+      <div class="check-box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Calcular prepago del saldo</span>
+      <span class="check-meta">pagar el 100% restante</span>
+    </div>
+    <div class="cond" id="plz-pp-b" style="margin-top:12px">
+      <div class="form-grid"><div class="field full"><div class="field-label"><span class="label-main">Nº de cuota donde se prepaga (k)</span><span class="label-chip">k</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Prepago</span>Se paga la cuota k de hoy + el valor presente de TODAS las cuotas restantes (ordinarias y extraordinarias).</div></div></div><input type="number" id="plz-k" placeholder="Ej: 13" step="any"></div></div>
+    </div>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="calc('plz')" type="button">Calcular R (y prepago)<span class="arrow">→</span></button>
+<div class="result-box" id="res-plz"></div>
+<div class="error-box" id="err-plz"></div>
+</section><section id="p-aho" class="page">
+<div class="page-header">
+  <div class="page-crumb">Operación</div>
+  <h1 class="page-title">Ahorro <span class="accent">/ Rentas múltiples</span></h1>
+  <p class="page-subtitle">Varias rentas (depósitos o retiros) con distinta frecuencia y montos, incluso con cambio de tasa a mitad del camino. Calcula el monto acumulado a la fecha de valuación (estilo S1 + S2 + S3 del profesor).</p>
+</div>
+
+<div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Cada renta es una anualidad: monto R, frecuencia, mes de inicio y fin, y si es depósito (+) o retiro (−). La app calcula el valor futuro de cada una al mes de valuación y los suma. Si la tasa cambia, divide automáticamente la renta afectada.</span></div>
+
+<div class="card highlight">
+  <div class="card-header"><div class="card-num">1</div><div class="card-title">Tasa de interés</div></div>
+  <div class="card-body">
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn" onclick="rateTipo('aho','nom',this)">Nominal (TN)</button>
+        <button type="button" class="toggle-btn active" onclick="rateTipo('aho','efe',this)">Efectiva (TEP)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="aho-i" placeholder="Ej: 2.8" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="aho-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trim. (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+      <div class="field full" id="aho-pc-wrap" style="display:none"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="aho-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trim. (90)</option><option value="120">Cuatrim. (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+    </div>
+    <div class="check-toggle" id="aho-chg-t" onclick="tog('aho-chg-t','aho-chg-b')" style="margin-top:14px">
+      <div class="check-box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">La tasa cambia en cierto mes</span>
+      <span class="check-meta">ej: sube en el mes 42</span>
+    </div>
+    <div class="cond" id="aho-chg-b" style="margin-top:12px">
+      <div class="form-grid">
+        <div class="field full"><div class="field-label"><span class="label-main">A partir de qué mes cambia</span><span class="label-chip">mes</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Cambio de tasa</span>"Al final del mes 42 sube" → pon 42. Los meses posteriores usan la tasa nueva.</div></div></div><input type="number" id="aho-chg-mes" placeholder="Ej: 42" step="any"></div>
+      </div>
+      <div class="divider">▸ Tasa nueva</div>
+      <div class="toggle-wrap">
+        <div class="toggle-label">Tipo de tasa nueva</div>
+        <div class="toggle">
+          <button type="button" class="toggle-btn" onclick="rateTipo('aho2','nom',this)">Nominal (TN)</button>
+          <button type="button" class="toggle-btn active" onclick="rateTipo('aho2','efe',this)">Efectiva (TEP)</button>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-chip">%</span></div><input type="number" id="aho2-i" placeholder="Ej: 3.1" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="aho2-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trim. (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+        <div class="field full" id="aho2-pc-wrap" style="display:none"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="aho2-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trim. (90)</option><option value="120">Cuatrim. (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">2</div><div class="card-title">Rentas (depósitos / retiros)</div></div>
+  <div class="card-body">
+    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">El tiempo se mide en MESES desde 0. Cuotas vencidas (al final de cada período). Ej: 10% de S/2,500 mensual del mes 1 al 24 = depósito R=250, frecuencia mensual, 1→24.</span></div>
+    <div id="aho-rows"></div>
+    <button type="button" class="btn-parse" onclick="ahoAddRow()" style="margin-left:0;margin-top:8px">+ Agregar renta</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">3</div><div class="card-title">Mes de valuación (T)</div></div>
+  <div class="card-body">
+    <div class="form-grid"><div class="field full"><div class="field-label"><span class="label-main">¿En qué mes quieres el total?</span><span class="label-chip">T</span></div><div class="label-hint">Vacío = último mes con movimiento</div><input type="number" id="aho-T" placeholder="Ej: 60" step="any"></div></div>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="calc('aho')" type="button">Calcular monto acumulado<span class="arrow">→</span></button>
+<div class="result-box" id="res-aho"></div>
+<div class="error-box" id="err-aho"></div>
+</section><section id="p-mov" class="page">
+<div class="page-header">
+  <div class="page-crumb">Flujo de caja</div>
+  <h1 class="page-title">Depósitos / Retiros <span class="accent">en el tiempo</span></h1>
+  <p class="page-subtitle">La "fija del parcial". Cuenta con depósitos, retiros y cambios de tasa entre hitos. Capitaliza tramo por tramo (redondeando cada saldo a 2 decimales como el profesor), dibuja la línea de tiempo y despeja el retiro final X si corresponde.</p>
+</div>
+
+<div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Cada <strong>hito</strong> es un momento donde hay un depósito, un retiro, o un cambio de tasa. La tasa fijada en un hito se aplica al tramo que sigue. Si un hito marca <strong>Retiro X (final)</strong>, se resuelve la ecuación de valor (saldo = 0).</span></div>
+
+<div class="card highlight">
+  <div class="card-header"><div class="card-num">1</div><div class="card-title">Configuración del tiempo</div></div>
+  <div class="card-body">
+    <div class="toggle-wrap">
+      <div class="toggle-label">¿Cómo se miden los hitos?</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn active" onclick="movTimeMode('dias',this)">Tiempo en números</button>
+        <button type="button" class="toggle-btn" onclick="movTimeMode('fecha',this)">Fechas de calendario</button>
+      </div>
+    </div>
+    <div class="form-grid" id="mov-unit-wrap">
+      <div class="field full">
+        <div class="field-label"><span class="label-main">Unidad del tiempo ingresado</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Unidad</span>Si los hitos están en meses (0, 5, 7, 9...) elige Meses. La app convierte a días (× 30) para capitalizar.</div></div></div>
+        <select id="mov-unit"><option value="1">Días</option><option value="30" selected>Meses (× 30)</option><option value="15">Quincenas (× 15)</option><option value="60">Bimestres (× 60)</option><option value="90">Trimestres (× 90)</option><option value="180">Semestres (× 180)</option><option value="360">Años (× 360)</option></select>
+      </div>
+    </div>
+    <div class="notice info" id="mov-fecha-hint" style="display:none"><span class="notice-icon">i</span><span class="notice-body">Modo fechas: escribe cada hito como <code>dd/mm/aaaa</code>. La app cuenta los días reales de calendario entre hitos consecutivos.</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">2</div><div class="card-title">Hitos</div></div>
+  <div class="card-body">
+    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">El <strong>Hito 1</strong> es la apertura: pon el depósito inicial y la primera tasa. En los demás, elige movimiento y, si la tasa cambia ahí, configúrala.</span></div>
+    <div id="mov-rows"></div>
+    <button type="button" class="btn-parse" onclick="movAddRow()" style="margin-left:0;margin-top:8px">+ Agregar hito</button>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="calc('mov')" type="button">Calcular flujo &amp; X<span class="arrow">→</span></button>
+<div class="result-box" id="res-mov"></div>
+<div class="error-box" id="err-mov"></div>
 </section><section id="p-form" class="page"><div class="page-header">
   <div class="page-crumb">Referencia</div>
   <h1 class="page-title">Formulario Completo <span class="accent"></span></h1>
@@ -3181,7 +3418,7 @@ function gcP(p){
 
 // ═══ DISPATCHER ═══════════════════════════════════
 function calc(p){
-  ({ss:cSS,si:cSI,sc:cSC,st:cST,sti:cSTI,cs:cCS,cc:cCC,ct:cCT,cti:cCTI,dif:cDIF,tp:cTP,tn:cTN,ip:cIP,ttn:cTTN,ttep:cTTEP,ttt:cTTT,stp:cSTP,tep:calcTEP,fci:cFCI,trea:cTREA,eqv:cEQV,tdesc:cTDESC,anu:cANU})[p]?.();
+  ({ss:cSS,si:cSI,sc:cSC,st:cST,sti:cSTI,cs:cCS,cc:cCC,ct:cCT,cti:cCTI,dif:cDIF,tp:cTP,tn:cTN,ip:cIP,ttn:cTTN,ttep:cTTEP,ttt:cTTT,stp:cSTP,tep:calcTEP,fci:cFCI,trea:cTREA,eqv:cEQV,tdesc:cTDESC,anu:cANU,mov:cMOV,plz:cPLZ,dsc:cDSC,aho:cAHO})[p]?.();
 }
 
 // ═══ INTERÉS SIMPLE ═══════════════════════════════
@@ -4041,43 +4278,160 @@ function cTREA(){
 // ═══ HELPERS COMPARTIDOS (descuento / anualidades / equivalencia) ═══
 const _CHECK_SVG = '<svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-// Toggle Nominal/Efectiva genérico: muestra/oculta el wrapper de capitalización <pfx>-pc-wrap
+// Toggle Nominal/Efectiva/Descontada genérico: muestra/oculta <pfx>-pc-wrap y guarda <pfx>-mode si existe
 function rateTipo(pfx, tipo, btn){
   btn.closest('.toggle').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   const w = document.getElementById(pfx+'-pc-wrap');
   if(w) w.style.display = (tipo==='nom') ? '' : 'none';
+  const md = document.getElementById(pfx+'-mode');
+  if(md) md.value = tipo;
 }
 
 // Tasa efectiva sobre 'days' días para el bloque de tasa con prefijo pfx.
 // Nominal: i'=TN/m, m=pt/pc → (1+i')^(days/pc) − 1. Efectiva: (1+TEP)^(days/pt) − 1.
-function effRate(pfx, days){
+// Descontada: TEP = d/(1−d) → (1+TEP)^(days/pt) − 1.
+function rateMode(pfx){
+  const md = document.getElementById(pfx+'-mode');
+  if(md && md.value) return md.value;
   const w = document.getElementById(pfx+'-pc-wrap');
-  const isNom = w && w.style.display !== 'none';
+  return (w && w.style.display !== 'none') ? 'nom' : 'efe';
+}
+function effRate(pfx, days){
+  const mode = rateMode(pfx);
   const i = gv(pfx+'-i')/100;
   const pt = gs(pfx+'-pt') || 360;
   if(isNaN(i) || i<=0) return null;
-  if(isNom){
-    const pc = gs(pfx+'-pc') || 1;
-    const m = pt/pc, ip = i/m;
-    return Math.pow(1+ip, days/pc) - 1;
-  }
+  if(mode==='nom'){ const pc = gs(pfx+'-pc')||1, m=pt/pc; return Math.pow(1+i/m, days/pc) - 1; }
+  if(mode==='desc'){ const TEP = i/(1-i); return Math.pow(1+TEP, days/pt) - 1; }
   return Math.pow(1+i, days/pt) - 1;
 }
 
-// Render genérico con un hero principal + grid de detalles
-function showRMulti(id, heroes, items){
+// Render genérico: heroes + (svg) + grid de detalles + (procedimiento paso a paso)
+// opts = { svg:'<svg…>', steps:['línea1','línea2',…] }
+function showRMulti(id, heroes, items, opts){
+  opts = opts || {};
   const heroHtml = heroes.map((h,idx)=>`<div class="result-hero"${idx>0?' style="margin-top:14px"':''}>
     <div class="result-head"><div class="result-check">${_CHECK_SVG}</div><div class="result-label">${h.label}</div></div>
     <div class="result-value ${h.cls||'is-money'}">${h.val}</div>
     ${h.extra?`<div class="result-extra"><span class="result-extra-label">Precisión extendida</span><span class="result-extra-value">${h.extra}</span></div>`:''}
   </div>`).join('');
   const cells = items.map(([l,v])=>`<div class="result-item"><div class="result-item-label">${l}</div><div class="result-item-value">${v}</div></div>`).join('');
+  const grid = `<div class="result-grid" style="margin-top:14px">${cells}</div>`;
+  let stepsHtml = '';
+  if(opts.steps && opts.steps.length){
+    const lines = opts.steps.map(s=> s.startsWith('§')
+      ? `<div style="color:var(--accent);font-family:var(--ff-display);letter-spacing:0.1em;font-size:0.82rem;padding:8px 0 3px">${s.slice(1)}</div>`
+      : `<div style="padding:3px 0;border-bottom:1px solid var(--line)">${s}</div>`).join('');
+    stepsHtml = `<div style="margin-top:14px;background:var(--bg-deep);border-left:3px solid var(--accent);padding:14px 16px;font-family:var(--ff-mono);font-size:0.8rem;color:var(--text-2);line-height:1.55;overflow-x:auto"><div style="font-family:var(--ff-display);letter-spacing:0.16em;color:var(--accent);font-size:0.85rem;margin-bottom:10px">PROCEDIMIENTO</div>${lines}</div>`;
+  }
   const el = document.getElementById('res-'+id);
-  el.innerHTML = heroHtml + `<div class="result-grid" style="margin-top:14px">${cells}</div>`;
+  el.innerHTML = heroHtml + (opts.svg||'') + grid + stepsHtml;
   el.classList.add('show');
   document.getElementById('err-'+id).classList.remove('show');
   if(window.innerWidth < 860) setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'center'}), 100);
+}
+
+// SVG de línea de tiempo para anualidades/créditos: C abajo en t0, cuotas R como flechas arriba
+// Nombre de la tasa efectiva del período según los días de frecuencia
+function freqRateName(freq){ return {360:'TEA',180:'TES',120:'TEC',90:'TET',60:'TEB',30:'TEM',15:'TEQ',1:'TED'}[freq] || ('TE'+freq+'d'); }
+// Etiqueta de la tasa contractual tal como la ingresó el usuario (para la banda amarilla)
+function rateNameLabel(pfx){
+  const mode = rateMode(pfx);
+  const v = gv(pfx+'-i');
+  if(isNaN(v)) return '';
+  const pt = gs(pfx+'-pt')||360;
+  const ptN = {360:'A',180:'S',120:'C',90:'T',60:'B',30:'M',15:'Q',1:'D'}[pt]||pt;
+  if(mode==='nom'){ const pc=gs(pfx+'-pc')||1; const pcN={1:'d',15:'q',30:'m',60:'b',90:'t',120:'c',180:'s',360:'a'}[pc]||pc; return 'TN'+ptN+' '+v+'% c.'+pcN; }
+  if(mode==='desc') return 'd'+pt+' '+v+'%';
+  return 'TE'+ptN+' '+v+'%';
+}
+
+// Diagrama de anualidad/crédito fiel al estilo del profesor (fondo blanco, escala por valor de período).
+// opts: cLabel (azul abajo en t0), ciLabel (rojo arriba en t0), tipo, periodName (arco verde tasa período),
+//   bandLabel (banda amarilla tasa contractual), extraEach/extraLabel/periodName2 (cuotas extraordinarias),
+//   graceN (plazo de gracia: corre las R a graceN+1.. y dibuja el corchete de gracia).
+function svgAnualidad(nR, opts){
+  opts = opts||{};
+  const adel = (opts.tipo||'').toLowerCase().includes('adel');
+  const gN = opts.graceN||0;
+  const exEach = opts.extraEach||0;
+  const rFrom = gN>0 ? gN+1 : (adel?0:1);
+  const rTo   = gN>0 ? gN+nR : (adel?nR-1:nR);
+  const totalP = gN>0 ? gN+nR : (adel?nR-1:nR);
+  const BLU='#2563cc', RED='#c0392b', GR='#1f9d57', AX='#222', MUT='#555', AMB='#b8860b';
+  const W=720, padL=50, padR=34, axisY = exEach? 92 : 64;
+  const bandY = axisY+58, H = bandY+24;
+  const xOf = p => padL + (totalP? (p/totalP):0)*(W-padL-padR);
+  // valores de período a mostrar (con elipsis)
+  let show = new Set([0]);
+  const head = Math.min(totalP, gN+ (exEach?6:6));
+  for(let p=0;p<=head;p++) show.add(p);
+  for(let p=Math.max(totalP-3,0);p<=totalP;p++) show.add(p);
+  if(exEach) for(let p=exEach;p<=rTo;p+=exEach) show.add(p);   // siempre mostrar extraordinarias
+  const vals=[...show].filter(v=>v>=0&&v<=totalP).sort((a,b)=>a-b);
+  const x0=xOf(0), xLast=xOf(totalP);
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin-top:14px;background:#ffffff;border:1px solid var(--line-2);border-radius:4px">`;
+  // banda amarilla
+  s+=`<rect x="${x0}" y="${bandY}" width="${xLast-x0}" height="18" fill="#ffe84d"/>`;
+  if(opts.bandLabel) s+=`<text x="${(x0+xLast)/2}" y="${bandY+13}" fill="#3a3300" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">${opts.bandLabel}</text>`;
+  // punteadas en t0 y final
+  s+=`<line x1="${x0}" y1="${axisY+30}" x2="${x0}" y2="${bandY}" stroke="${MUT}" stroke-width="1" stroke-dasharray="3 3"/>`;
+  s+=`<line x1="${xLast}" y1="${axisY}" x2="${xLast}" y2="${bandY}" stroke="${MUT}" stroke-width="1" stroke-dasharray="3 3"/>`;
+  // eje
+  s+=`<line x1="${padL-14}" y1="${axisY}" x2="${W-padR}" y2="${axisY}" stroke="${AX}" stroke-width="1.5"/>`;
+  s+=`<path d="M${W-padR-7},${axisY-4} L${W-padR},${axisY} L${W-padR-7},${axisY+4} Z" fill="${AX}"/>`;
+  // corchete de plazo de gracia sobre 0..gN
+  if(gN>0){ const xg=xOf(gN);
+    s+=`<line x1="${x0}" y1="${axisY-44}" x2="${xg}" y2="${axisY-44}" stroke="${MUT}" stroke-width="1.2"/>`;
+    s+=`<line x1="${x0}" y1="${axisY-44}" x2="${x0}" y2="${axisY-38}" stroke="${MUT}" stroke-width="1.2"/>`;
+    s+=`<line x1="${xg}" y1="${axisY-44}" x2="${xg}" y2="${axisY-38}" stroke="${MUT}" stroke-width="1.2"/>`;
+    s+=`<text x="${(x0+xg)/2}" y="${axisY-48}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">Plazo de gracia</text>`;
+  }
+  // C azul abajo en t0 (omitir en ahorro puro)
+  if(!opts.noC){
+    s+=`<line x1="${x0}" y1="${axisY}" x2="${x0}" y2="${axisY+30}" stroke="${BLU}" stroke-width="2.5"/>`;
+    s+=`<path d="M${x0-5},${axisY+22} L${x0},${axisY+31} L${x0+5},${axisY+22} Z" fill="${BLU}"/>`;
+    s+=`<text x="${x0}" y="${axisY+44}" fill="${BLU}" font-size="9" font-weight="bold" font-family="monospace" text-anchor="start">${opts.cLabel||'C'}</text>`;
+  }
+  // C.I. (rojo arriba en t0)
+  if(opts.ciLabel){
+    s+=`<line x1="${x0}" y1="${axisY-30}" x2="${x0}" y2="${axisY}" stroke="${RED}" stroke-width="2"/><path d="M${x0-4},${axisY-22} L${x0},${axisY-31} L${x0+4},${axisY-22} Z" fill="${RED}"/>`;
+    s+=`<text x="${x0}" y="${axisY-34}" fill="${RED}" font-size="8" font-weight="bold" font-family="monospace" text-anchor="start">${opts.ciLabel}</text>`;
+  }
+  // elipsis entre valores no consecutivos
+  for(let i=0;i<vals.length-1;i++){ if(vals[i+1]-vals[i]>1){ const xm=(xOf(vals[i])+xOf(vals[i+1]))/2; s+=`<text x="${xm}" y="${axisY+13}" fill="${MUT}" font-size="11" text-anchor="middle">···</text>`; } }
+  // marcas + R + extraordinarias
+  vals.forEach(p=>{
+    const x=xOf(p);
+    s+=`<text x="${x}" y="${axisY+13}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">${p}</text>`;
+    const isR = p>=rFrom && p<=rTo;
+    if(isR){
+      s+=`<line x1="${x}" y1="${axisY-34}" x2="${x}" y2="${axisY}" stroke="${RED}" stroke-width="2.5"/>`;
+      s+=`<path d="M${x-4},${axisY-26} L${x},${axisY-35} L${x+4},${axisY-26} Z" fill="${RED}"/>`;
+      s+=`<text x="${x}" y="${axisY-39}" fill="${RED}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">R</text>`;
+    }
+    if(exEach && p>=rFrom && (p-rFrom+1)%exEach===0){ // cuota extraordinaria (fila más alta, ámbar)
+      s+=`<line x1="${x}" y1="${axisY-58}" x2="${x}" y2="${axisY}" stroke="${AMB}" stroke-width="2.5"/>`;
+      s+=`<path d="M${x-4},${axisY-50} L${x},${axisY-59} L${x+4},${axisY-50} Z" fill="${AMB}"/>`;
+      s+=`<text x="${x}" y="${axisY-62}" fill="${AMB}" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">${opts.extraLabel||'Re'}</text>`;
+    }
+  });
+  // arco verde tasa del período (entre primeras dos cuotas)
+  if(rTo>rFrom){ const xa=xOf(rFrom), xb=xOf(rFrom+1), xm=(xa+xb)/2;
+    s+=`<path d="M${xa+4},${axisY+22} Q${xm},${axisY+36} ${xb-4},${axisY+22}" stroke="${GR}" stroke-width="1.4" fill="none"/>`;
+    s+=`<path d="M${xb-9},${axisY+24} L${xb-4},${axisY+22} L${xb-7},${axisY+28} Z" fill="${GR}"/>`;
+    s+=`<text x="${xm}" y="${axisY+46}" fill="${GR}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">${opts.periodName||"i'"}</text>`;
+  }
+  // arco verde tasa anual (entre primeras dos extraordinarias)
+  if(exEach && opts.periodName2 && rTo>=rFrom-1+2*exEach){
+    const e1=rFrom-1+exEach, e2=rFrom-1+2*exEach, xa=xOf(e1), xb=xOf(e2), xm=(xa+xb)/2;
+    s+=`<path d="M${xa+4},${axisY-66} Q${xm},${axisY-80} ${xb-4},${axisY-66}" stroke="${GR}" stroke-width="1.4" fill="none"/>`;
+    s+=`<path d="M${xb-9},${axisY-64} L${xb-4},${axisY-66} L${xb-7},${axisY-60} Z" fill="${GR}"/>`;
+    s+=`<text x="${xm}" y="${axisY-84}" fill="${GR}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">${opts.periodName2}</text>`;
+  }
+  s+=`</svg>`;
+  return s;
 }
 
 // ═══ EQUIVALENCIA DE CRONOGRAMAS ═══════════════════
@@ -4189,6 +4543,23 @@ function cTDESC(){
   const VEntregado = VN + costoFin - ret;
   const TCEA = Math.pow(VEntregado/VRecibido, 360/td) - 1;
 
+  const modeTxt = {nom:'nominal', efe:'efectiva', desc:'descontada'}[rateMode('tdesc-comp')];
+  const steps = [
+    '§ 1) Tasa efectiva del plazo de descuento (td = '+td+' días)',
+    `TEtd = ${pct10(TEtd)}  (tasa ${modeTxt})`,
+    '§ 2) Tasa descontada',
+    `d% = TEtd / (1+TEtd) = ${pct10(dt)}`,
+    '§ 3) Descuento y Valor Neto',
+    `Descuento = VN × d% = ${fmtM(VN)} × ${pct4(dt)} = ${fmtM6(Desc)}`,
+    `Valor Neto = VN − Descuento = ${fmtM6(VNeto)}`,
+    '§ 4) Valor Recibido (a la firma)',
+    `V. Recibido = ${fmtM6(VNeto)} − costos inicio(${fmtM6(costoIni)}) − retención(${fmtM6(ret)}) = ${fmtM6(VRecibido)}`,
+    '§ 5) Valor Entregado (al vencimiento)',
+    `V. Entregado = VN + costos final(${fmtM6(costoFin)}) − retención(${fmtM6(ret)}) = ${fmtM6(VEntregado)}`,
+    '§ 6) TCEA',
+    `TCEA = (V.Entregado / V.Recibido)^(360/${td}) − 1 = ${pct4(TCEA)}`
+  ];
+
   const heroes = [{label:`TCEA (td = ${td} días)`, val:pct4(TCEA), cls:'is-rate', extra:pct10(TCEA)}];
   const items = [
     ['Valor Nominal (VN)', fmtM(VN)],
@@ -4204,10 +4575,12 @@ function cTDESC(){
     ['TCEA (10 dec)', r10(TCEA).toFixed(10)]
   ];
 
+  let tmVal = 0, moraData = null;
   const hasMora = document.getElementById('tdesc-mora-t').classList.contains('active');
   if(hasMora){
     const tm = gv('tdesc-tm');
     if(isNaN(tm)||tm<=0) return showE('tdesc','Ingresa los días de mora (tm).');
+    tmVal = tm;
     const moraRate = effRate('tdesc-mora', tm);
     if(moraRate === null) return showE('tdesc','Ingresa la tasa moratoria.');
     const compRate = effRate('tdesc-comp', tm);
@@ -4215,6 +4588,7 @@ function cTDESC(){
     const Ic = VN * compRate;
     const cobranza = gv('tdesc-cobranza')||0;
     const VEntMora = VN + costoFin - ret + Im + Ic + cobranza;
+    moraData = {Im, Ic, cobranza, VEntMora};
     const TCEAmora = Math.pow(VEntMora/VRecibido, 360/(td+tm)) - 1;
     heroes.push({label:`TCEA CON MORA (td+tm = ${td+tm} días)`, val:pct4(TCEAmora), cls:'is-rate', extra:pct10(TCEAmora)});
     items.push(['── Mora (tm = '+tm+'d) ──','']);
@@ -4223,9 +4597,65 @@ function cTDESC(){
     items.push(['Comisión cobranza morosa', fmtM6(cobranza)]);
     items.push(['VALOR ENTREGADO con mora', fmtM6(VEntMora)]);
     items.push(['TCEA mora (10 dec)', r10(TCEAmora).toFixed(10)]);
+    steps.push('§ 7) Mora ('+tm+' días)');
+    steps.push(`Im = VN × [factor moratoria(${tm}d) − 1] = ${fmtM6(Im)}`);
+    steps.push(`Ic = VN × [factor compensatoria(${tm}d) − 1] = ${fmtM6(Ic)}`);
+    steps.push(`V.Entregado mora = VN + costos final − retención + Im + Ic + cobranza(${fmtM6(cobranza)}) = ${fmtM6(VEntMora)}`);
+    steps.push(`TCEA mora = (V.Ent.mora / V.Recibido)^(360/(${td}+${tm})) − 1 = ${pct4(TCEAmora)}`);
   }
 
-  showRMulti('tdesc', heroes, items);
+  const costsIni = [['Seguro',seg],['Comisión',comis],['Otros',otroini],['Retención',ret]].filter(c=>c[1]>0);
+  const costsFin = [['Valor Nominal',VN],['Portes',portes],['Gastos Adm.',gadm],['Otros',otrofin]].filter(c=>c[1]>0);
+  const svg = svgDescuento({VN, VNeto, VRec:VRecibido, VEnt:VEntregado, td, tm:tmVal, costsIni, costsFin, ret, rateLabel:modeTxt, moraData});
+  showRMulti('tdesc', heroes, items, {svg, steps});
+}
+
+// Diagrama de descuento (convención del curso: ABAJO=me pagan/recibo, ARRIBA=pago yo).
+// En el descuento recibo el Valor Neto (abajo, verde) y pago costos iniciales (arriba, rojo).
+// En el vencimiento pago Valor Nominal + costos finales (arriba, rojo). Con mora, un hito extra.
+function svgDescuento(o){
+  const hasMora = o.tm>0;
+  const W=720, H=330, axisY=205;
+  const xF=46, xD=180;
+  const xEndUsable = W-40;
+  const total = o.td + (hasMora?o.tm:0);
+  const xV = hasMora ? xD + (o.td/total)*(xEndUsable-xD-90) : xEndUsable-30;
+  const xP = xEndUsable;
+  const A='#1f9d57', RED='#c0392b', MUT='#666', AX='#555', DOT='#333';
+  const upStack=(x,arr,anchor)=>{ let g=''; arr.forEach((c,i)=>{ const top=axisY-46-i*26; g+=`<line x1="${x}" y1="${top}" x2="${x}" y2="${axisY}" stroke="${RED}" stroke-width="2"/><path d="M${x-4},${top+8} L${x},${top} L${x+4},${top+8} Z" fill="${RED}"/>`; const tx=anchor==='end'?x-8:x+8; g+=`<text x="${tx}" y="${top+4}" fill="${RED}" font-size="8.5" font-family="monospace" text-anchor="${anchor}">${c[0]} = ${fmtM(c[1])}</text>`; }); return g; };
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin-top:14px;background:#ffffff;border:1px solid var(--line-2);border-radius:4px">`;
+  // eje
+  s+=`<line x1="${xF-16}" y1="${axisY}" x2="${W-20}" y2="${axisY}" stroke="${AX}" stroke-width="1.5"/>`;
+  s+=`<path d="M${W-26},${axisY-4} L${W-20},${axisY} L${W-26},${axisY+4} Z" fill="${AX}"/>`;
+  // banda de tasa
+  s+=`<text x="${(xD+xV)/2}" y="${axisY-6}" fill="${A}" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">tasa ${o.rateLabel} compensatoria</text>`;
+  // Firma
+  s+=`<circle cx="${xF}" cy="${axisY}" r="3" fill="${DOT}"/>`;
+  s+=`<text x="${xF}" y="${axisY+18}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">Firma</text>`;
+  // Descuento: costos iniciales arriba (rojo) + Valor Neto abajo (verde)
+  s+=`<circle cx="${xD}" cy="${axisY}" r="3" fill="${DOT}"/>`;
+  s+=`<text x="${xD}" y="${axisY+18}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">Descuento (0)</text>`;
+  s+=upStack(xD, o.costsIni, 'start');
+  // Valor Neto abajo
+  s+=`<line x1="${xD}" y1="${axisY}" x2="${xD}" y2="${axisY+58}" stroke="${A}" stroke-width="2.5"/><path d="M${xD-5},${axisY+50} L${xD},${axisY+59} L${xD+5},${axisY+50} Z" fill="${A}"/>`;
+  s+=`<text x="${xD}" y="${axisY+74}" fill="${A}" font-size="9" font-family="monospace" text-anchor="middle">Valor Neto = ${fmtM(o.VNeto)}</text>`;
+  s+=`<text x="${xD}" y="${axisY+88}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="middle">(recibo ${fmtM(o.VRec)})</text>`;
+  // Vencimiento: Valor Nominal + costos finales arriba (rojo)
+  s+=`<circle cx="${xV}" cy="${axisY}" r="3" fill="${DOT}"/>`;
+  s+=`<text x="${xV}" y="${axisY+18}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">Vcto (+${o.td}d)</text>`;
+  s+=upStack(xV, o.costsFin, 'end');
+  if(!hasMora) s+=`<text x="${xV}" y="${axisY+34}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="middle">(entrego ${fmtM(o.VEnt)})</text>`;
+  // Mora
+  if(hasMora && o.moraData){
+    const md=o.moraData;
+    s+=`<circle cx="${xP}" cy="${axisY}" r="3" fill="${DOT}"/>`;
+    s+=`<text x="${xP}" y="${axisY+18}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="end">Pago (+${o.tm}d)</text>`;
+    const moraArr=[['Valor Nominal',o.VN],['Costos fin.',o.costsFin.reduce((a,c)=>a+(c[0]==='Valor Nominal'?0:c[1]),0)],['Int. morat.',md.Im],['Int. comp.',md.Ic],['Cobranza',md.cobranza]].filter(c=>c[1]>0);
+    s+=upStack(xP, moraArr, 'end');
+    s+=`<text x="${xP}" y="${axisY+34}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="end">(entrego ${fmtM(md.VEntMora)})</text>`;
+  }
+  s+=`</svg>`;
+  return s;
 }
 
 // ═══ ANUALIDADES ═══════════════════════════════════
@@ -4288,21 +4718,524 @@ function cANU(){
     items.push(...baseItems);
     items.push(['Cuota vencida (ref.)', fmtM6(Rv)]);
     items.push(['Total pagado (n·R + CI)', fmtM6(totalPagado)]);
-    showRMulti('anu', [{label:`CUOTA ${tipoTxt.toUpperCase()} (R)`, val:fmtM(R), cls:'is-money', extra:fmtM6(R)}], items);
+    const steps = [
+      '§ Cuota de un crédito',
+      ANU_MODE==='R' ? `CI = ${fmtM6(CI)} · C = PV − CI = ${fmtM6(C)}` : `C = ${fmtM6(C)}`,
+      `TEP por período de pago = ${pct10(TEP)}`,
+      `R = C · [TEP·(1+TEP)ⁿ]/[(1+TEP)ⁿ−1] = ${fmtM6(Rv)}  (vencida)`,
+      adel ? `Ra = R/(1+TEP) = ${fmtM6(R)}  (adelantada)` : `R = ${fmtM6(R)}`
+    ];
+    showRMulti('anu', [{label:`CUOTA ${tipoTxt.toUpperCase()} (R)`, val:fmtM(R), cls:'is-money', extra:fmtM6(R)}], items,
+      {svg:svgAnualidad(n,{cLabel:'C='+fmtM(C), tipo:tipoTxt.toLowerCase(), periodName:freqRateName(freq), bandLabel:rateNameLabel('anu')}), steps});
   } else if(ANU_MODE==='VF'){
     const R = gv('anu-r'); if(isNaN(R)||R<=0) return showE('anu','Ingresa la renta R.');
     let S = R*(f-1)/TEP;
     if(adel) S = S*(1+TEP);
     const aportado = R*n;
+    const steps = ['§ Valor futuro de un ahorro', `TEP = ${pct10(TEP)}`, `S = R·[(1+TEP)ⁿ−1]/TEP = ${fmtM6(R*(f-1)/TEP)}`, adel?`S adelantada = S×(1+TEP) = ${fmtM6(S)}`:`S = ${fmtM6(S)}`];
     showRMulti('anu', [{label:`VALOR FUTURO ACUMULADO (S)`, val:fmtM(S), cls:'is-money', extra:fmtM6(S)}],
-      [['Renta (R)', fmtM(R)], ...baseItems, ['Total aportado (n·R)', fmtM6(aportado)], ['Interés ganado', fmtM6(S-aportado)]]);
+      [['Renta (R)', fmtM(R)], ...baseItems, ['Total aportado (n·R)', fmtM6(aportado)], ['Interés ganado', fmtM6(S-aportado)]],
+      {svg:svgAnualidad(n,{noC:true, tipo:tipoTxt.toLowerCase(), periodName:freqRateName(freq), bandLabel:rateNameLabel('anu')}), steps});
   } else if(ANU_MODE==='VP'){
     const R = gv('anu-r'); if(isNaN(R)||R<=0) return showE('anu','Ingresa la renta R.');
     let C = R*(f-1)/(TEP*f);
     if(adel) C = C*(1+TEP);
+    const steps = ['§ Valor presente / prepago', `TEP = ${pct10(TEP)}`, `C = R·[(1+TEP)ⁿ−1]/[TEP·(1+TEP)ⁿ] = ${fmtM6(R*(f-1)/(TEP*f))}`, adel?`C adelantada = C×(1+TEP) = ${fmtM6(C)}`:`C = ${fmtM6(C)}`];
     showRMulti('anu', [{label:`VALOR PRESENTE / PREPAGO (C)`, val:fmtM(C), cls:'is-money', extra:fmtM6(C)}],
-      [['Renta (R)', fmtM(R)], ...baseItems, ['Suma simple de cuotas (n·R)', fmtM6(R*n)]]);
+      [['Renta (R)', fmtM(R)], ...baseItems, ['Suma simple de cuotas (n·R)', fmtM6(R*n)]],
+      {svg:svgAnualidad(n,{cLabel:'C='+fmtM(C), tipo:tipoTxt.toLowerCase(), periodName:freqRateName(freq), bandLabel:rateNameLabel('anu')}), steps});
   }
+}
+
+// ═══ CONVERSIÓN DE TASAS DESCONTADAS ═══════════════
+function dscMode(mode, btn){
+  btn.closest('.toggle').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('dsc-mode').value = mode;
+  const lbl = document.getElementById('dsc-vlbl');
+  lbl.textContent = (mode==='t2d') ? 'TEP origen' : 'Tasa descontada origen';
+  document.getElementById('dsc-p2-wrap').style.display = (mode==='d2d') ? '' : 'none';
+}
+function cDSC(){
+  const mode = document.getElementById('dsc-mode').value;
+  const v = gv('dsc-v')/100;
+  if(isNaN(v)||v<=0) return showE('dsc','Ingresa la tasa origen.');
+  const p1 = gs('dsc-p1')||360;
+  if(mode==='d2t'){
+    const TEP = v/(1-v);
+    return showRMulti('dsc', [{label:`TEP (${p1} días)`, val:pct4(TEP), cls:'is-rate', extra:pct10(TEP)}],
+      [['d% origen', pct4(v)], ['Período', p1+' días'], ['Fórmula','TEP = d/(1−d)'], ['TEP (10 dec)', r10(TEP).toFixed(10)]],
+      {steps:['§ d → TEP', `TEP = ${pct4(v)} / (1 − ${pct4(v)}) = ${pct10(TEP)}`]});
+  }
+  if(mode==='t2d'){
+    const dd = v/(1+v);
+    return showRMulti('dsc', [{label:`TASA DESCONTADA (${p1} días)`, val:pct4(dd), cls:'is-rate', extra:pct10(dd)}],
+      [['TEP origen', pct4(v)], ['Período', p1+' días'], ['Fórmula','d = TEP/(1+TEP)'], ['d (10 dec)', r10(dd).toFixed(10)]],
+      {steps:['§ TEP → d', `d = ${pct4(v)} / (1 + ${pct4(v)}) = ${pct10(dd)}`]});
+  }
+  // d → d (otro plazo)
+  const p2 = gs('dsc-p2')||90;
+  const TEP1 = v/(1-v);
+  const TEP2 = Math.pow(1+TEP1, p2/p1) - 1;
+  const d2 = TEP2/(1+TEP2);
+  showRMulti('dsc', [{label:`TASA DESCONTADA DESTINO (d${p2})`, val:pct4(d2), cls:'is-rate', extra:pct10(d2)}],
+    [['d origen (d'+p1+')', pct4(v)], ['TEP1 = d/(1−d)', pct10(TEP1)], ['TEP2 = (1+TEP1)^('+p2+'/'+p1+')−1', pct10(TEP2)], ['d destino (10 dec)', r10(d2).toFixed(10)]],
+    {steps:[
+      '§ 1) d origen → TEP1', `TEP1 = ${pct4(v)}/(1−${pct4(v)}) = ${pct10(TEP1)}`,
+      '§ 2) TEP1 → TEP2', `TEP2 = (1+TEP1)^(${p2}/${p1}) − 1 = ${pct10(TEP2)}`,
+      '§ 3) TEP2 → d destino', `d${p2} = TEP2/(1+TEP2) = ${pct10(d2)}`
+    ]});
+}
+
+// ═══ COMPRA A PLAZOS / CRÉDITO ═════════════════════
+// a(i,n) = VP de anualidad unitaria. PV = %CI·PV + R·a(TEP,n) + Re·a(TEPe,ne) [+ gracia]
+function anVP(i, n){ return (Math.pow(1+i,n)-1)/(i*Math.pow(1+i,n)); }
+
+function plzGr(mode, btn){
+  btn.closest('.toggle').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('plz-gr-mode').value = mode;
+}
+
+function cPLZ(){
+  const PV = gv('plz-pv');
+  if(isNaN(PV)||PV<=0) return showE('plz','Ingresa el precio de venta (PV).');
+  const ciPct = (gv('plz-ci')||0)/100;
+  if(ciPct<0||ciPct>=1) return showE('plz','Cuota inicial inválida.');
+  const freq = gs('plz-freq')||30;
+  const TEP = effRate('plz', freq);
+  if(TEP===null) return showE('plz','Ingresa la tasa de interés.');
+  const n = gv('plz-n');
+  if(isNaN(n)||n<=0) return showE('plz','Ingresa el número de cuotas ordinarias (n).');
+
+  const CI = ciPct*PV;
+  let C = PV - CI;
+
+  const steps = [];
+  steps.push('§ Datos base');
+  steps.push(`TEP (período cuota ${freq}d) = ${pct10(TEP)}`);
+  steps.push(`CI = ${(ciPct*100).toFixed(2)}% × ${fmtM(PV)} = ${fmtM6(CI)}`);
+  steps.push(`C = PV − CI = ${fmtM6(C)}`);
+
+  // Gracia (capitaliza C) — la app ajusta el nº de cuotas según sea parte/adicional
+  const hasGr = document.getElementById('plz-gr-t').classList.contains('active');
+  let nOrd = n, graceFactor = 1, grDays = 0;
+  if(hasGr){
+    grDays = gv('plz-gr');
+    if(isNaN(grDays)||grDays<=0) return showE('plz','Ingresa los días de gracia.');
+    graceFactor = 1 + effRate('plz', grDays);
+    const C0 = C;
+    C = C*graceFactor;
+    const graceMode = (document.getElementById('plz-gr-mode')||{}).value || 'parte';
+    const graceN = Math.round(grDays/freq);
+    steps.push('§ Plazo de gracia');
+    steps.push(`C' = C × factor(${grDays}d) = ${fmtM6(C0)} × ${r10(graceFactor).toFixed(10)} = ${fmtM6(C)}`);
+    if(graceMode==='parte'){
+      nOrd = n - graceN;
+      if(nOrd<=0) return showE('plz','La gracia consume todas las cuotas; revisa n o el plazo de gracia.');
+      steps.push(`Gracia PARTE del plazo: nº cuotas = ${n} − ${graceN} = ${nOrd}`);
+    } else {
+      nOrd = n;
+      steps.push(`Gracia ADICIONAL: nº cuotas = ${n} (no se descuenta)`);
+    }
+  }
+
+  // Extraordinarias
+  const hasEx = document.getElementById('plz-ex-t').classList.contains('active');
+  let vpEx = 0, Re=0, ne=0, TEPe=0, exFreq=0;
+  if(hasEx){
+    Re = gv('plz-re');
+    if(isNaN(Re)||Re<=0) return showE('plz','Ingresa el monto de la cuota extraordinaria.');
+    exFreq = gs('plz-exfreq')||360;
+    TEPe = effRate('plz', exFreq);
+    const neRaw = gv('plz-ne');
+    ne = isNaN(neRaw) ? Math.floor(nOrd*freq/exFreq) : neRaw;
+    if(ne<=0) return showE('plz','Nº de extraordinarias inválido.');
+    vpEx = Re*anVP(TEPe, ne);
+    steps.push('§ Cuotas extraordinarias');
+    steps.push(`TEPe (${exFreq}d) = ${pct10(TEPe)}`);
+    steps.push(`ne = ${ne}`);
+    steps.push(`VP extra = ${fmtM(Re)} × a(TEPe,${ne}) = ${fmtM(Re)} × ${r10(anVP(TEPe,ne)).toFixed(10)} = ${fmtM6(vpEx)}`);
+  }
+
+  // Resolver R:  C = R·a(TEP,nOrd) + vpEx   →  R = (C − vpEx)/a(TEP,nOrd)
+  const aOrd = anVP(TEP, nOrd);
+  const R = (C - vpEx)/aOrd;
+  steps.push('§ Despeje de R');
+  steps.push(`a(TEP,${nOrd}) = ${r10(aOrd).toFixed(10)}`);
+  steps.push(`R = (C${hasEx?' − VP extra':''}) / a(TEP,${nOrd}) = (${fmtM6(C)}${hasEx?' − '+fmtM6(vpEx):''}) / ${r10(aOrd).toFixed(10)}`);
+  steps.push(`R = ${fmtM6(R)}`);
+
+  const items = [
+    ['Precio de venta (PV)', fmtM(PV)],
+    ['Cuota inicial', fmtM6(CI)+' ('+(ciPct*100).toFixed(2)+'%)'],
+    ['Capital financiado (C)'+(hasGr?' con gracia':''), fmtM6(C)],
+    ['TEP por cuota (10 dec)', pct10(TEP)],
+    ['Nº cuotas pagadas (n)', nOrd.toString()+(hasGr&&nOrd!==n?` (de ${n})`:'')],
+    ['a(TEP,n)', r10(aOrd).toFixed(10)]
+  ];
+  if(hasEx){ items.push(['Re extraordinaria', fmtM(Re)]); items.push(['ne', ne.toString()]); items.push(['VP extraordinarias', fmtM6(vpEx)]); }
+
+  const heroes = [{label:'CUOTA ORDINARIA (R)', val:fmtM(R), cls:'is-money', extra:fmtM6(R)}];
+
+  // Prepago
+  const hasPP = document.getElementById('plz-pp-t').classList.contains('active');
+  if(hasPP){
+    const k = gv('plz-k');
+    if(isNaN(k)||k<1||k>nOrd) return showE('plz','Nº de cuota de prepago (k) inválido (1..'+nOrd+').');
+    const Rr = r2(R); // se redondea R como en los apuntes
+    let pre = Rr; // la cuota k que se paga hoy
+    steps.push('§ Prepago en cuota '+k);
+    steps.push(`Cuota ${k} (hoy) = ${fmtM(Rr)}`);
+    for(let j=k+1;j<=nOrd;j++){ const v=Rr/Math.pow(1+TEP, j-k); pre+=v; }
+    let exRatio = hasEx ? Math.round(exFreq/freq) : 0;
+    if(hasEx && exRatio>0){
+      for(let e=exRatio; e<=nOrd; e+=exRatio){ if(e>k){ const v=Re/Math.pow(1+TEP, e-k); pre+=v; } }
+    }
+    steps.push(`Prepago = cuota ${k} + Σ VP(cuotas ${k+1}..${nOrd})${hasEx?' + Σ VP(extras restantes)':''}`);
+    steps.push(`Prepago = ${fmtM6(pre)}`);
+    heroes.push({label:'PREPAGO EN CUOTA '+k, val:fmtM(pre), cls:'is-money', extra:fmtM6(pre)});
+    items.push(['Prepago (cuota '+k+')', fmtM6(pre)]);
+  }
+
+  const exEach = hasEx?Math.round(exFreq/freq):0;
+  const band = rateNameLabel('plz');
+  let svg = svgAnualidad(nOrd, {
+    cLabel: hasGr?("C'="+fmtM(C)):('PV='+fmtM(PV)),
+    ciLabel: (!hasGr && CI>0)?('C.I.='+fmtM(CI)):null,
+    tipo:'vencida', extraEach:exEach, extraLabel: hasEx?fmtM(Re):null,
+    periodName:freqRateName(freq), periodName2: hasEx?freqRateName(exFreq):null, bandLabel:band
+  });
+  if(hasGr){
+    const graceN = Math.round(grDays/freq);
+    const svgG = svgAnualidad(nOrd, {cLabel:'C='+fmtM(PV-CI), tipo:'vencida', periodName:freqRateName(freq), bandLabel:band, graceN});
+    svg = svgG + svg;  // 1° como se contrató (con gracia), 2° trabajado (C')
+  }
+  showRMulti('plz', heroes, items, {svg, steps});
+}
+
+// ═══ AHORRO / RENTAS MÚLTIPLES ═════════════════════
+let AHO_N = 0;
+function ahoRowHTML(i){
+  return `<div class="aho-row" data-idx="${i}" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+    <span style="font-family:var(--ff-display);font-size:0.9rem;letter-spacing:0.08em;color:var(--accent);min-width:32px">R${i+1}</span>
+    <input type="number" id="aho-r${i}" placeholder="Monto R" step="any" style="flex:1.3;min-width:90px">
+    <select id="aho-f${i}" style="flex:1.2;min-width:118px"><option value="1">Mensual</option><option value="2">Bimestral</option><option value="3">Trimestral</option><option value="4">Cuatrimestral</option><option value="6">Semestral</option><option value="12">Anual</option></select>
+    <input type="number" id="aho-d0${i}" placeholder="Mes inicio" step="any" style="flex:1;min-width:84px">
+    <input type="number" id="aho-d1${i}" placeholder="Mes fin" step="any" style="flex:1;min-width:84px">
+    <select id="aho-t${i}" style="flex:1.1;min-width:108px"><option value="1">Depósito (+)</option><option value="-1">Retiro (−)</option></select>
+    <button type="button" onclick="ahoDelRow(${i})" title="Quitar renta" style="background:transparent;border:1px solid var(--line-2);color:var(--text-3);cursor:pointer;border-radius:0;padding:6px 10px;font-family:var(--ff-mono)">×</button>
+  </div>`;
+}
+function ahoAddRow(){ const c=document.getElementById('aho-rows'); const d=document.createElement('div'); d.innerHTML=ahoRowHTML(AHO_N); c.appendChild(d.firstChild); AHO_N++; }
+function ahoDelRow(i){ const r=document.querySelector('.aho-row[data-idx="'+i+'"]'); if(r) r.remove(); }
+document.addEventListener('DOMContentLoaded', ()=>{ for(let k=0;k<2;k++) ahoAddRow(); });
+
+function cAHO(){
+  const TEM = effRate('aho', 30);
+  if(TEM===null) return showE('aho','Ingresa la tasa de interés.');
+  const hasChg = document.getElementById('aho-chg-t').classList.contains('active');
+  let TEM2=TEM, chgMes=0;
+  if(hasChg){
+    chgMes = gv('aho-chg-mes');
+    if(isNaN(chgMes)||chgMes<=0) return showE('aho','Ingresa el mes en que cambia la tasa.');
+    TEM2 = effRate('aho2', 30);
+    if(TEM2===null) return showE('aho','Ingresa la tasa nueva.');
+  }
+  const temAt = m => (!hasChg||m<=chgMes)?TEM:TEM2;
+  const gf = (a,T)=>{ let f=1; for(let m=a+1;m<=T;m++) f*=(1+temAt(m)); return f; };
+
+  const rows = Array.from(document.querySelectorAll('#aho-rows .aho-row'));
+  const streams=[];
+  for(const row of rows){
+    const i=row.getAttribute('data-idx');
+    const R=gv('aho-r'+i); if(isNaN(R)||R<=0) continue;
+    const freq=parseInt(document.getElementById('aho-f'+i).value)||1;
+    const from=gv('aho-d0'+i), to=gv('aho-d1'+i);
+    if(isNaN(from)||isNaN(to)||to<from||from<=0) return showE('aho','Revisa los meses de inicio/fin de una renta.');
+    const sign=parseInt(document.getElementById('aho-t'+i).value)||1;
+    streams.push({R,freq,from,to,sign});
+  }
+  if(streams.length===0) return showE('aho','Ingresa al menos una renta con monto.');
+  let T = gv('aho-T');
+  if(isNaN(T)) T = Math.max(...streams.map(s=>s.to));
+  if(T<=0) return showE('aho','Mes de valuación inválido.');
+
+  let total=0;
+  const steps=['§ Tasa(s) efectiva(s) mensual(es)', 'TEM = '+pct10(TEM)+(hasChg?(' (meses 1–'+chgMes+')'):'')];
+  if(hasChg) steps.push('TEM₂ = '+pct10(TEM2)+' (meses '+(chgMes+1)+'–'+T+')');
+  const items=[['TEM (10 dec)',pct10(TEM)]];
+  if(hasChg) items.push(['TEM₂ (desde mes '+(chgMes+1)+')',pct10(TEM2)]);
+  items.push(['Mes de valuación T',T.toString()]);
+
+  let sIdx=0;
+  streams.forEach((st,si)=>{
+    let pays=[]; for(let p=st.from;p<=st.to;p+=st.freq) pays.push(p);
+    const groups = (!hasChg)?[pays]:[pays.filter(p=>p<=chgMes),pays.filter(p=>p>chgMes)].filter(g=>g.length);
+    steps.push('§ Renta '+(si+1)+': R='+fmtM(st.R)+(st.sign<0?' (retiro)':' (depósito)')+', cada '+st.freq+' mes(es), mes '+st.from+'→'+st.to);
+    groups.forEach(g=>{
+      sIdx++;
+      const cnt=g.length, lastP=g[g.length-1], TEMg=temAt(lastP);
+      const ip=Math.pow(1+TEMg,st.freq)-1;
+      const Send=r2(st.R*(Math.pow(1+ip,cnt)-1)/ip);
+      const factor=gf(lastP,T);
+      const ScapT=r2(Send*factor);
+      total+=st.sign*ScapT;
+      const ipName = st.freq===1?'TEM':(st.freq===2?'TEB':(st.freq===3?'TET':(st.freq===6?'TES':(st.freq===12?'TEA':'TEP'))));
+      steps.push('  S'+sIdx+' (mes '+g[0]+'–'+lastP+', '+cnt+' pagos, '+ipName+'='+pct4(ip)+'): S@'+lastP+' = '+fmtM(st.R)+'·[((1+i)^'+cnt+'−1)/i] = '+fmtM(Send));
+      if(factor!==1) steps.push('     capitalizado a mes '+T+': '+fmtM(Send)+' × '+r10(factor).toFixed(10)+' = '+fmtM(ScapT));
+      items.push(['S'+sIdx+' @ mes '+lastP, fmtM(Send)]);
+      items.push(['S'+sIdx+' → mes '+T, (st.sign<0?'−':'+')+fmtM(ScapT)]);
+    });
+  });
+  total=r2(total);
+  steps.push('§ Total acumulado al mes '+T);
+  steps.push('ST = '+fmtM(total));
+
+  const svg = svgAhorro(streams, T, hasChg?chgMes:0, rateNameLabel('aho'), hasChg?rateNameLabel('aho2'):'');
+  showRMulti('aho', [{label:'MONTO ACUMULADO AL MES '+T, val:fmtM(total), cls:'is-money', extra:fmtM6(total)}], items, {svg, steps});
+}
+
+// Diagrama de ahorro: brackets por renta (depósito arriba rojo, retiro abajo azul), banda(s) de tasa, marca de cambio.
+function svgAhorro(streams, T, chgMes, band1, band2){
+  const W=720, padL=46, padR=34, axisY=72;
+  const xOf=m=>padL+(T?m/T:0)*(W-padL-padR);
+  const RED='#c0392b', BLU='#2563cc', MUT='#555', AX='#222';
+  const nUp=streams.filter(s=>s.sign>0).length, nDn=streams.filter(s=>s.sign<0).length;
+  const bandY=axisY+30;
+  const H = bandY+24 + nDn*18 + 8;
+  const x0=xOf(0), xT=xOf(T);
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin-top:14px;background:#ffffff;border:1px solid var(--line-2);border-radius:4px">`;
+  // banda(s) de tasa
+  if(chgMes){
+    const xc=xOf(chgMes);
+    s+=`<rect x="${x0}" y="${bandY}" width="${xc-x0}" height="16" fill="#ffe84d"/>`;
+    s+=`<rect x="${xc}" y="${bandY}" width="${xT-xc}" height="16" fill="#ffcf4d"/>`;
+    if(band1) s+=`<text x="${(x0+xc)/2}" y="${bandY+12}" fill="#3a3300" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">${band1}</text>`;
+    if(band2) s+=`<text x="${(xc+xT)/2}" y="${bandY+12}" fill="#3a3300" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">${band2}</text>`;
+    s+=`<line x1="${xc}" y1="${axisY-6}" x2="${xc}" y2="${bandY+16}" stroke="${MUT}" stroke-width="1" stroke-dasharray="3 3"/>`;
+    s+=`<text x="${xc}" y="${axisY-9}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="middle">cambio (mes ${chgMes})</text>`;
+  } else {
+    s+=`<rect x="${x0}" y="${bandY}" width="${xT-x0}" height="16" fill="#ffe84d"/>`;
+    if(band1) s+=`<text x="${(x0+xT)/2}" y="${bandY+12}" fill="#3a3300" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">${band1}</text>`;
+  }
+  // eje + ticks
+  s+=`<line x1="${x0-12}" y1="${axisY}" x2="${W-padR}" y2="${axisY}" stroke="${AX}" stroke-width="1.5"/>`;
+  s+=`<path d="M${W-padR-6},${axisY-4} L${W-padR},${axisY} L${W-padR-6},${axisY+4} Z" fill="${AX}"/>`;
+  s+=`<text x="${x0}" y="${axisY+14}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">0</text>`;
+  s+=`<text x="${xT}" y="${axisY+14}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">${T}</text>`;
+  s+=`<line x1="${xT}" y1="${axisY}" x2="${xT}" y2="${bandY}" stroke="${MUT}" stroke-width="1" stroke-dasharray="3 3"/>`;
+  // brackets por renta
+  let upRow=0, dnRow=0;
+  streams.forEach((st,si)=>{
+    const xa=xOf(st.from), xb=xOf(st.to), xm=(xa+xb)/2;
+    if(st.sign>0){
+      const y=axisY-16-upRow*18;
+      s+=`<line x1="${xa}" y1="${y}" x2="${xb}" y2="${y}" stroke="${RED}" stroke-width="2"/>`;
+      s+=`<line x1="${xa}" y1="${y}" x2="${xa}" y2="${y+5}" stroke="${RED}" stroke-width="2"/><line x1="${xb}" y1="${y}" x2="${xb}" y2="${y+5}" stroke="${RED}" stroke-width="2"/>`;
+      s+=`<path d="M${xm-4},${y+8} L${xm},${y} L${xm+4},${y+8} Z" fill="${RED}"/>`;
+      s+=`<text x="${xm}" y="${y-3}" fill="${RED}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">R${si+1}=${fmtM(st.R)} (dep, m${st.from}-${st.to})</text>`;
+      upRow++;
+    } else {
+      const y=bandY+22+dnRow*18;
+      s+=`<line x1="${xa}" y1="${y}" x2="${xb}" y2="${y}" stroke="${BLU}" stroke-width="2"/>`;
+      s+=`<line x1="${xa}" y1="${y}" x2="${xa}" y2="${y-5}" stroke="${BLU}" stroke-width="2"/><line x1="${xb}" y1="${y}" x2="${xb}" y2="${y-5}" stroke="${BLU}" stroke-width="2"/>`;
+      s+=`<path d="M${xm-4},${y-8} L${xm},${y} L${xm+4},${y-8} Z" fill="${BLU}"/>`;
+      s+=`<text x="${xm}" y="${y+12}" fill="${BLU}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">R${si+1}=${fmtM(st.R)} (ret, m${st.from}-${st.to})</text>`;
+      dnRow++;
+    }
+  });
+  s+=`</svg>`;
+  return s;
+}
+
+// ═══ FLUJO DE CAJA · DEPÓSITOS / RETIROS ═══════════
+let MOV_N = 0;            // contador de filas
+let MOV_TMODE = 'dias';   // 'dias' | 'fecha'
+
+const _MOV_PT = '<option value="360">Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trim. (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option>';
+const _MOV_PC = '<option value="1">c.d. (1)</option><option value="15">c.q. (15)</option><option value="30">c.m. (30)</option><option value="60">c.b. (60)</option><option value="90">c.t. (90)</option><option value="120">c.c. (120)</option><option value="180">c.s. (180)</option><option value="360">c.a. (360)</option>';
+
+function movRowHTML(i){
+  const tPh = MOV_TMODE==='fecha' ? 'dd/mm/aaaa' : 'Tiempo';
+  return `<div class="mov-row" data-idx="${i}" style="border-left:2px solid var(--line-2);padding:10px 0 10px 12px;margin-bottom:14px">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+      <span style="font-family:var(--ff-display);font-size:0.95rem;letter-spacing:0.1em;color:var(--accent);min-width:62px">HITO ${i+1}</span>
+      <input type="text" id="mov-t${i}" placeholder="${tPh}" style="flex:1;min-width:90px">
+      <select id="mov-mv${i}" style="flex:1.4;min-width:130px"><option value="none">— Sin movimiento</option><option value="dep">Depósito (+)</option><option value="ret">Retiro (−)</option><option value="X">Retiro X (final)</option></select>
+      <input type="number" id="mov-amt${i}" placeholder="Monto" step="any" style="flex:1.3;min-width:100px">
+      <button type="button" onclick="movDelRow(${i})" title="Quitar hito" style="background:transparent;border:1px solid var(--line-2);color:var(--text-3);cursor:pointer;border-radius:0;padding:6px 10px;font-family:var(--ff-mono)">×</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <select id="mov-rt${i}" style="flex:1.4;min-width:140px"><option value="">Tasa: sin cambio aquí</option><option value="nom">Nominal (TN)</option><option value="efe">Efectiva (TEP)</option><option value="desc">Descontada (d%)</option></select>
+      <input type="number" id="mov-rv${i}" placeholder="Valor %" step="any" style="flex:1;min-width:90px">
+      <select id="mov-rpt${i}" style="flex:1.2;min-width:120px">${_MOV_PT}</select>
+      <select id="mov-rpc${i}" style="flex:1.2;min-width:110px">${_MOV_PC}</select>
+    </div>
+  </div>`;
+}
+
+function movAddRow(){
+  const cont = document.getElementById('mov-rows');
+  const div = document.createElement('div');
+  div.innerHTML = movRowHTML(MOV_N);
+  cont.appendChild(div.firstChild);
+  MOV_N++;
+}
+function movDelRow(i){
+  const row = document.querySelector('.mov-row[data-idx="'+i+'"]');
+  if(row) row.remove();
+}
+function movTimeMode(mode, btn){
+  MOV_TMODE = mode;
+  btn.closest('.toggle').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('mov-unit-wrap').style.display = (mode==='fecha') ? 'none' : '';
+  document.getElementById('mov-fecha-hint').style.display = (mode==='fecha') ? '' : 'none';
+  // Actualiza placeholders de tiempo existentes
+  document.querySelectorAll('#mov-rows .mov-row').forEach(r=>{
+    const inp = r.querySelector('input[id^="mov-t"]');
+    if(inp) inp.placeholder = (mode==='fecha') ? 'dd/mm/aaaa' : 'Tiempo';
+  });
+}
+// Filas iniciales
+document.addEventListener('DOMContentLoaded', ()=>{ for(let k=0;k<3;k++) movAddRow(); });
+
+function movParseDate(raw){
+  let m = raw.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
+  if(m) return Date.UTC(+m[3], +m[2]-1, +m[1])/86400000;
+  m = raw.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+  if(m) return Date.UTC(+m[1], +m[2]-1, +m[3])/86400000;
+  return NaN;
+}
+function movGrowth(rate, days){
+  if(rate.tipo==='nom'){ const m=rate.pt/rate.pc; return Math.pow(1+rate.val/m, days/rate.pc); }
+  if(rate.tipo==='efe'){ return Math.pow(1+rate.val, days/rate.pt); }
+  const TEP = rate.val/(1-rate.val); return Math.pow(1+TEP, days/rate.pt); // descontada
+}
+function movRateLabel(rate){
+  const nm={360:'A',180:'S',120:'C',90:'T',60:'B',30:'M',15:'Q',1:'D'};
+  if(rate.tipo==='nom') return 'TN'+(nm[rate.pt]||rate.pt)+' '+(rate.val*100).toFixed(2)+'% c.'+(nm[rate.pc]||rate.pc).toLowerCase();
+  if(rate.tipo==='efe') return 'TE'+(nm[rate.pt]||rate.pt)+' '+(rate.val*100).toFixed(2)+'%';
+  return 'd'+rate.pt+' '+(rate.val*100).toFixed(2)+'%';
+}
+
+function cMOV(){
+  const unit = MOV_TMODE==='fecha' ? 1 : (gs('mov-unit')||1);
+  // Recolectar hitos
+  const rows = Array.from(document.querySelectorAll('#mov-rows .mov-row'));
+  const hitos = [];
+  for(const row of rows){
+    const i = row.getAttribute('data-idx');
+    const traw = (document.getElementById('mov-t'+i).value||'').trim();
+    if(traw==='') continue;
+    let tDays;
+    if(MOV_TMODE==='fecha'){ tDays = movParseDate(traw); if(isNaN(tDays)) return showE('mov','Fecha inválida en un hito: usa dd/mm/aaaa.'); }
+    else { const v=parseFloat(traw); if(isNaN(v)) return showE('mov','Tiempo inválido en un hito.'); tDays = v*unit; }
+    const mv = document.getElementById('mov-mv'+i).value;
+    const amt = gv('mov-amt'+i);
+    const rt = document.getElementById('mov-rt'+i).value;
+    let rate = null;
+    if(rt){
+      const rv = gv('mov-rv'+i)/100;
+      if(isNaN(rv)||rv<=0) return showE('mov','Falta el valor de la tasa en un hito con cambio de tasa.');
+      rate = { tipo:rt, val:rv, pt:gs('mov-rpt'+i)||360, pc:gs('mov-rpc'+i)||1 };
+    }
+    hitos.push({ tDays, mv, amt:isNaN(amt)?0:amt, rate });
+  }
+  if(hitos.length < 2) return showE('mov','Ingresa al menos 2 hitos (apertura + uno más).');
+  hitos.sort((a,b)=>a.tDays-b.tDays);
+  if(!hitos[0].rate) return showE('mov','El primer hito (apertura) debe fijar la tasa inicial.');
+  if(hitos[0].amt<=0) return showE('mov','El primer hito debe tener el depósito inicial.');
+
+  // Recorrido secuencial (redondeo a 2 dec por hito, como el profesor)
+  let S = r2(hitos[0].amt);
+  let cur = hitos[0].rate;
+  let X = null;
+  const steps = [];
+  const segs = []; // para SVG: {x0idx,x1idx,rate}
+  steps.push(`S(${fmtHito(hitos[0].tDays)}) = ${fmtM(S)}  ·  apertura @ ${movRateLabel(cur)}`);
+  for(let k=1;k<hitos.length;k++){
+    const days = Math.round(hitos[k].tDays - hitos[k-1].tDays);
+    const factor = movGrowth(cur, days);
+    const Sbefore = S;
+    const cap = S*factor;
+    S = r2(cap);
+    segs.push({i0:k-1, i1:k, rate:cur});
+    let movTxt='', resTxt;
+    const h = hitos[k];
+    if(h.mv==='dep'){ S = r2(S + h.amt); movTxt = ' + '+fmtM(h.amt); resTxt = fmtM(S); }
+    else if(h.mv==='ret'){ S = r2(S - h.amt); movTxt = ' − '+fmtM(h.amt); resTxt = fmtM(S); }
+    else if(h.mv==='X'){ X = S; movTxt = ' − X = 0'; resTxt = 'X = '+fmtM(X); }
+    else { resTxt = fmtM(S); }
+    steps.push(`S(${fmtHito(h.tDays)}) = ${fmtM(Sbefore)} × ${movFactorStr(cur,days)} = ${fmtM6(cap)}${movTxt}  →  ${resTxt}`);
+    if(h.rate){ cur = h.rate; steps.push(`   ↳ cambia tasa a ${movRateLabel(cur)} (aplica al siguiente tramo)`); }
+  }
+
+  const hero = (X!==null)
+    ? {label:'RETIRO FINAL X (saldo = 0)', val:fmtM(X), cls:'is-money', extra:fmtM6(X)}
+    : {label:'SALDO FINAL', val:fmtM(S), cls:'is-money', extra:fmtM6(S)};
+
+  // Render: hero + SVG + procedimiento + grid breve
+  const svg = movSVG(hitos);
+  const procLines = steps.map(s=>`<div style="padding:3px 0;border-bottom:1px solid var(--line)">${s}</div>`).join('');
+  const proc = `<div style="margin-top:14px;background:var(--bg-deep);border-left:3px solid var(--accent);padding:14px 16px;font-family:var(--ff-mono);font-size:0.8rem;color:var(--text-2);line-height:1.55;overflow-x:auto">
+    <div style="font-family:var(--ff-display);letter-spacing:0.16em;color:var(--accent);font-size:0.85rem;margin-bottom:10px">PROCEDIMIENTO</div>${procLines}</div>`;
+
+  const el = document.getElementById('res-mov');
+  el.innerHTML = `<div class="result-hero">
+      <div class="result-head"><div class="result-check">${_CHECK_SVG}</div><div class="result-label">${hero.label}</div></div>
+      <div class="result-value ${hero.cls}">${hero.val}</div>
+      <div class="result-extra"><span class="result-extra-label">Precisión extendida</span><span class="result-extra-value">${hero.extra}</span></div>
+    </div>` + svg + proc;
+  el.classList.add('show');
+  document.getElementById('err-mov').classList.remove('show');
+  if(window.innerWidth < 860) setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'center'}), 100);
+}
+
+function fmtHito(tDays){
+  if(MOV_TMODE==='fecha'){ const d=new Date(tDays*86400000); return ('0'+d.getUTCDate()).slice(-2)+'/'+('0'+(d.getUTCMonth()+1)).slice(-2)+'/'+d.getUTCFullYear(); }
+  return Math.round(tDays)+'d';
+}
+function movFactorStr(rate, days){
+  if(rate.tipo==='nom'){ const m=rate.pt/rate.pc; return `(1+${(rate.val*100).toFixed(2)}%/${m})^${r10(days/rate.pc).toFixed(4)}`; }
+  if(rate.tipo==='efe'){ return `(1+${(rate.val*100).toFixed(2)}%)^(${days}/${rate.pt})`; }
+  const TEP=rate.val/(1-rate.val); return `(1+${(TEP*100).toFixed(4)}%)^(${days}/${rate.pt})`;
+}
+
+// Línea de tiempo SVG (fondo blanco): depósito = flecha verde ABAJO, retiro/X = flecha roja ARRIBA.
+function movSVG(hitos){
+  const W=720, H=215, padL=46, padR=40, axisY=100;
+  const t0=hitos[0].tDays, t1=hitos[hitos.length-1].tDays, span=(t1-t0)||1;
+  const xOf = t => padL + (t-t0)/span*(W-padL-padR);
+  const A='#1f9d57', RED='#c0392b', MUT='#666', AX='#555', DOT='#333', AMB='#b8860b';
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin-top:14px;background:#ffffff;border:1px solid var(--line-2);border-radius:4px">`;
+  // eje
+  s += `<line x1="${padL-12}" y1="${axisY}" x2="${W-padR}" y2="${axisY}" stroke="${AX}" stroke-width="1.5"/>`;
+  s += `<path d="M${W-padR-6},${axisY-4} L${W-padR},${axisY} L${W-padR-6},${axisY+4} Z" fill="${AX}"/>`;
+  // bandas de tasa por tramo (abajo del todo)
+  let cur=hitos[0].rate;
+  for(let k=1;k<hitos.length;k++){
+    const x0=xOf(hitos[k-1].tDays), x1=xOf(hitos[k].tDays), xm=(x0+x1)/2;
+    s += `<line x1="${x0+3}" y1="${axisY+58}" x2="${x1-3}" y2="${axisY+58}" stroke="${AMB}" stroke-width="2"/>`;
+    s += `<text x="${xm}" y="${axisY+71}" fill="${AMB}" font-size="8" font-family="monospace" text-anchor="middle">${movRateLabel(cur)}</text>`;
+    if(hitos[k].rate) cur=hitos[k].rate;
+  }
+  // hitos
+  hitos.forEach((h)=>{
+    const x=xOf(h.tDays);
+    s += `<circle cx="${x}" cy="${axisY}" r="3" fill="${DOT}"/>`;
+    s += `<text x="${x}" y="${axisY+16}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">${fmtHito(h.tDays)}</text>`;
+    if(h.mv==='dep'){ // depósito: flecha ABAJO (verde), debajo del eje
+      s += `<line x1="${x}" y1="${axisY+22}" x2="${x}" y2="${axisY+44}" stroke="${A}" stroke-width="2.5"/><path d="M${x-4},${axisY+37} L${x},${axisY+45} L${x+4},${axisY+37} Z" fill="${A}"/>`;
+      s += `<text x="${x}" y="${axisY-8}" fill="${A}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">+${fmtM(h.amt)}</text>`;
+    } else if(h.mv==='ret' || h.mv==='X'){ // retiro/X: flecha ARRIBA (rojo), encima del eje
+      s += `<line x1="${x}" y1="${axisY-44}" x2="${x}" y2="${axisY}" stroke="${RED}" stroke-width="2.5"/><path d="M${x-4},${axisY-36} L${x},${axisY-45} L${x+4},${axisY-36} Z" fill="${RED}"/>`;
+      s += `<text x="${x}" y="${axisY-50}" fill="${RED}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">${h.mv==='X'?'X':'−'+fmtM(h.amt)}</text>`;
+    }
+  });
+  s += `</svg>`;
+  return s;
 }
 
 
