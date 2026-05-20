@@ -1323,10 +1323,10 @@ select:focus-visible,
 </head>
 <body>
 
-<nav class="sidebar"><div class="brand"><div class="brand-logo">F</div><div class="brand-text"><div class="brand-name">FinCalc</div><div class="brand-desc">Matemática Financiera</div></div></div><div class="nav-group"><div class="nav-group-label">Interés Simple</div><div class="nav-item active" data-p="ss" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="si" onclick="go(this)"><span class="nav-icon">💰</span>Interés (I)</div><div class="nav-item" data-p="sc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="st" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (i)</div><div class="nav-item" data-p="sti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (t)</div></div><div class="nav-group"><div class="nav-group-label">Interés Compuesto</div><div class="nav-item" data-p="cs" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="cc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="ct" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (TN)</div><div class="nav-item" data-p="cti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (n)</div></div><div class="nav-group"><div class="nav-group-label">Tasa Efectiva</div><div class="nav-item" data-p="tep" onclick="go(this)"><span class="nav-icon">⚡</span>Calcular con TEP</div><div class="nav-item" data-p="tas" onclick="go(this)"><span class="nav-icon">🔄</span>Convertir tasas</div></div><div class="nav-group"><div class="nav-group-label">Escenarios</div><div class="nav-item" data-p="fci" onclick="go(this)"><span class="nav-icon">🧾</span>Factura con Cuota Inicial</div><div class="nav-item" data-p="trea" onclick="go(this)"><span class="nav-icon">◇</span>Inversión 2 Bancos · TREA</div><div class="nav-item" data-p="dif" onclick="go(this)"><span class="nav-icon">🔍</span>Pago Diferido (simple)</div></div><div class="nav-group"><div class="nav-group-label">Referencia</div><div class="nav-item" data-p="form" onclick="go(this)"><span class="nav-icon">📐</span>Formulario</div></div></nav>
+<nav class="sidebar"><div class="brand"><div class="brand-logo">F</div><div class="brand-text"><div class="brand-name">FinCalc</div><div class="brand-desc">Matemática Financiera</div></div></div><div class="nav-group"><div class="nav-group-label">Interés Simple</div><div class="nav-item active" data-p="ss" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="si" onclick="go(this)"><span class="nav-icon">💰</span>Interés (I)</div><div class="nav-item" data-p="sc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="st" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (i)</div><div class="nav-item" data-p="sti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (t)</div></div><div class="nav-group"><div class="nav-group-label">Interés Compuesto</div><div class="nav-item" data-p="cs" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="cc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="ct" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (TN)</div><div class="nav-item" data-p="cti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (n)</div></div><div class="nav-group"><div class="nav-group-label">Tasa Efectiva</div><div class="nav-item" data-p="tep" onclick="go(this)"><span class="nav-icon">⚡</span>Calcular con TEP</div><div class="nav-item" data-p="tas" onclick="go(this)"><span class="nav-icon">🔄</span>Convertir tasas</div></div><div class="nav-group"><div class="nav-group-label">Escenarios</div><div class="nav-item" data-p="fci" onclick="go(this)"><span class="nav-icon">🧾</span>Factura con Cuota Inicial</div><div class="nav-item" data-p="trea" onclick="go(this)"><span class="nav-icon">◇</span>Inversión 2 Bancos · TREA</div><div class="nav-item" data-p="dif" onclick="go(this)"><span class="nav-icon">🔍</span>Pago Diferido (simple)</div><div class="nav-item" data-p="eqv" onclick="go(this)"><span class="nav-icon">◇</span>Equivalencia Cronogramas</div></div><div class="nav-group"><div class="nav-group-label">Descuento &amp; Rentas</div><div class="nav-item" data-p="tdesc" onclick="go(this)"><span class="nav-icon">▸</span>Tasa Descontada (TCEA)</div><div class="nav-item" data-p="anu" onclick="go(this)"><span class="nav-icon">▸</span>Anualidades</div></div><div class="nav-group"><div class="nav-group-label">Referencia</div><div class="nav-item" data-p="form" onclick="go(this)"><span class="nav-icon">📐</span>Formulario</div></div></nav>
 
 <main class="main">
-<nav class="mobnav"><button class="mob-btn active" onclick="gm('ss',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('si',this)">💰 Interés (I)</button><button class="mob-btn" onclick="gm('sc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('st',this)">📊 Tasa (i)</button><button class="mob-btn" onclick="gm('sti',this)">⏱ Tiempo (t)</button><button class="mob-btn" onclick="gm('cs',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('cc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('ct',this)">📊 Tasa (TN)</button><button class="mob-btn" onclick="gm('cti',this)">⏱ Tiempo (n)</button><button class="mob-btn" onclick="gm('tep',this)">⚡ Calcular</button><button class="mob-btn" onclick="gm('tas',this)">🔄 Convertir tasas</button><button class="mob-btn" onclick="gm('fci',this)">🧾 Factura + CI</button><button class="mob-btn" onclick="gm('trea',this)">◇ TREA 2 Bancos</button><button class="mob-btn" onclick="gm('dif',this)">🔍 Pago Diferido</button><button class="mob-btn" onclick="gm('form',this)">📐 Formulario</button></nav>
+<nav class="mobnav"><button class="mob-btn active" onclick="gm('ss',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('si',this)">💰 Interés (I)</button><button class="mob-btn" onclick="gm('sc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('st',this)">📊 Tasa (i)</button><button class="mob-btn" onclick="gm('sti',this)">⏱ Tiempo (t)</button><button class="mob-btn" onclick="gm('cs',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('cc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('ct',this)">📊 Tasa (TN)</button><button class="mob-btn" onclick="gm('cti',this)">⏱ Tiempo (n)</button><button class="mob-btn" onclick="gm('tep',this)">⚡ Calcular</button><button class="mob-btn" onclick="gm('tas',this)">🔄 Convertir tasas</button><button class="mob-btn" onclick="gm('fci',this)">🧾 Factura + CI</button><button class="mob-btn" onclick="gm('trea',this)">◇ TREA 2 Bancos</button><button class="mob-btn" onclick="gm('dif',this)">🔍 Pago Diferido</button><button class="mob-btn" onclick="gm('eqv',this)">◇ Equivalencia</button><button class="mob-btn" onclick="gm('tdesc',this)">▸ Tasa Descontada</button><button class="mob-btn" onclick="gm('anu',this)">▸ Anualidades</button><button class="mob-btn" onclick="gm('form',this)">📐 Formulario</button></nav>
 <section id="p-ss" class="page active"><div class="page-header">
   <div class="page-crumb">Interés Simple</div>
   <h1 class="page-title">¿Cuánto tendré al final? <span class="accent">→ S</span></h1>
@@ -2683,6 +2683,234 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
 <button class="btn-primary" onclick="calc('trea')" type="button">Calcular ganadores y TREA<span class="arrow">→</span></button>
 <div class="result-box" id="res-trea"></div>
 <div class="error-box" id="err-trea"></div>
+</section><section id="p-eqv" class="page">
+<div class="page-header">
+  <div class="page-crumb">Escenario</div>
+  <h1 class="page-title">Equivalencia de <span class="accent">Cronogramas</span></h1>
+  <p class="page-subtitle">Renegociación de deuda. Iguala el valor presente del cronograma original (a su tasa) con el del cronograma nuevo (a la tasa nueva) y despeja el pago desconocido X.</p>
+</div>
+
+<div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Principio: <strong>VP(cronograma original) = VP(cronograma nuevo)</strong>, ambos al día 0. Marca con el radio cuál pago del cronograma nuevo es la incógnita X. Filas con monto vacío se ignoran.</span></div>
+
+<div class="card highlight">
+  <div class="card-header"><div class="card-num">1</div><div class="card-title">Tasa(s) de interés</div></div>
+  <div class="card-body">
+    <div class="divider">▸ Tasa del cronograma ORIGINAL</div>
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn" onclick="rateTipo('eqv-o','nom',this)">Nominal (TN)</button>
+        <button type="button" class="toggle-btn active" onclick="rateTipo('eqv-o','efe',this)">Efectiva (TEP)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="eqv-o-i" placeholder="Ej: 11.04" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="eqv-o-pt"><option value="360">Anual (360)</option><option value="180" selected>Semestral (180)</option><option value="120">Cuatrimestral (120)</option><option value="90">Trimestral (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+      <div class="field full" id="eqv-o-pc-wrap" style="display:none"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="eqv-o-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+    </div>
+    <div class="check-toggle" id="eqv-chg-t" onclick="tog('eqv-chg-t','eqv-chg-b')" style="margin-top:16px">
+      <div class="check-box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">La tasa cambia para el cronograma nuevo</span>
+      <span class="check-meta">renegociación</span>
+    </div>
+    <div class="cond" id="eqv-chg-b" style="margin-top:12px">
+      <div class="divider">▸ Tasa del cronograma NUEVO</div>
+      <div class="toggle-wrap">
+        <div class="toggle-label">Tipo de tasa</div>
+        <div class="toggle">
+          <button type="button" class="toggle-btn active" onclick="rateTipo('eqv-n','nom',this)">Nominal (TN)</button>
+          <button type="button" class="toggle-btn" onclick="rateTipo('eqv-n','efe',this)">Efectiva (TEP)</button>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-chip">%</span></div><input type="number" id="eqv-n-i" placeholder="Ej: 14.35" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="eqv-n-pt"><option value="360">Anual (360)</option><option value="180" selected>Semestral (180)</option><option value="120">Cuatrimestral (120)</option><option value="90">Trimestral (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+        <div class="field full" id="eqv-n-pc-wrap"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="eqv-n-pc"><option value="1">Diaria (1)</option><option value="15" selected>Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">2</div><div class="card-title">Cronograma ORIGINAL</div></div>
+  <div class="card-body">
+    <div class="label-hint" style="margin-bottom:10px">Monto y tiempo de cada pago. Tiempo medido desde hoy (día 0).</div>
+    <div id="eqv-orig-rows"></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">3</div><div class="card-title">Cronograma NUEVO (con X)</div></div>
+  <div class="card-body">
+    <div class="label-hint" style="margin-bottom:10px">Marca con el radio cuál pago es la incógnita X (su monto se calcula).</div>
+    <div id="eqv-new-rows"></div>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="calc('eqv')" type="button">Calcular X<span class="arrow">→</span></button>
+<div class="result-box" id="res-eqv"></div>
+<div class="error-box" id="err-eqv"></div>
+</section><section id="p-tdesc" class="page">
+<div class="page-header">
+  <div class="page-crumb">Operación</div>
+  <h1 class="page-title">Tasa <span class="accent">Descontada</span> · TCEA</h1>
+  <p class="page-subtitle">Descuento de letras/pagarés. Calcula valor neto, valor recibido, valor entregado y la Tasa de Costo Efectivo Anual (TCEA), con soporte de mora.</p>
+</div>
+
+<div class="notice info"><span class="notice-icon">i</span><span class="notice-body">d% = TEtd / (1 + TEtd) · Descuento = VN × d% · Valor Neto = VN − Descuento.<br>TCEA = (Valor Entregado / Valor Recibido)<sup>360/td</sup> − 1</span></div>
+
+<div class="card highlight">
+  <div class="card-header"><div class="card-num">1</div><div class="card-title">Título &amp; tasa compensatoria</div></div>
+  <div class="card-body">
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Valor Nominal</span><span class="label-required">*</span><span class="label-chip">VN</span></div><div class="label-hint">Valor al vencimiento</div><input type="number" id="tdesc-vn" placeholder="Ej: 3 500.00" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Tiempo de descuento (td)</span><span class="label-required">*</span><span class="label-chip">días</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">td</span>Días entre la fecha de descuento/abono y el vencimiento. Ej: letra a 90 días descontada al día 3 → td = 87.</div></div></div><input type="number" id="tdesc-td" placeholder="Ej: 87" step="any"></div>
+    </div>
+    <div class="divider">▸ Tasa compensatoria</div>
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn" onclick="rateTipo('tdesc-comp','nom',this)">Nominal (TN)</button>
+        <button type="button" class="toggle-btn active" onclick="rateTipo('tdesc-comp','efe',this)">Efectiva (TEP)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="tdesc-comp-i" placeholder="Ej: 28" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="tdesc-comp-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrimestral (120)</option><option value="90">Trimestral (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+      <div class="field full" id="tdesc-comp-pc-wrap" style="display:none"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="tdesc-comp-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">2</div><div class="card-title">Costos &amp; retención</div></div>
+  <div class="card-body">
+    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Costos AL INICIO reducen el Valor Recibido. Costos AL FINAL aumentan el Valor Entregado. La retención se resta de ambos.</span></div>
+    <div class="divider">▸ Al inicio (a la firma / descuento)</div>
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Seguro desgravamen</span><span class="label-chip">% VN</span></div><div class="label-hint">% del valor nominal</div><input type="number" id="tdesc-seg" placeholder="Ej: 0.5" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Comisión activación</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-comis" placeholder="Ej: 25.00" step="any"></div>
+      <div class="field full"><div class="field-label"><span class="label-main">Otros costos al inicio</span><span class="label-chip">fijo</span></div><div class="label-hint">Fotocopias, etc. (suma fija)</div><input type="number" id="tdesc-otroini" placeholder="Ej: 5.00" step="any"></div>
+    </div>
+    <div class="divider">▸ Al final (al vencimiento)</div>
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Portes</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-portes" placeholder="Ej: 10.00" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Gastos administración</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-gadm" placeholder="Ej: 20.00" step="any"></div>
+      <div class="field full"><div class="field-label"><span class="label-main">Otros costos al final</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-otrofin" placeholder="0.00" step="any"></div>
+    </div>
+    <div class="divider">▸ Retención (devuelta al cancelar)</div>
+    <div class="form-grid">
+      <div class="field full"><div class="field-label"><span class="label-main">Retención</span><span class="label-chip">% VN</span></div><div class="label-hint">% del VN retenido (se resta de recibido y entregado). Vacío = 0.</div><input type="number" id="tdesc-ret" placeholder="Ej: 5" step="any"></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">3</div><div class="card-title">Mora (cancelación tardía)</div><span class="card-optional">Opcional</span></div>
+  <div class="card-body">
+    <div class="check-toggle" id="tdesc-mora-t" onclick="tog('tdesc-mora-t','tdesc-mora-b')">
+      <div class="check-box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Se canceló después del vencimiento</span>
+      <span class="check-meta">interés moratorio + compensatorio</span>
+    </div>
+    <div class="cond" id="tdesc-mora-b" style="margin-top:12px">
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Días de mora (tm)</span><span class="label-required">*</span><span class="label-chip">días</span></div><input type="number" id="tdesc-tm" placeholder="Ej: 5" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">Comisión cobranza morosa</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-cobranza" placeholder="Ej: 70.00" step="any"></div>
+      </div>
+      <div class="divider">▸ Tasa moratoria</div>
+      <div class="toggle-wrap">
+        <div class="toggle-label">Tipo de tasa moratoria</div>
+        <div class="toggle">
+          <button type="button" class="toggle-btn active" onclick="rateTipo('tdesc-mora','nom',this)">Nominal (TN)</button>
+          <button type="button" class="toggle-btn" onclick="rateTipo('tdesc-mora','efe',this)">Efectiva (TEP)</button>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-chip">%</span></div><input type="number" id="tdesc-mora-i" placeholder="Ej: 65" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">Período</span></div><select id="tdesc-mora-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrimestral (120)</option><option value="90">Trimestral (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+        <div class="field full" id="tdesc-mora-pc-wrap"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="tdesc-mora-pc"><option value="1" selected>Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+      </div>
+      <div class="notice info" style="margin-top:12px"><span class="notice-icon">i</span><span class="notice-body">El interés compensatorio durante la mora usa la misma tasa compensatoria de la sección 1, aplicada sobre tm días.</span></div>
+    </div>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="calc('tdesc')" type="button">Calcular TCEA<span class="arrow">→</span></button>
+<div class="result-box" id="res-tdesc"></div>
+<div class="error-box" id="err-tdesc"></div>
+</section><section id="p-anu" class="page">
+<div class="page-header">
+  <div class="page-crumb">Operación</div>
+  <h1 class="page-title">Anualidades <span class="accent">/ Rentas</span></h1>
+  <p class="page-subtitle">Cuotas periódicas idénticas. Calcula la cuota de un crédito (con cuota inicial), el valor futuro de un ahorro, o el valor presente / prepago de una renta.</p>
+</div>
+
+<div class="choice-group">
+  <div class="choice-title"><span class="choice-q">?</span>¿Qué quieres calcular?</div>
+  <div class="choice-opts">
+    <button type="button" class="choice-opt active" onclick="anuMode('R',this)"><span class="choice-dot"></span>Cuota desde precio (R)</button>
+    <button type="button" class="choice-opt" onclick="anuMode('RC',this)"><span class="choice-dot"></span>Cuota desde capital (R)</button>
+    <button type="button" class="choice-opt" onclick="anuMode('VF',this)"><span class="choice-dot"></span>Valor futuro ahorro (S)</button>
+    <button type="button" class="choice-opt" onclick="anuMode('VP',this)"><span class="choice-dot"></span>Valor presente / Prepago (C)</button>
+  </div>
+</div>
+
+<div class="notice info"><span class="notice-icon">i</span><span class="notice-body"><strong>Cuota:</strong> R = C · [TEP·(1+TEP)ⁿ] / [(1+TEP)ⁿ − 1] &nbsp;·&nbsp; <strong>VF:</strong> S = R · [(1+TEP)ⁿ − 1]/TEP &nbsp;·&nbsp; <strong>VP:</strong> C = R · [(1+TEP)ⁿ − 1]/[TEP·(1+TEP)ⁿ]. Adelantada = vencida × (1+TEP).</span></div>
+
+<div class="card highlight">
+  <div class="card-header"><div class="card-num">1</div><div class="card-title">Monto</div></div>
+  <div class="card-body">
+    <div class="form-grid single">
+      <div class="field full" id="anu-c-wrap">
+        <div class="field-label"><span class="label-main" id="anu-c-lbl">Precio de venta (PV)</span><span class="label-required">*</span><span class="label-chip">PV</span></div>
+        <div class="label-hint" id="anu-c-hint">Precio del bien al contado</div>
+        <input type="number" id="anu-c" placeholder="Ej: 42 199.00" step="any">
+      </div>
+      <div class="field full" id="anu-ci-wrap">
+        <div class="field-label"><span class="label-main">Cuota inicial</span><span class="label-chip">% PV</span></div>
+        <div class="label-hint">% del precio que se paga al inicio. Vacío = 0.</div>
+        <input type="number" id="anu-ci" placeholder="Ej: 20" step="any">
+      </div>
+      <div class="field full" id="anu-r-wrap" style="display:none">
+        <div class="field-label"><span class="label-main">Renta / Cuota (R)</span><span class="label-required">*</span><span class="label-chip">R</span></div>
+        <div class="label-hint">Monto periódico que se deposita o paga</div>
+        <input type="number" id="anu-r" placeholder="Ej: 300.00" step="any">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">2</div><div class="card-title">Tasa &amp; frecuencia</div></div>
+  <div class="card-body">
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn" onclick="rateTipo('anu','nom',this)">Nominal (TN)</button>
+        <button type="button" class="toggle-btn active" onclick="rateTipo('anu','efe',this)">Efectiva (TEP)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Valor de la tasa</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="anu-i" placeholder="Ej: 7.5" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="anu-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrimestral (120)</option><option value="90">Trimestral (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+      <div class="field full" id="anu-pc-wrap" style="display:none"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="anu-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+      <div class="field"><div class="field-label"><span class="label-main">Frecuencia de pago</span><span class="label-required">*</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Frecuencia</span>Cada cuánto se paga/deposita la cuota. La app convierte la tasa a la TEP de este período.</div></div></div><select id="anu-freq"><option value="30" selected>Mensual (30)</option><option value="15">Quincenal (15)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="1">Diaria (1)</option><option value="custom">✏️ Otro</option></select></div>
+      <div class="field"><div class="field-label"><span class="label-main">Nº de cuotas (n)</span><span class="label-required">*</span><span class="label-chip">n</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">n</span>Número total de pagos. Ej: 3 años mensuales = 36.</div></div></div><input type="number" id="anu-n" placeholder="Ej: 36" step="any"></div>
+    </div>
+    <div class="toggle-wrap" style="margin-top:16px">
+      <div class="toggle-label">Tipo de cuota</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn active" onclick="anuVenc('venc',this)">Vencida</button>
+        <button type="button" class="toggle-btn" onclick="anuVenc('adel',this)">Adelantada</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="calc('anu')" type="button">Calcular<span class="arrow">→</span></button>
+<div class="result-box" id="res-anu"></div>
+<div class="error-box" id="err-anu"></div>
 </section><section id="p-form" class="page"><div class="page-header">
   <div class="page-crumb">Referencia</div>
   <h1 class="page-title">Formulario Completo <span class="accent"></span></h1>
@@ -2953,7 +3181,7 @@ function gcP(p){
 
 // ═══ DISPATCHER ═══════════════════════════════════
 function calc(p){
-  ({ss:cSS,si:cSI,sc:cSC,st:cST,sti:cSTI,cs:cCS,cc:cCC,ct:cCT,cti:cCTI,dif:cDIF,tp:cTP,tn:cTN,ip:cIP,ttn:cTTN,ttep:cTTEP,ttt:cTTT,stp:cSTP,tep:calcTEP,fci:cFCI,trea:cTREA})[p]?.();
+  ({ss:cSS,si:cSI,sc:cSC,st:cST,sti:cSTI,cs:cCS,cc:cCC,ct:cCT,cti:cCTI,dif:cDIF,tp:cTP,tn:cTN,ip:cIP,ttn:cTTN,ttep:cTTEP,ttt:cTTT,stp:cSTP,tep:calcTEP,fci:cFCI,trea:cTREA,eqv:cEQV,tdesc:cTDESC,anu:cANU})[p]?.();
 }
 
 // ═══ INTERÉS SIMPLE ═══════════════════════════════
@@ -3807,6 +4035,273 @@ function cTREA(){
   document.getElementById('err-trea').classList.remove('show');
   if(window.innerWidth < 860){
     setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'center'}), 100);
+  }
+}
+
+// ═══ HELPERS COMPARTIDOS (descuento / anualidades / equivalencia) ═══
+const _CHECK_SVG = '<svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+// Toggle Nominal/Efectiva genérico: muestra/oculta el wrapper de capitalización <pfx>-pc-wrap
+function rateTipo(pfx, tipo, btn){
+  btn.closest('.toggle').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const w = document.getElementById(pfx+'-pc-wrap');
+  if(w) w.style.display = (tipo==='nom') ? '' : 'none';
+}
+
+// Tasa efectiva sobre 'days' días para el bloque de tasa con prefijo pfx.
+// Nominal: i'=TN/m, m=pt/pc → (1+i')^(days/pc) − 1. Efectiva: (1+TEP)^(days/pt) − 1.
+function effRate(pfx, days){
+  const w = document.getElementById(pfx+'-pc-wrap');
+  const isNom = w && w.style.display !== 'none';
+  const i = gv(pfx+'-i')/100;
+  const pt = gs(pfx+'-pt') || 360;
+  if(isNaN(i) || i<=0) return null;
+  if(isNom){
+    const pc = gs(pfx+'-pc') || 1;
+    const m = pt/pc, ip = i/m;
+    return Math.pow(1+ip, days/pc) - 1;
+  }
+  return Math.pow(1+i, days/pt) - 1;
+}
+
+// Render genérico con un hero principal + grid de detalles
+function showRMulti(id, heroes, items){
+  const heroHtml = heroes.map((h,idx)=>`<div class="result-hero"${idx>0?' style="margin-top:14px"':''}>
+    <div class="result-head"><div class="result-check">${_CHECK_SVG}</div><div class="result-label">${h.label}</div></div>
+    <div class="result-value ${h.cls||'is-money'}">${h.val}</div>
+    ${h.extra?`<div class="result-extra"><span class="result-extra-label">Precisión extendida</span><span class="result-extra-value">${h.extra}</span></div>`:''}
+  </div>`).join('');
+  const cells = items.map(([l,v])=>`<div class="result-item"><div class="result-item-label">${l}</div><div class="result-item-value">${v}</div></div>`).join('');
+  const el = document.getElementById('res-'+id);
+  el.innerHTML = heroHtml + `<div class="result-grid" style="margin-top:14px">${cells}</div>`;
+  el.classList.add('show');
+  document.getElementById('err-'+id).classList.remove('show');
+  if(window.innerWidth < 860) setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'center'}), 100);
+}
+
+// ═══ EQUIVALENCIA DE CRONOGRAMAS ═══════════════════
+const _EQV_UNITS = '<option value="1">Días</option><option value="30" selected>Meses</option><option value="180">Semestres</option><option value="360">Años</option>';
+
+function eqvBuildRows(){
+  const orig = document.getElementById('eqv-orig-rows');
+  const neu = document.getElementById('eqv-new-rows');
+  if(!orig || !neu) return;
+  let oh='', nh='';
+  for(let i=0;i<4;i++){
+    oh += `<div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <input type="number" id="eqv-o-m${i}" placeholder="Monto ${i+1}" step="any" style="flex:2;min-width:120px">
+      <input type="number" id="eqv-o-t${i}" placeholder="Tiempo" step="any" style="flex:1;min-width:80px">
+      <select id="eqv-o-u${i}" style="flex:1;min-width:90px">${_EQV_UNITS}</select>
+    </div>`;
+    nh += `<div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.72rem;color:var(--text-2);white-space:nowrap;font-family:var(--ff-mono)"><input type="radio" name="eqv-x" value="${i}" style="width:auto;margin:0">X</label>
+      <input type="number" id="eqv-n-m${i}" placeholder="Monto ${i+1}" step="any" style="flex:2;min-width:110px">
+      <input type="number" id="eqv-n-t${i}" placeholder="Tiempo" step="any" style="flex:1;min-width:80px">
+      <select id="eqv-n-u${i}" style="flex:1;min-width:90px">${_EQV_UNITS}</select>
+    </div>`;
+  }
+  orig.innerHTML = oh;
+  neu.innerHTML = nh;
+}
+document.addEventListener('DOMContentLoaded', eqvBuildRows);
+
+function cEQV(){
+  if(effRate('eqv-o', 1) === null) return showE('eqv','Ingresa la tasa del cronograma original.');
+  const chg = document.getElementById('eqv-chg-t').classList.contains('active');
+  const newPfx = chg ? 'eqv-n' : 'eqv-o';
+  if(chg && effRate('eqv-n', 1) === null) return showE('eqv','Ingresa la tasa del cronograma nuevo.');
+
+  // VP cronograma original (a su tasa)
+  let VPo = 0; const origItems = [];
+  for(let i=0;i<4;i++){
+    const m = gv('eqv-o-m'+i); if(isNaN(m)) continue;
+    const t = gv('eqv-o-t'+i); if(isNaN(t)) return showE('eqv','Falta el tiempo del pago original '+(i+1)+'.');
+    const days = t * (gs('eqv-o-u'+i)||30);
+    const vp = m / (1 + effRate('eqv-o', days));
+    VPo += vp;
+    origItems.push([`Orig ${i+1}: ${fmtM(m)} @ ${days}d`, fmtM6(vp)]);
+  }
+  if(origItems.length===0) return showE('eqv','Ingresa al menos un pago original.');
+
+  // Cronograma nuevo (a la tasa nueva)
+  const xRadio = document.querySelector('input[name="eqv-x"]:checked');
+  if(!xRadio) return showE('eqv','Marca con el radio cuál pago nuevo es la incógnita X.');
+  const xIdx = parseInt(xRadio.value);
+  let VPnk = 0, xDays = null; const newItems = [];
+  for(let i=0;i<4;i++){
+    const t = gv('eqv-n-t'+i);
+    if(i===xIdx){
+      if(isNaN(t)) return showE('eqv','Ingresa el tiempo de la incógnita X.');
+      xDays = t * (gs('eqv-n-u'+i)||30);
+      continue;
+    }
+    const m = gv('eqv-n-m'+i); if(isNaN(m)) continue;
+    if(isNaN(t)) return showE('eqv','Falta el tiempo del pago nuevo '+(i+1)+'.');
+    const days = t * (gs('eqv-n-u'+i)||30);
+    const vp = m / (1 + effRate(newPfx, days));
+    VPnk += vp;
+    newItems.push([`Nuevo ${i+1}: ${fmtM(m)} @ ${days}d`, fmtM6(vp)]);
+  }
+  if(xDays===null) return showE('eqv','Configura la incógnita X.');
+
+  const xFactor = 1 + effRate(newPfx, xDays);
+  const X = (VPo - VPnk) * xFactor;
+
+  showRMulti('eqv',
+    [{label:`PAGO DESCONOCIDO X · DÍA ${xDays}`, val:fmtM(X), cls:'is-money', extra:fmtM6(X)}],
+    [
+      ['VP cronograma original', fmtM6(VPo)],
+      ...origItems,
+      ['VP nuevo (conocidos)', fmtM6(VPnk)],
+      ...newItems,
+      ['Días de X', xDays.toString()],
+      ['Factor (1+i) en X', r10(xFactor).toFixed(10)],
+      ['Fórmula', 'X = (VPo − VPnk) × factor'],
+      ['X (alta prec.)', fmtM6(X)]
+    ]
+  );
+}
+
+// ═══ TASA DESCONTADA · TCEA ════════════════════════
+function cTDESC(){
+  const VN = gv('tdesc-vn');
+  const td = gv('tdesc-td');
+  if(isNaN(VN)||VN<=0) return showE('tdesc','Ingresa el valor nominal.');
+  if(isNaN(td)||td<=0) return showE('tdesc','Ingresa el tiempo de descuento (td) en días.');
+  const TEtd = effRate('tdesc-comp', td);
+  if(TEtd === null) return showE('tdesc','Ingresa la tasa compensatoria.');
+  const dt = TEtd/(1+TEtd);
+  const Desc = VN * dt;
+  const VNeto = VN - Desc;
+
+  const seg = (gv('tdesc-seg')||0)/100 * VN;
+  const comis = gv('tdesc-comis')||0;
+  const otroini = gv('tdesc-otroini')||0;
+  const portes = gv('tdesc-portes')||0;
+  const gadm = gv('tdesc-gadm')||0;
+  const otrofin = gv('tdesc-otrofin')||0;
+  const ret = (gv('tdesc-ret')||0)/100 * VN;
+
+  const costoIni = seg + comis + otroini;
+  const costoFin = portes + gadm + otrofin;
+  const VRecibido = VNeto - costoIni - ret;
+  const VEntregado = VN + costoFin - ret;
+  const TCEA = Math.pow(VEntregado/VRecibido, 360/td) - 1;
+
+  const heroes = [{label:`TCEA (td = ${td} días)`, val:pct4(TCEA), cls:'is-rate', extra:pct10(TCEA)}];
+  const items = [
+    ['Valor Nominal (VN)', fmtM(VN)],
+    ['TEtd (10 dec)', pct10(TEtd)],
+    ['Tasa descontada d% (10 dec)', pct10(dt)],
+    ['Descuento (VN × d%)', fmtM6(Desc)],
+    ['Valor Neto (VN − Desc)', fmtM6(VNeto)],
+    ['Costos al inicio', fmtM6(costoIni)+(seg>0?` (seg ${fmtM(seg)})`:'')],
+    ['Costos al final', fmtM6(costoFin)],
+    ['Retención', fmtM6(ret)],
+    ['VALOR RECIBIDO', fmtM6(VRecibido)],
+    ['VALOR ENTREGADO', fmtM6(VEntregado)],
+    ['TCEA (10 dec)', r10(TCEA).toFixed(10)]
+  ];
+
+  const hasMora = document.getElementById('tdesc-mora-t').classList.contains('active');
+  if(hasMora){
+    const tm = gv('tdesc-tm');
+    if(isNaN(tm)||tm<=0) return showE('tdesc','Ingresa los días de mora (tm).');
+    const moraRate = effRate('tdesc-mora', tm);
+    if(moraRate === null) return showE('tdesc','Ingresa la tasa moratoria.');
+    const compRate = effRate('tdesc-comp', tm);
+    const Im = VN * moraRate;
+    const Ic = VN * compRate;
+    const cobranza = gv('tdesc-cobranza')||0;
+    const VEntMora = VN + costoFin - ret + Im + Ic + cobranza;
+    const TCEAmora = Math.pow(VEntMora/VRecibido, 360/(td+tm)) - 1;
+    heroes.push({label:`TCEA CON MORA (td+tm = ${td+tm} días)`, val:pct4(TCEAmora), cls:'is-rate', extra:pct10(TCEAmora)});
+    items.push(['── Mora (tm = '+tm+'d) ──','']);
+    items.push(['Interés moratorio (Im)', fmtM6(Im)]);
+    items.push(['Interés compensatorio (Ic)', fmtM6(Ic)]);
+    items.push(['Comisión cobranza morosa', fmtM6(cobranza)]);
+    items.push(['VALOR ENTREGADO con mora', fmtM6(VEntMora)]);
+    items.push(['TCEA mora (10 dec)', r10(TCEAmora).toFixed(10)]);
+  }
+
+  showRMulti('tdesc', heroes, items);
+}
+
+// ═══ ANUALIDADES ═══════════════════════════════════
+let ANU_MODE = 'R';
+let ANU_VENC = 'venc';
+
+function anuMode(mode, btn){
+  ANU_MODE = mode;
+  btn.closest('.choice-opts').querySelectorAll('.choice-opt').forEach(o=>o.classList.remove('active'));
+  btn.classList.add('active');
+  const cWrap=document.getElementById('anu-c-wrap'), ciWrap=document.getElementById('anu-ci-wrap'), rWrap=document.getElementById('anu-r-wrap');
+  const lbl=document.getElementById('anu-c-lbl'), hint=document.getElementById('anu-c-hint');
+  cWrap.style.display='none'; ciWrap.style.display='none'; rWrap.style.display='none';
+  if(mode==='R'){ cWrap.style.display=''; ciWrap.style.display=''; lbl.textContent='Precio de venta (PV)'; hint.textContent='Precio del bien al contado'; }
+  else if(mode==='RC'){ cWrap.style.display=''; lbl.textContent='Capital financiado (C)'; hint.textContent='Lo que se financia (ya sin cuota inicial)'; }
+  else if(mode==='VF' || mode==='VP'){ rWrap.style.display=''; }
+  document.getElementById('res-anu')?.classList.remove('show');
+  document.getElementById('err-anu')?.classList.remove('show');
+}
+
+function anuVenc(tipo, btn){
+  ANU_VENC = tipo;
+  btn.closest('.toggle').querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function cANU(){
+  const freq = gs('anu-freq') || 30;
+  const TEP = effRate('anu', freq);
+  if(TEP === null) return showE('anu','Ingresa la tasa de interés.');
+  const n = gv('anu-n');
+  if(isNaN(n)||n<=0) return showE('anu','Ingresa el número de cuotas (n).');
+  const f = Math.pow(1+TEP, n);
+  const adel = (ANU_VENC === 'adel');
+  const tipoTxt = adel ? 'Adelantada' : 'Vencida';
+  const baseItems = [
+    ['TEP por período de pago (10 dec)', pct10(TEP)],
+    ['n (cuotas)', n.toString()],
+    ['Tipo de cuota', tipoTxt]
+  ];
+
+  if(ANU_MODE==='R' || ANU_MODE==='RC'){
+    let C, CI=0, PV=0;
+    if(ANU_MODE==='R'){
+      PV = gv('anu-c'); if(isNaN(PV)||PV<=0) return showE('anu','Ingresa el precio de venta.');
+      CI = (gv('anu-ci')||0)/100 * PV;
+      C = PV - CI;
+    } else {
+      C = gv('anu-c'); if(isNaN(C)||C<=0) return showE('anu','Ingresa el capital financiado.');
+    }
+    const Rv = C * (TEP*f)/(f-1);
+    const R = adel ? Rv/(1+TEP) : Rv;
+    const totalPagado = R*n + CI;
+    const items = [];
+    if(ANU_MODE==='R'){
+      items.push(['Precio de venta (PV)', fmtM(PV)]);
+      items.push(['Cuota inicial (CI)', fmtM6(CI)]);
+    }
+    items.push(['Capital financiado (C)', fmtM6(C)]);
+    items.push(...baseItems);
+    items.push(['Cuota vencida (ref.)', fmtM6(Rv)]);
+    items.push(['Total pagado (n·R + CI)', fmtM6(totalPagado)]);
+    showRMulti('anu', [{label:`CUOTA ${tipoTxt.toUpperCase()} (R)`, val:fmtM(R), cls:'is-money', extra:fmtM6(R)}], items);
+  } else if(ANU_MODE==='VF'){
+    const R = gv('anu-r'); if(isNaN(R)||R<=0) return showE('anu','Ingresa la renta R.');
+    let S = R*(f-1)/TEP;
+    if(adel) S = S*(1+TEP);
+    const aportado = R*n;
+    showRMulti('anu', [{label:`VALOR FUTURO ACUMULADO (S)`, val:fmtM(S), cls:'is-money', extra:fmtM6(S)}],
+      [['Renta (R)', fmtM(R)], ...baseItems, ['Total aportado (n·R)', fmtM6(aportado)], ['Interés ganado', fmtM6(S-aportado)]]);
+  } else if(ANU_MODE==='VP'){
+    const R = gv('anu-r'); if(isNaN(R)||R<=0) return showE('anu','Ingresa la renta R.');
+    let C = R*(f-1)/(TEP*f);
+    if(adel) C = C*(1+TEP);
+    showRMulti('anu', [{label:`VALOR PRESENTE / PREPAGO (C)`, val:fmtM(C), cls:'is-money', extra:fmtM6(C)}],
+      [['Renta (R)', fmtM(R)], ...baseItems, ['Suma simple de cuotas (n·R)', fmtM6(R*n)]]);
   }
 }
 
