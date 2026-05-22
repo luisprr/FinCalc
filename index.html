@@ -3113,6 +3113,39 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
   </div>
 </div>
 
+<div class="card">
+  <div class="card-header"><div class="card-num">4</div><div class="card-title">Fase de retiro / Pensión</div><span class="card-optional">Opcional</span></div>
+  <div class="card-body">
+    <div class="check-toggle" id="aho-ret-t" onclick="tog('aho-ret-t','aho-ret-b')">
+      <div class="check-box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Calcular el retiro / pensión periódica</span>
+      <span class="check-meta">el fondo acumulado se reparte en N retiros</span>
+    </div>
+    <div class="cond" id="aho-ret-b" style="margin-top:12px">
+      <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Con el fondo acumulado de arriba como capital, se calcula el retiro nivelado R que lo agota en N períodos: <strong>R = Fondo / a(i,N)</strong>, con a(i,N)=[(1+i)ᴺ−1]/[i·(1+i)ᴺ]. Sirve para pensiones AFP, rentas vitalicias, etc.</span></div>
+      <div class="divider">▸ Tasa de la fase de retiro</div>
+      <div class="toggle-wrap">
+        <div class="toggle-label">Tipo de tasa</div>
+        <div class="toggle">
+          <button type="button" class="toggle-btn" onclick="rateTipo('ahoret','nom',this)">Nominal (TN)</button>
+          <button type="button" class="toggle-btn active" onclick="rateTipo('ahoret','efe',this)">Efectiva (TEP)</button>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-chip">%</span></div><input type="number" id="ahoret-i" placeholder="Ej: 0.4" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="ahoret-pt"><option value="360">Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trim. (90)</option><option value="60">Bimestral (60)</option><option value="30" selected>Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
+        <div class="field full" id="ahoret-pc-wrap" style="display:none"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="ahoret-pc"><option value="1">Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trim. (90)</option><option value="120">Cuatrim. (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
+      </div>
+      <div class="divider">▸ Plazo de los retiros</div>
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Frecuencia de retiro</span></div><select id="ahoret-freq"><option value="30" selected>Mensual (30)</option><option value="15">Quincenal (15)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrim. (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option></select></div>
+        <div class="field"><div class="field-label"><span class="label-main">Nº de retiros (N)</span><span class="label-chip">N</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Nº de retiros</span>Ej: 21 años de retiros mensuales = 21×12 = 252. O usa el campo "años" y la app calcula N.</div></div></div><input type="number" id="ahoret-n" placeholder="Ej: 252" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">… o años</span><span class="label-chip">opc.</span></div><div class="label-hint">Si pones años, calcula N</div><input type="number" id="ahoret-yrs" placeholder="Ej: 21" step="any"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <button class="btn-primary" onclick="calc('aho')" type="button">Calcular monto acumulado<span class="arrow">→</span></button>
 <div class="result-box" id="res-aho"></div>
 <div class="error-box" id="err-aho"></div>
@@ -5085,8 +5118,33 @@ function cAHO(){
   steps.push('§ Total acumulado al mes '+T);
   steps.push('ST = '+fmtM(total));
 
+  const heroes = [{label:'MONTO ACUMULADO AL MES '+T, val:fmtM(total), cls:'is-money', extra:fmtM6(total)}];
+
+  // Fase de retiro / pensión: el fondo acumulado se reparte en N retiros nivelados
+  const retT = document.getElementById('aho-ret-t');
+  if(retT && retT.classList.contains('active')){
+    const retFreq = gs('ahoret-freq')||30;
+    const iRet = effRate('ahoret', retFreq);
+    if(iRet===null) return showE('aho','Ingresa la tasa de la fase de retiro.');
+    let nRet = gv('ahoret-n');
+    const yrs = gv('ahoret-yrs');
+    if((isNaN(nRet)||nRet<=0) && !isNaN(yrs) && yrs>0) nRet = Math.round(yrs*360/retFreq);
+    if(isNaN(nRet)||nRet<=0) return showE('aho','Ingresa el nº de retiros (o los años) de la fase de retiro.');
+    const aRet = anVP(iRet, nRet);
+    const Rret = total/aRet;
+    steps.push('§ Fase de retiro / Pensión');
+    steps.push('i de retiro ('+retFreq+'d) = '+pct10(iRet));
+    steps.push('N retiros = '+nRet+(yrs>0?(' ('+yrs+' años × '+(360/retFreq)+')'):''));
+    steps.push('a(i,'+nRet+') = '+r10(aRet).toFixed(10));
+    steps.push('Pensión R = Fondo / a(i,N) = '+fmtM(total)+' / '+r10(aRet).toFixed(10)+' = '+fmtM6(Rret));
+    items.push(['Tasa de retiro (10 dec)', pct10(iRet)]);
+    items.push(['Nº de retiros (N)', nRet.toString()]);
+    items.push(['Pensión / retiro', fmtM6(Rret)]);
+    heroes.push({label:'PENSIÓN / RETIRO POR PERÍODO', val:fmtM(Rret), cls:'is-money', extra:fmtM6(Rret)});
+  }
+
   const svg = svgAhorro(streams, T, hasChg?chgMes:0, rateNameLabel('aho'), hasChg?rateNameLabel('aho2'):'');
-  showRMulti('aho', [{label:'MONTO ACUMULADO AL MES '+T, val:fmtM(total), cls:'is-money', extra:fmtM6(total)}], items, {svg, steps});
+  showRMulti('aho', heroes, items, {svg, steps});
 }
 
 // Diagrama de ahorro: brackets por renta (depósito arriba rojo, retiro abajo azul), banda(s) de tasa, marca de cambio.
