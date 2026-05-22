@@ -2807,23 +2807,17 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
 <div class="card">
   <div class="card-header"><div class="card-num">2</div><div class="card-title">Costos &amp; retención</div></div>
   <div class="card-body">
-    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Costos AL INICIO reducen el Valor Recibido. Costos AL FINAL aumentan el Valor Entregado. La retención se resta de ambos.</span></div>
-    <div class="divider">▸ Al inicio (a la firma / descuento)</div>
+    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Costos AL INICIO (a la firma) reducen el Valor Recibido · Costos AL FINAL (al vencimiento) aumentan el Valor Entregado · La retención se retiene al inicio y se DEVUELVE al cancelar (no genera intereses). Agrega cada costo con su nombre para que aparezca en la línea de tiempo.</span></div>
     <div class="form-grid">
-      <div class="field"><div class="field-label"><span class="label-main">Seguro desgravamen</span><span class="label-chip">% VN</span></div><div class="label-hint">% del valor nominal</div><input type="number" id="tdesc-seg" placeholder="Ej: 0.5" step="any"></div>
-      <div class="field"><div class="field-label"><span class="label-main">Comisión activación</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-comis" placeholder="Ej: 25.00" step="any"></div>
-      <div class="field full"><div class="field-label"><span class="label-main">Otros costos al inicio</span><span class="label-chip">fijo</span></div><div class="label-hint">Fotocopias, etc. (suma fija)</div><input type="number" id="tdesc-otroini" placeholder="Ej: 5.00" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Seguro desgravamen</span><span class="label-chip">% VN</span></div><div class="label-hint">% del valor nominal (al inicio)</div><input type="number" id="tdesc-seg" placeholder="Ej: 0.38" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Retención</span><span class="label-chip">% VN</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Retención</span>% del VN retenido como garantía al inicio y devuelto al cancelar. Se resta del valor recibido y del valor entregado. Vacío = 0.</div></div></div><div class="label-hint">% del VN (garantía colateral)</div><input type="number" id="tdesc-ret" placeholder="Ej: 10" step="any"></div>
     </div>
-    <div class="divider">▸ Al final (al vencimiento)</div>
-    <div class="form-grid">
-      <div class="field"><div class="field-label"><span class="label-main">Portes</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-portes" placeholder="Ej: 10.00" step="any"></div>
-      <div class="field"><div class="field-label"><span class="label-main">Gastos administración</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-gadm" placeholder="Ej: 20.00" step="any"></div>
-      <div class="field full"><div class="field-label"><span class="label-main">Otros costos al final</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-otrofin" placeholder="0.00" step="any"></div>
-    </div>
-    <div class="divider">▸ Retención (devuelta al cancelar)</div>
-    <div class="form-grid">
-      <div class="field full"><div class="field-label"><span class="label-main">Retención</span><span class="label-chip">% VN</span></div><div class="label-hint">% del VN retenido (se resta de recibido y entregado). Vacío = 0.</div><input type="number" id="tdesc-ret" placeholder="Ej: 5" step="any"></div>
-    </div>
+    <div class="divider">▸ Costos fijos AL INICIO (a la firma)</div>
+    <div id="tdesc-ini-rows"></div>
+    <button type="button" class="btn-parse" onclick="tdescAddRow('ini')" style="margin-left:0;margin-top:6px">+ Agregar costo inicial</button>
+    <div class="divider">▸ Costos fijos AL FINAL (al vencimiento)</div>
+    <div id="tdesc-fin-rows"></div>
+    <button type="button" class="btn-parse" onclick="tdescAddRow('fin')" style="margin-left:0;margin-top:6px">+ Agregar costo final</button>
   </div>
 </div>
 
@@ -2837,8 +2831,7 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
     </div>
     <div class="cond" id="tdesc-mora-b" style="margin-top:12px">
       <div class="form-grid">
-        <div class="field"><div class="field-label"><span class="label-main">Días de mora (tm)</span><span class="label-required">*</span><span class="label-chip">días</span></div><input type="number" id="tdesc-tm" placeholder="Ej: 5" step="any"></div>
-        <div class="field"><div class="field-label"><span class="label-main">Comisión cobranza morosa</span><span class="label-chip">fijo</span></div><input type="number" id="tdesc-cobranza" placeholder="Ej: 70.00" step="any"></div>
+        <div class="field full"><div class="field-label"><span class="label-main">Días de mora (tm)</span><span class="label-required">*</span><span class="label-chip">días</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">tm</span>Días transcurridos DESPUÉS del vencimiento hasta la cancelación. Ej: paga 4 días tarde → tm = 4.</div></div></div><input type="number" id="tdesc-tm" placeholder="Ej: 4" step="any"></div>
       </div>
       <div class="divider">▸ Tasa moratoria</div>
       <div class="toggle-wrap">
@@ -2855,7 +2848,10 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
         <div class="field"><div class="field-label"><span class="label-main">Período</span></div><select id="tdesc-mora-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrimestral (120)</option><option value="90">Trimestral (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="15">Quincenal (15)</option><option value="1">Diario (1)</option><option value="custom">✏️ Otro</option></select></div>
         <div class="field full" id="tdesc-mora-pc-wrap"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="tdesc-mora-pc"><option value="1" selected>Diaria (1)</option><option value="15">Quincenal (15)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90">Trimestral (90)</option><option value="120">Cuatrimestral (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option><option value="custom">✏️ Otro</option></select></div>
       </div>
-      <div class="notice info" style="margin-top:12px"><span class="notice-icon">i</span><span class="notice-body">El interés compensatorio durante la mora usa la misma tasa compensatoria de la sección 1, aplicada sobre tm días.</span></div>
+      <div class="notice info" style="margin-top:12px"><span class="notice-icon">i</span><span class="notice-body">Durante la mora se cobran AMBOS: interés moratorio (tasa de arriba) + interés compensatorio (tasa de la sección 1), los dos sobre tm días. Los costos fijos al final (G. Adm, Portes) se siguen pagando pero no generan más intereses.</span></div>
+      <div class="divider">▸ Costos fijos por mora (cobranza, protesto, etc.)</div>
+      <div id="tdesc-mor-rows"></div>
+      <button type="button" class="btn-parse" onclick="tdescAddRow('mor')" style="margin-left:0;margin-top:6px">+ Agregar costo de mora</button>
     </div>
   </div>
 </div>
@@ -4612,6 +4608,32 @@ function cEQV(){
 }
 
 // ═══ TASA DESCONTADA · TCEA ════════════════════════
+// Costos con nombre (filas dinámicas) para descuento: grupos ini / fin / mor
+const TDESC_N = {ini:0, fin:0, mor:0};
+const _TDESC_PH = {ini:'Comisión activación', fin:'Gastos administración', mor:'Comisión cobranza morosa'};
+function tdescRowHTML(grp, i){
+  return `<div class="tdesc-row" data-grp="${grp}" data-idx="${i}" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+    <input type="text" id="tdesc-${grp}nm${i}" placeholder="Nombre (ej: ${_TDESC_PH[grp]})" style="flex:2;min-width:150px">
+    <input type="number" id="tdesc-${grp}amt${i}" placeholder="Monto" step="any" style="flex:1;min-width:90px">
+    <button type="button" onclick="tdescDelRow('${grp}',${i})" title="Quitar" style="background:transparent;border:1px solid var(--line-2);color:var(--text-3);cursor:pointer;border-radius:0;padding:6px 10px;font-family:var(--ff-mono)">×</button>
+  </div>`;
+}
+function tdescAddRow(grp){ const c=document.getElementById('tdesc-'+grp+'-rows'); if(!c) return; const d=document.createElement('div'); d.innerHTML=tdescRowHTML(grp,TDESC_N[grp]); c.appendChild(d.firstChild); TDESC_N[grp]++; }
+function tdescDelRow(grp,i){ const r=document.querySelector('.tdesc-row[data-grp="'+grp+'"][data-idx="'+i+'"]'); if(r) r.remove(); }
+function tdescSum(grp){
+  let sum=0; const arr=[];
+  document.querySelectorAll('#tdesc-'+grp+'-rows .tdesc-row').forEach(row=>{
+    const i=row.getAttribute('data-idx');
+    const amt=gv('tdesc-'+grp+'amt'+i);
+    if(isNaN(amt)||amt<=0) return;
+    const el=document.getElementById('tdesc-'+grp+'nm'+i);
+    const nm=(el && el.value.trim())?el.value.trim():'Costo';
+    sum+=amt; arr.push([nm,amt]);
+  });
+  return {sum, arr};
+}
+document.addEventListener('DOMContentLoaded', ()=>{ for(let k=0;k<3;k++) tdescAddRow('ini'); for(let k=0;k<2;k++) tdescAddRow('fin'); for(let k=0;k<2;k++) tdescAddRow('mor'); });
+
 function cTDESC(){
   const VN = gv('tdesc-vn');
   const td = gv('tdesc-td');
@@ -4624,15 +4646,12 @@ function cTDESC(){
   const VNeto = VN - Desc;
 
   const seg = (gv('tdesc-seg')||0)/100 * VN;
-  const comis = gv('tdesc-comis')||0;
-  const otroini = gv('tdesc-otroini')||0;
-  const portes = gv('tdesc-portes')||0;
-  const gadm = gv('tdesc-gadm')||0;
-  const otrofin = gv('tdesc-otrofin')||0;
   const ret = (gv('tdesc-ret')||0)/100 * VN;
+  const iniC = tdescSum('ini');
+  const finC = tdescSum('fin');
 
-  const costoIni = seg + comis + otroini;
-  const costoFin = portes + gadm + otrofin;
+  const costoIni = seg + iniC.sum;
+  const costoFin = finC.sum;
   const VRecibido = VNeto - costoIni - ret;
   const VEntregado = VN + costoFin - ret;
   const TCEA = Math.pow(VEntregado/VRecibido, 360/td) - 1;
@@ -4680,74 +4699,86 @@ function cTDESC(){
     const compRate = effRate('tdesc-comp', tm);
     const Im = VN * moraRate;
     const Ic = VN * compRate;
-    const cobranza = gv('tdesc-cobranza')||0;
+    const morC = tdescSum('mor');
+    const cobranza = morC.sum;
     const VEntMora = VN + costoFin - ret + Im + Ic + cobranza;
-    moraData = {Im, Ic, cobranza, VEntMora};
+    moraData = {Im, Ic, cobranza, VEntMora, morArr:morC.arr};
     const TCEAmora = Math.pow(VEntMora/VRecibido, 360/(td+tm)) - 1;
     heroes.push({label:`TCEA CON MORA (td+tm = ${td+tm} días)`, val:pct4(TCEAmora), cls:'is-rate', extra:pct10(TCEAmora)});
     items.push(['── Mora (tm = '+tm+'d) ──','']);
     items.push(['Interés moratorio (Im)', fmtM6(Im)]);
     items.push(['Interés compensatorio (Ic)', fmtM6(Ic)]);
-    items.push(['Comisión cobranza morosa', fmtM6(cobranza)]);
+    items.push(['Costos fijos de mora', fmtM6(cobranza)]);
     items.push(['VALOR ENTREGADO con mora', fmtM6(VEntMora)]);
     items.push(['TCEA mora (10 dec)', r10(TCEAmora).toFixed(10)]);
     steps.push('§ 7) Mora ('+tm+' días)');
     steps.push(`Im = VN × [factor moratoria(${tm}d) − 1] = ${fmtM6(Im)}`);
     steps.push(`Ic = VN × [factor compensatoria(${tm}d) − 1] = ${fmtM6(Ic)}`);
-    steps.push(`V.Entregado mora = VN + costos final − retención + Im + Ic + cobranza(${fmtM6(cobranza)}) = ${fmtM6(VEntMora)}`);
+    steps.push(`V.Entregado mora = VN + costos final − retención + Im + Ic + costos mora(${fmtM6(cobranza)}) = ${fmtM6(VEntMora)}`);
     steps.push(`TCEA mora = (V.Ent.mora / V.Recibido)^(360/(${td}+${tm})) − 1 = ${pct4(TCEAmora)}`);
   }
 
-  const costsIni = [['Seguro',seg],['Comisión',comis],['Otros',otroini],['Retención',ret]].filter(c=>c[1]>0);
-  const costsFin = [['Valor Nominal',VN],['Portes',portes],['Gastos Adm.',gadm],['Otros',otrofin]].filter(c=>c[1]>0);
-  const svg = svgDescuento({VN, VNeto, VRec:VRecibido, VEnt:VEntregado, td, tm:tmVal, costsIni, costsFin, ret, rateLabel:modeTxt, moraData});
+  const costsIni = [...iniC.arr, ['Seguro',seg], ['Retención',ret]].filter(c=>c[1]>0);
+  const costsFin = [['Valor Nominal',VN], ...finC.arr].filter(c=>c[1]>0);
+  const svg = svgDescuento({VN, VNeto, VRec:VRecibido, VEnt:VEntregado, td, tm:tmVal, costsIni, costsFin, finArr:finC.arr, ret, compLabel:rateNameLabel('tdesc-comp'), moraLabel: hasMora?rateNameLabel('tdesc-mora'):'', moraData});
   showRMulti('tdesc', heroes, items, {svg, steps});
 }
 
-// Diagrama de descuento (convención del curso: ABAJO=me pagan/recibo, ARRIBA=pago yo).
-// En el descuento recibo el Valor Neto (abajo, verde) y pago costos iniciales (arriba, rojo).
-// En el vencimiento pago Valor Nominal + costos finales (arriba, rojo). Con mora, un hito extra.
+// Diagrama de descuento de pagaré (estilo del profesor):
+//  ARRIBA = flechas rojas (pago yo): cada costo + el Valor Nominal, con su etiqueta.
+//  ABAJO = flechas azules (recibo yo): Valor Neto al descuento y la Retención devuelta al cancelar.
+//  Bandas de tasa bajo el eje: compensatoria en todo el tramo; moratoria en el tramo de mora.
 function svgDescuento(o){
   const hasMora = o.tm>0;
-  const W=720, H=330, axisY=205;
-  const xF=46, xD=180;
-  const xEndUsable = W-40;
-  const total = o.td + (hasMora?o.tm:0);
-  const xV = hasMora ? xD + (o.td/total)*(xEndUsable-xD-90) : xEndUsable-30;
-  const xP = xEndUsable;
-  const A='#1f9d57', RED='#c0392b', MUT='#666', AX='#555', DOT='#333';
-  const upStack=(x,arr,anchor)=>{ let g=''; arr.forEach((c,i)=>{ const top=axisY-46-i*26; g+=`<line x1="${x}" y1="${top}" x2="${x}" y2="${axisY}" stroke="${RED}" stroke-width="2"/><path d="M${x-4},${top+8} L${x},${top} L${x+4},${top+8} Z" fill="${RED}"/>`; const tx=anchor==='end'?x-8:x+8; g+=`<text x="${tx}" y="${top+4}" fill="${RED}" font-size="8.5" font-family="monospace" text-anchor="${anchor}">${c[0]} = ${fmtM(c[1])}</text>`; }); return g; };
+  const RED='#c0392b', BLU='#16458f', MUT='#555', AX='#222', GRN='#1f9d57', AMB='#b8860b';
+  const W=780;
+  const hitos=[];
+  hitos.push({x:70, day:0, up:o.costsIni, down:{label:'Valor Neto = '+fmtM(o.VNeto), sub:'(recibo '+fmtM(o.VRec)+')'}});
+  if(!hasMora){
+    hitos.push({x:W-200, day:o.td, up:o.costsFin, down:(o.ret>0?{label:'Ret = '+fmtM(o.ret)}:null), foot:'(entrego '+fmtM(o.VEnt)+')'});
+  } else {
+    const md=o.moraData;
+    hitos.push({x:330, day:o.td, up:o.costsFin, down:(o.ret>0?{label:'Ret = '+fmtM(o.ret)}:null)});
+    const morUp=[['Valor Nominal',o.VN], ...o.finArr, ['Int. comp.',md.Ic], ['Int. mora',md.Im], ...md.morArr].filter(c=>c[1]>0);
+    hitos.push({x:W-200, day:o.td+o.tm, up:morUp, down:(o.ret>0?{label:'Ret = '+fmtM(o.ret)}:null), foot:'(entrego '+fmtM(md.VEntMora)+')'});
+  }
+  const rowH=23;
+  const maxUp = Math.max(...hitos.map(h=>h.up.length));
+  const axisY = maxUp*rowH + 44;
+  const H = axisY + 110;
   let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin-top:14px;background:#ffffff;border:1px solid var(--line-2);border-radius:4px">`;
   // eje
-  s+=`<line x1="${xF-16}" y1="${axisY}" x2="${W-20}" y2="${axisY}" stroke="${AX}" stroke-width="1.5"/>`;
-  s+=`<path d="M${W-26},${axisY-4} L${W-20},${axisY} L${W-26},${axisY+4} Z" fill="${AX}"/>`;
-  // banda de tasa
-  s+=`<text x="${(xD+xV)/2}" y="${axisY-6}" fill="${A}" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">tasa ${o.rateLabel} compensatoria</text>`;
-  // Firma
-  s+=`<circle cx="${xF}" cy="${axisY}" r="3" fill="${DOT}"/>`;
-  s+=`<text x="${xF}" y="${axisY+18}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">Firma</text>`;
-  // Descuento: costos iniciales arriba (rojo) + Valor Neto abajo (verde)
-  s+=`<circle cx="${xD}" cy="${axisY}" r="3" fill="${DOT}"/>`;
-  s+=`<text x="${xD}" y="${axisY+18}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">Descuento (0)</text>`;
-  s+=upStack(xD, o.costsIni, 'start');
-  // Valor Neto abajo
-  s+=`<line x1="${xD}" y1="${axisY}" x2="${xD}" y2="${axisY+58}" stroke="${A}" stroke-width="2.5"/><path d="M${xD-5},${axisY+50} L${xD},${axisY+59} L${xD+5},${axisY+50} Z" fill="${A}"/>`;
-  s+=`<text x="${xD}" y="${axisY+74}" fill="${A}" font-size="9" font-family="monospace" text-anchor="middle">Valor Neto = ${fmtM(o.VNeto)}</text>`;
-  s+=`<text x="${xD}" y="${axisY+88}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="middle">(recibo ${fmtM(o.VRec)})</text>`;
-  // Vencimiento: Valor Nominal + costos finales arriba (rojo)
-  s+=`<circle cx="${xV}" cy="${axisY}" r="3" fill="${DOT}"/>`;
-  s+=`<text x="${xV}" y="${axisY+18}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">Vcto (+${o.td}d)</text>`;
-  s+=upStack(xV, o.costsFin, 'end');
-  if(!hasMora) s+=`<text x="${xV}" y="${axisY+34}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="middle">(entrego ${fmtM(o.VEnt)})</text>`;
-  // Mora
-  if(hasMora && o.moraData){
-    const md=o.moraData;
-    s+=`<circle cx="${xP}" cy="${axisY}" r="3" fill="${DOT}"/>`;
-    s+=`<text x="${xP}" y="${axisY+18}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="end">Pago (+${o.tm}d)</text>`;
-    const moraArr=[['Valor Nominal',o.VN],['Costos fin.',o.costsFin.reduce((a,c)=>a+(c[0]==='Valor Nominal'?0:c[1]),0)],['Int. morat.',md.Im],['Int. comp.',md.Ic],['Cobranza',md.cobranza]].filter(c=>c[1]>0);
-    s+=upStack(xP, moraArr, 'end');
-    s+=`<text x="${xP}" y="${axisY+34}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="end">(entrego ${fmtM(md.VEntMora)})</text>`;
+  const xAxL=hitos[0].x-34, xAxR=W-22;
+  s+=`<line x1="${xAxL}" y1="${axisY}" x2="${xAxR}" y2="${axisY}" stroke="${AX}" stroke-width="1.5"/>`;
+  s+=`<path d="M${xAxR-7},${axisY-4} L${xAxR},${axisY} L${xAxR-7},${axisY+4} Z" fill="${AX}"/>`;
+  // bandas de tasa entre hitos (debajo del eje)
+  for(let k=0;k<hitos.length-1;k++){
+    const xa=hitos[k].x, xb=hitos[k+1].x, xm=(xa+xb)/2;
+    s+=`<text x="${xm}" y="${axisY+32}" fill="${GRN}" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">${o.compLabel}</text>`;
+    if(hasMora && k===hitos.length-2 && o.moraLabel) s+=`<text x="${xm}" y="${axisY+45}" fill="${AMB}" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">${o.moraLabel} (mora)</text>`;
   }
+  hitos.forEach(h=>{
+    s+=`<line x1="${h.x}" y1="${axisY-6}" x2="${h.x}" y2="${axisY+18}" stroke="${MUT}" stroke-width="1" stroke-dasharray="3 3"/>`;
+    s+=`<circle cx="${h.x}" cy="${axisY}" r="3" fill="${AX}"/>`;
+    s+=`<text x="${h.x}" y="${axisY+15}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">${h.day}</text>`;
+    // flechas rojas hacia arriba (pago)
+    h.up.forEach((c,i)=>{
+      const top=axisY-30-i*rowH;
+      s+=`<line x1="${h.x}" y1="${top}" x2="${h.x}" y2="${axisY}" stroke="${RED}" stroke-width="2"/>`;
+      s+=`<path d="M${h.x-4},${top+8} L${h.x},${top} L${h.x+4},${top+8} Z" fill="${RED}"/>`;
+      s+=`<text x="${h.x+7}" y="${top+5}" fill="${RED}" font-size="8.5" font-family="monospace" text-anchor="start">${c[0]} = ${fmtM(c[1])}</text>`;
+    });
+    // flecha azul hacia abajo (recibo)
+    let footY=axisY+56;
+    if(h.down){
+      s+=`<line x1="${h.x}" y1="${axisY}" x2="${h.x}" y2="${axisY+42}" stroke="${BLU}" stroke-width="2.5"/>`;
+      s+=`<path d="M${h.x-5},${axisY+34} L${h.x},${axisY+43} L${h.x+5},${axisY+34} Z" fill="${BLU}"/>`;
+      s+=`<text x="${h.x}" y="${axisY+56}" fill="${BLU}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">${h.down.label}</text>`;
+      if(h.down.sub) s+=`<text x="${h.x}" y="${axisY+68}" fill="${MUT}" font-size="7.5" font-family="monospace" text-anchor="middle">${h.down.sub}</text>`;
+      footY=axisY+80;
+    }
+    if(h.foot) s+=`<text x="${h.x}" y="${footY}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="middle">${h.foot}</text>`;
+  });
   s+=`</svg>`;
   return s;
 }
