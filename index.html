@@ -3035,7 +3035,7 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
       <span class="check-meta">pagar el 100% restante</span>
     </div>
     <div class="cond" id="plz-pp-b" style="margin-top:12px">
-      <div class="form-grid"><div class="field full"><div class="field-label"><span class="label-main">Nº de cuota donde se prepaga (k)</span><span class="label-chip">k</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Prepago</span>Se paga la cuota k de hoy + el valor presente de TODAS las cuotas restantes (ordinarias y extraordinarias).</div></div></div><input type="number" id="plz-k" placeholder="Ej: 13" step="any"></div></div>
+      <div class="form-grid"><div class="field full"><div class="field-label"><span class="label-main">Nº de cuota donde se prepaga (k)</span><span class="label-chip">k</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Prepago</span>Cuenta el nº de cuota DESDE LA FIRMA del contrato (incluyendo los meses de plazo de gracia). Se paga esa cuota de hoy + el valor presente de TODAS las cuotas restantes (ordinarias, extraordinarias y cuota final). Ej: si hubo 8 meses de gracia y prepagas en el mes 30, pon 30.</div></div></div><div class="label-hint">Contando desde la firma (incluye gracia)</div><input type="number" id="plz-k" placeholder="Ej: 30" step="any"></div></div>
     </div>
   </div>
 </div>
@@ -4465,18 +4465,24 @@ function svgAnualidad(nR, opts){
   // eje
   s+=`<line x1="${padL-14}" y1="${axisY}" x2="${W-padR}" y2="${axisY}" stroke="${AX}" stroke-width="1.5"/>`;
   s+=`<path d="M${W-padR-7},${axisY-4} L${W-padR},${axisY} L${W-padR-7},${axisY+4} Z" fill="${AX}"/>`;
-  // corchete de plazo de gracia sobre 0..gN
+  // corchete de plazo de gracia sobre 0..gN (rojo, como en los apuntes)
   if(gN>0){ const xg=xOf(gN);
-    s+=`<line x1="${x0}" y1="${axisY-44}" x2="${xg}" y2="${axisY-44}" stroke="${MUT}" stroke-width="1.2"/>`;
-    s+=`<line x1="${x0}" y1="${axisY-44}" x2="${x0}" y2="${axisY-38}" stroke="${MUT}" stroke-width="1.2"/>`;
-    s+=`<line x1="${xg}" y1="${axisY-44}" x2="${xg}" y2="${axisY-38}" stroke="${MUT}" stroke-width="1.2"/>`;
-    s+=`<text x="${(x0+xg)/2}" y="${axisY-48}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">Plazo de gracia</text>`;
+    s+=`<line x1="${x0}" y1="${axisY-44}" x2="${xg}" y2="${axisY-44}" stroke="${RED}" stroke-width="1.3"/>`;
+    s+=`<line x1="${x0}" y1="${axisY-44}" x2="${x0}" y2="${axisY-37}" stroke="${RED}" stroke-width="1.3"/>`;
+    s+=`<line x1="${xg}" y1="${axisY-44}" x2="${xg}" y2="${axisY-37}" stroke="${RED}" stroke-width="1.3"/>`;
+    s+=`<text x="${(x0+xg)/2}" y="${axisY-48}" fill="${RED}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">${opts.graceText||'Plazo de gracia'}</text>`;
   }
   // C azul abajo en t0 (omitir en ahorro puro)
   if(!opts.noC){
     s+=`<line x1="${x0}" y1="${axisY}" x2="${x0}" y2="${axisY+30}" stroke="${BLU}" stroke-width="2.5"/>`;
     s+=`<path d="M${x0-5},${axisY+22} L${x0},${axisY+31} L${x0+5},${axisY+22} Z" fill="${BLU}"/>`;
     s+=`<text x="${x0}" y="${axisY+44}" fill="${BLU}" font-size="9" font-weight="bold" font-family="monospace" text-anchor="start">${opts.cLabel||'C'}</text>`;
+  }
+  // C' azul abajo en el límite de la gracia (capital capitalizado / saldo al iniciar las cuotas)
+  if(opts.graceCLabel && gN>0){ const xg2=xOf(gN);
+    s+=`<line x1="${xg2}" y1="${axisY}" x2="${xg2}" y2="${axisY+30}" stroke="${BLU}" stroke-width="2.5"/>`;
+    s+=`<path d="M${xg2-5},${axisY+22} L${xg2},${axisY+31} L${xg2+5},${axisY+22} Z" fill="${BLU}"/>`;
+    s+=`<text x="${xg2}" y="${axisY+44}" fill="${BLU}" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">${opts.graceCLabel}</text>`;
   }
   // C.I. (rojo arriba en t0)
   if(opts.ciLabel){
@@ -5033,41 +5039,45 @@ function cPLZ(){
   const heroes = [{label:'CUOTA ORDINARIA (R)', val:fmtM(R), cls:'is-money', extra:fmtM6(R)}];
   if(hasGr && grTipo==='parcial') heroes.push({label:'CUOTA DE GRACIA (Rg)', val:fmtM(Rgracia), cls:'is-money', extra:fmtM6(Rgracia)});
 
-  // Prepago
+  // Prepago — k se cuenta DESDE LA FIRMA (incluye los meses de gracia). Convertimos a ordinal.
   const hasPP = document.getElementById('plz-pp-t').classList.contains('active');
   if(hasPP){
-    const k = gv('plz-k');
-    if(isNaN(k)||k<1||k>nOrd) return showE('plz','Nº de cuota de prepago (k) inválido (1..'+nOrd+').');
+    const kAbs = gv('plz-k');
+    const k = hasGr ? (kAbs - graceN) : kAbs;   // posición entre las cuotas ordinarias
+    if(isNaN(kAbs)||k<1||k>nOrd){
+      const lo = hasGr ? (graceN+1) : 1, hi = hasGr ? (graceN+nOrd) : nOrd;
+      return showE('plz','Nº de cuota de prepago inválido (válido '+lo+'..'+hi+', contando desde la firma).');
+    }
     const Rr = r2(R); // se redondea R como en los apuntes
     let pre = Rr; // la cuota k que se paga hoy
-    steps.push('§ Prepago en cuota '+k);
-    steps.push(`Cuota ${k} (hoy) = ${fmtM(Rr)}`);
+    steps.push('§ Prepago en la cuota '+kAbs+(hasGr?(' (ordinaria nº '+k+', sin contar la gracia)'):''));
+    steps.push(`Cuota ${kAbs} (hoy) = ${fmtM(Rr)}`);
     for(let j=k+1;j<=nOrd;j++){ const v=Rr/Math.pow(1+TEP, j-k); pre+=v; }
     let exRatio = hasEx ? Math.round(exFreq/freq) : 0;
     if(hasEx && exRatio>0){
       for(let e=exRatio; e<=nOrd; e+=exRatio){ if(e>k){ const v=Re/Math.pow(1+TEP, e-k); pre+=v; } }
     }
     if(hasCF && nOrd>k){ pre += CF/Math.pow(1+TEP, nOrd-k); }
-    steps.push(`Prepago = cuota ${k} + Σ VP(cuotas ${k+1}..${nOrd})${hasEx?' + Σ VP(extras restantes)':''}${hasCF&&nOrd>k?' + VP(cuota final)':''}`);
+    steps.push(`Prepago = cuota ${kAbs} + Σ VP(cuotas restantes${hasEx?' + extras':''}${hasCF?' + cuota final':''})`);
     steps.push(`Prepago = ${fmtM6(pre)}`);
-    heroes.push({label:'PREPAGO EN CUOTA '+k, val:fmtM(pre), cls:'is-money', extra:fmtM6(pre)});
-    items.push(['Prepago (cuota '+k+')', fmtM6(pre)]);
+    heroes.push({label:'PREPAGO EN CUOTA '+kAbs, val:fmtM(pre), cls:'is-money', extra:fmtM6(pre)});
+    items.push(['Prepago (cuota '+kAbs+')', fmtM6(pre)]);
   }
 
   const exEach = hasEx?Math.round(exFreq/freq):0;
   const band = rateNameLabel('plz');
-  const workedCLabel = hasGr ? (grTipo==='parcial' ? ('C='+fmtM(C)) : ("C'="+fmtM(C))) : ('PV='+fmtM(PV));
-  let svg = svgAnualidad(nOrd, {
-    cLabel: workedCLabel,
-    ciLabel: (!hasGr && CI>0)?('C.I.='+fmtM(CI)):null,
+  const periodWord = {360:'años',180:'semestres',120:'cuatrim.',90:'trim.',60:'bimestres',30:'meses',15:'quincenas',1:'días'}[freq] || 'períodos';
+  const svg = svgAnualidad(nOrd, {
+    cLabel: 'PV='+fmtM(PV),
+    ciLabel: (CI>0)?('C.I.='+fmtM(CI)):null,
     tipo:'vencida', extraEach:exEach, extraLabel: hasEx?fmtM(Re):null,
     finalLabel: hasCF?('+CF '+fmtM(CF)):null,
-    periodName:freqRateName(freq), periodName2: hasEx?freqRateName(exFreq):null, bandLabel:band
+    periodName:freqRateName(freq), periodName2: hasEx?freqRateName(exFreq):null, bandLabel:band,
+    graceN: hasGr?graceN:0,
+    graceText: hasGr?(graceN+' '+periodWord+' de plazo de gracia '+(grTipo==='parcial'?'parcial':'total')):null,
+    graceCLabel: hasGr?(grTipo==='parcial'?('C='+fmtM(C)):("C'="+fmtM(C))):null,
+    graceLabel: (hasGr && grTipo==='parcial')?('Rg='+fmtM(Rgracia)):null
   });
-  if(hasGr){
-    const svgG = svgAnualidad(nOrd, {cLabel:'C='+fmtM(PV-CI), tipo:'vencida', periodName:freqRateName(freq), bandLabel:band, graceN, graceLabel: grTipo==='parcial'?('Rg='+fmtM(Rgracia)):null});
-    svg = svgG + svg;  // 1° como se contrató (con gracia), 2° trabajado
-  }
   showRMulti('plz', heroes, items, {svg, steps});
 }
 
@@ -5152,6 +5162,7 @@ function cAHO(){
   const heroes = [{label:'MONTO ACUMULADO AL MES '+T, val:fmtM(total), cls:'is-money', extra:fmtM6(total)}];
 
   // Fase de retiro / pensión: el fondo acumulado se reparte en N retiros nivelados
+  let retSvg = '';
   const retT = document.getElementById('aho-ret-t');
   if(retT && retT.classList.contains('active')){
     const retFreq = gs('ahoret-freq')||30;
@@ -5172,10 +5183,12 @@ function cAHO(){
     items.push(['Nº de retiros (N)', nRet.toString()]);
     items.push(['Pensión / retiro', fmtM6(Rret)]);
     heroes.push({label:'PENSIÓN / RETIRO POR PERÍODO', val:fmtM(Rret), cls:'is-money', extra:fmtM6(Rret)});
+    // diagrama de los retiros: el fondo es el capital C, los retiros son las cuotas R
+    retSvg = svgAnualidad(nRet, {cLabel:'C='+fmtM(total)+' (fondo)', tipo:'vencida', periodName:freqRateName(retFreq), bandLabel:rateNameLabel('ahoret')});
   }
 
   const svg = svgAhorro(streams, T, hasChg?chgMes:0, rateNameLabel('aho'), hasChg?rateNameLabel('aho2'):'');
-  showRMulti('aho', heroes, items, {svg, steps});
+  showRMulti('aho', heroes, items, {svg:svg+retSvg, steps});
 }
 
 // Diagrama de ahorro: brackets por renta (depósito arriba rojo, retiro abajo azul), banda(s) de tasa, marca de cambio.
