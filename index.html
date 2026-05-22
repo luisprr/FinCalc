@@ -3249,9 +3249,41 @@ const fmtM  = v => (Math.round(v*100)/100).toFixed(2);
 const fmtM4 = v => (Math.round(v*10000)/10000).toFixed(4);
 const fmtM6 = v => (Math.round(v*1000000)/1000000).toFixed(6);
 const pct4  = v => (v*100).toFixed(4)+'%';
+const pct7  = v => (v*100).toFixed(7)+'%';
 const pct10 = v => (v*100).toFixed(10)+'%';
 const r2    = v => Math.round(v*100)/100;
 const r10   = v => parseFloat(v.toFixed(10));
+
+// ── Procedimiento estilo profesor: fórmula simbólica → sustituida → resultado ──
+// Pasos para obtener la tasa efectiva sobre 'days' días del bloque de tasa 'pfx'.
+function effRateSteps(pfx, days, name){
+  const mode = rateMode(pfx);
+  const iv = gv(pfx+'-i');
+  const pt = gs(pfx+'-pt')||360;
+  const eff = effRate(pfx, days);
+  const L = [];
+  if(mode==='nom'){
+    const pc=gs(pfx+'-pc')||1, m=pt/pc, n=days/pc;
+    L.push(`${name} = ( 1 + TN / m ) ^ n − 1`);
+    L.push(`m = ${pt} / ${pc} = ${m}     n = ${days} / ${pc} = ${n}`);
+    L.push(`${name} = ( 1 + ${iv}% / ${m} ) ^ ${n} − 1 = ${pct7(eff)}`);
+  } else if(mode==='desc'){
+    const TEP=iv/100/(1-iv/100);
+    L.push(`TEP = d / ( 1 − d ) = ${iv}% / ( 1 − ${iv}% ) = ${pct7(TEP)}`);
+    L.push(`${name} = ( 1 + TEP ) ^ ( ${days} / ${pt} ) − 1 = ${pct7(eff)}`);
+  } else {
+    L.push(`${name} = ( 1 + TE ) ^ ( días / período ) − 1`);
+    L.push(`${name} = ( 1 + ${iv}% ) ^ ( ${days} / ${pt} ) − 1 = ${pct7(eff)}`);
+  }
+  return L;
+}
+// Texto del factor de capitalización (sin el "−1") sobre 'days' días para 'pfx'.
+function factorText(pfx, days){
+  const mode=rateMode(pfx); const iv=gv(pfx+'-i'); const pt=gs(pfx+'-pt')||360;
+  if(mode==='nom'){ const pc=gs(pfx+'-pc')||1, m=pt/pc, n=days/pc; return `( 1 + ${iv}% / ${m} ) ^ ${n}`; }
+  if(mode==='desc'){ return `( 1 + d/(1−d) ) ^ ( ${days} / ${pt} )`; }
+  return `( 1 + ${iv}% ) ^ ( ${days} / ${pt} )`;
+}
 
 // ═══ NAVEGACIÓN ═══════════════════════════════════
 function go(el){
@@ -4660,24 +4692,47 @@ function cTDESC(){
   const costoFin = finC.sum;
   const VRecibido = VNeto - costoIni - ret;
   const VEntregado = VN + costoFin - ret;
-  const TCEA = Math.pow(VEntregado/VRecibido, 360/td) - 1;
+  // El profesor redondea Valor Recibido/Entregado a 2 decimales antes de dividir (round-then-divide)
+  const TCEA = Math.pow(r2(VEntregado)/r2(VRecibido), 360/td) - 1;
 
   const modeTxt = {nom:'nominal', efe:'efectiva', desc:'descontada'}[rateMode('tdesc-comp')];
-  const steps = [
-    '§ 1) Tasa efectiva del plazo de descuento (td = '+td+' días)',
-    `TEtd = ${pct10(TEtd)}  (tasa ${modeTxt})`,
-    '§ 2) Tasa descontada',
-    `d% = TEtd / (1+TEtd) = ${pct10(dt)}`,
-    '§ 3) Descuento y Valor Neto',
-    `Descuento = VN × d% = ${fmtM(VN)} × ${pct4(dt)} = ${fmtM6(Desc)}`,
-    `Valor Neto = VN − Descuento = ${fmtM6(VNeto)}`,
-    '§ 4) Valor Recibido (a la firma)',
-    `V. Recibido = ${fmtM6(VNeto)} − costos inicio(${fmtM6(costoIni)}) − retención(${fmtM6(ret)}) = ${fmtM6(VRecibido)}`,
-    '§ 5) Valor Entregado (al vencimiento)',
-    `V. Entregado = VN + costos final(${fmtM6(costoFin)}) − retención(${fmtM6(ret)}) = ${fmtM6(VEntregado)}`,
-    '§ 6) TCEA',
-    `TCEA = (V.Entregado / V.Recibido)^(360/${td}) − 1 = ${pct4(TCEA)}`
-  ];
+  const ivc = gv('tdesc-comp-i');
+  const TE = 'TE'+td+'d', dN = 'd'+td;
+  const iniList = [...(seg>0?[['Seguro',seg]]:[]), ...iniC.arr];
+  const finList = finC.arr;
+  const steps = [];
+  steps.push('§ Datos');
+  steps.push('Valor Nominal = '+fmtM(VN));
+  steps.push('Tiempo de descuento (td) = '+td+' días');
+  steps.push('Tasa compensatoria '+modeTxt+' = '+ivc+'%'+(rateMode('tdesc-comp')==='nom'?(' (período '+(gs('tdesc-comp-pt')||360)+'d, cap. '+(gs('tdesc-comp-pc')||1)+'d)'):''));
+  steps.push('§ Tasa efectiva del plazo de descuento');
+  effRateSteps('tdesc-comp', td, TE).forEach(l=>steps.push(l));
+  steps.push('§ Tasa descontada');
+  steps.push(dN+' = '+TE+' / ( 1 + '+TE+' )');
+  steps.push(dN+' = '+pct7(TEtd)+' / ( 1 + '+pct7(TEtd)+' ) = '+pct7(dt));
+  steps.push('§ Descuento y Valor Neto');
+  steps.push('Descuento = Valor Nominal × '+dN);
+  steps.push('Descuento = '+fmtM(VN)+' × '+pct7(dt)+' = '+fmtM(Desc));
+  steps.push('Valor Neto = Valor Nominal − Descuento');
+  steps.push('Valor Neto = '+fmtM(VN)+' − '+fmtM(Desc)+' = '+fmtM(VNeto));
+  steps.push('§ Valor Recibido (a la firma)');
+  if(seg>0) steps.push('Seguro = % Seguro × Valor Nominal = '+gv('tdesc-seg')+'% × '+fmtM(VN)+' = '+fmtM(seg));
+  if(iniList.length){
+    steps.push('Suma costes iniciales = '+iniList.map(c=>c[0]).join(' + '));
+    steps.push('Suma costes iniciales = '+iniList.map(c=>fmtM(c[1])).join(' + ')+' = '+fmtM(costoIni));
+  }
+  steps.push('Valor Recibido = Valor Neto − Suma costes iniciales'+(ret>0?' − Retención':''));
+  steps.push('Valor Recibido = '+fmtM(VNeto)+' − '+fmtM(costoIni)+(ret>0?' − '+fmtM(ret):'')+' = '+fmtM(VRecibido));
+  steps.push('§ Valor Entregado (al vencimiento)');
+  if(finList.length){
+    steps.push('Suma costes finales = '+finList.map(c=>c[0]).join(' + '));
+    steps.push('Suma costes finales = '+finList.map(c=>fmtM(c[1])).join(' + ')+' = '+fmtM(costoFin));
+  }
+  steps.push('Valor Entregado = Valor Nominal + Suma costes finales'+(ret>0?' − Retención':''));
+  steps.push('Valor Entregado = '+fmtM(VN)+' + '+fmtM(costoFin)+(ret>0?' − '+fmtM(ret):'')+' = '+fmtM(VEntregado));
+  steps.push('§ TCEA');
+  steps.push('TCEA = ( Valor Entregado / Valor Recibido ) ^ ( 360 / td ) − 1');
+  steps.push('TCEA = ( '+fmtM(VEntregado)+' / '+fmtM(VRecibido)+' ) ^ ( 360 / '+td+' ) − 1 = '+pct7(TCEA));
 
   const heroes = [{label:`TCEA (td = ${td} días)`, val:pct4(TCEA), cls:'is-rate', extra:pct10(TCEA)}];
   const items = [
@@ -4707,9 +4762,9 @@ function cTDESC(){
     const Ic = VN * compRate;
     const morC = tdescSum('mor');
     const cobranza = morC.sum;
-    const VEntMora = VN + costoFin - ret + Im + Ic + cobranza;
+    const VEntMora = VN + costoFin - ret + r2(Im) + r2(Ic) + cobranza;
     moraData = {Im, Ic, cobranza, VEntMora, morArr:morC.arr};
-    const TCEAmora = Math.pow(VEntMora/VRecibido, 360/(td+tm)) - 1;
+    const TCEAmora = Math.pow(r2(VEntMora)/r2(VRecibido), 360/(td+tm)) - 1;
     heroes.push({label:`TCEA CON MORA (td+tm = ${td+tm} días)`, val:pct4(TCEAmora), cls:'is-rate', extra:pct10(TCEAmora)});
     items.push(['── Mora (tm = '+tm+'d) ──','']);
     items.push(['Interés moratorio (Im)', fmtM6(Im)]);
@@ -4717,11 +4772,16 @@ function cTDESC(){
     items.push(['Costos fijos de mora', fmtM6(cobranza)]);
     items.push(['VALOR ENTREGADO con mora', fmtM6(VEntMora)]);
     items.push(['TCEA mora (10 dec)', r10(TCEAmora).toFixed(10)]);
-    steps.push('§ 7) Mora ('+tm+' días)');
-    steps.push(`Im = VN × [factor moratoria(${tm}d) − 1] = ${fmtM6(Im)}`);
-    steps.push(`Ic = VN × [factor compensatoria(${tm}d) − 1] = ${fmtM6(Ic)}`);
-    steps.push(`V.Entregado mora = VN + costos final − retención + Im + Ic + costos mora(${fmtM6(cobranza)}) = ${fmtM6(VEntMora)}`);
-    steps.push(`TCEA mora = (V.Ent.mora / V.Recibido)^(360/(${td}+${tm})) − 1 = ${pct4(TCEAmora)}`);
+    steps.push('§ Mora ('+tm+' días)');
+    morC.arr.forEach(c=> steps.push(c[0]+' = '+fmtM(c[1])));
+    steps.push('I comp = Valor Nominal × [ '+factorText('tdesc-comp',tm)+' − 1 ]');
+    steps.push('I comp = '+fmtM(VN)+' × [ '+factorText('tdesc-comp',tm)+' − 1 ] = '+fmtM(Ic));
+    steps.push('I mora = Valor Nominal × [ '+factorText('tdesc-mora',tm)+' − 1 ]');
+    steps.push('I mora = '+fmtM(VN)+' × [ '+factorText('tdesc-mora',tm)+' − 1 ] = '+fmtM(Im));
+    steps.push('Valor Entregado mora = Valor Nominal + Suma costes finales'+(ret>0?' − Retención':'')+(cobranza>0?' + costes mora':'')+' + I comp + I mora');
+    steps.push('Valor Entregado mora = '+fmtM(VN)+' + '+fmtM(costoFin)+(ret>0?' − '+fmtM(ret):'')+(cobranza>0?' + '+fmtM(cobranza):'')+' + '+fmtM(Ic)+' + '+fmtM(Im)+' = '+fmtM(VEntMora));
+    steps.push('TCEA mora = ( Valor Entregado mora / Valor Recibido ) ^ ( 360 / ( td + tm ) ) − 1');
+    steps.push('TCEA mora = ( '+fmtM(VEntMora)+' / '+fmtM(VRecibido)+' ) ^ ( 360 / ( '+td+' + '+tm+' ) ) − 1 = '+pct7(TCEAmora));
   }
 
   const costsIni = [...iniC.arr, ['Seguro',seg], ['Retención',ret]].filter(c=>c[1]>0);
@@ -4822,6 +4882,7 @@ function cANU(){
   const f = Math.pow(1+TEP, n);
   const adel = (ANU_VENC === 'adel');
   const tipoTxt = adel ? 'Adelantada' : 'Vencida';
+  const nameTEP = freqRateName(freq);
   const baseItems = [
     ['TEP por período de pago (10 dec)', pct10(TEP)],
     ['n (cuotas)', n.toString()],
@@ -4840,6 +4901,7 @@ function cANU(){
     const Rv = C * (TEP*f)/(f-1);
     const R = adel ? Rv/(1+TEP) : Rv;
     const totalPagado = R*n + CI;
+    const aFac = anVP(TEP, n);
     const items = [];
     if(ANU_MODE==='R'){
       items.push(['Precio de venta (PV)', fmtM(PV)]);
@@ -4849,13 +4911,22 @@ function cANU(){
     items.push(...baseItems);
     items.push(['Cuota vencida (ref.)', fmtM6(Rv)]);
     items.push(['Total pagado (n·R + CI)', fmtM6(totalPagado)]);
-    const steps = [
-      '§ Cuota de un crédito',
-      ANU_MODE==='R' ? `CI = ${fmtM6(CI)} · C = PV − CI = ${fmtM6(C)}` : `C = ${fmtM6(C)}`,
-      `TEP por período de pago = ${pct10(TEP)}`,
-      `R = C · [TEP·(1+TEP)ⁿ]/[(1+TEP)ⁿ−1] = ${fmtM6(Rv)}  (vencida)`,
-      adel ? `Ra = R/(1+TEP) = ${fmtM6(R)}  (adelantada)` : `R = ${fmtM6(R)}`
-    ];
+    const steps = [];
+    steps.push('§ Datos');
+    if(ANU_MODE==='R'){ steps.push('Precio de venta (PV) = '+fmtM(PV)); steps.push('% de cuota inicial = '+((gv('anu-ci')||0)).toFixed(2)+'%'); }
+    steps.push('Nº de cuotas (n) = '+n+'     Tipo de cuota: '+tipoTxt);
+    steps.push('§ Tasa efectiva del período de pago');
+    effRateSteps('anu', freq, nameTEP).forEach(l=>steps.push(l));
+    if(ANU_MODE==='R'){
+      steps.push('§ Cuota inicial y capital a financiar');
+      steps.push('Cuota inicial = % CI × PV = '+((gv('anu-ci')||0)).toFixed(2)+'% × '+fmtM(PV)+' = '+fmtM(CI));
+      steps.push('C = PV − CI = '+fmtM(PV)+' − '+fmtM(CI)+' = '+fmtM(C));
+    } else { steps.push('§ Capital'); steps.push('C = '+fmtM(C)); }
+    steps.push('§ Cálculo de la cuota R');
+    steps.push('a('+nameTEP+',n) = [ (1+'+nameTEP+')^n − 1 ] / [ '+nameTEP+'·(1+'+nameTEP+')^n ]');
+    steps.push('a('+nameTEP+','+n+') = [ (1+'+pct7(TEP)+')^'+n+' − 1 ] / [ '+pct7(TEP)+'·(1+'+pct7(TEP)+')^'+n+' ] = '+aFac.toFixed(10));
+    steps.push('R = C / a('+nameTEP+',n) = '+fmtM(C)+' / '+aFac.toFixed(10)+' = '+fmtM(Rv)+'  (vencida)');
+    if(adel) steps.push('R adelantada = R / (1+'+nameTEP+') = '+fmtM(Rv)+' / (1+'+pct7(TEP)+') = '+fmtM(R));
     showRMulti('anu', [{label:`CUOTA ${tipoTxt.toUpperCase()} (R)`, val:fmtM(R), cls:'is-money', extra:fmtM6(R)}], items,
       {svg:svgAnualidad(n,{cLabel:'C='+fmtM(C), tipo:tipoTxt.toLowerCase(), periodName:freqRateName(freq), bandLabel:rateNameLabel('anu')}), steps});
   } else if(ANU_MODE==='VF'){
@@ -4863,7 +4934,15 @@ function cANU(){
     let S = R*(f-1)/TEP;
     if(adel) S = S*(1+TEP);
     const aportado = R*n;
-    const steps = ['§ Valor futuro de un ahorro', `TEP = ${pct10(TEP)}`, `S = R·[(1+TEP)ⁿ−1]/TEP = ${fmtM6(R*(f-1)/TEP)}`, adel?`S adelantada = S×(1+TEP) = ${fmtM6(S)}`:`S = ${fmtM6(S)}`];
+    const steps = [];
+    steps.push('§ Datos');
+    steps.push('Renta (R) = '+fmtM(R)+'     Nº de cuotas (n) = '+n+'     Tipo: '+tipoTxt);
+    steps.push('§ Tasa efectiva del período');
+    effRateSteps('anu', freq, nameTEP).forEach(l=>steps.push(l));
+    steps.push('§ Valor futuro del ahorro');
+    steps.push('S = R · [ (1+'+nameTEP+')^n − 1 ] / '+nameTEP);
+    steps.push('S = '+fmtM(R)+' · [ (1+'+pct7(TEP)+')^'+n+' − 1 ] / '+pct7(TEP)+' = '+fmtM(R*(f-1)/TEP)+'  (vencida)');
+    if(adel) steps.push('S adelantada = S · (1+'+nameTEP+') = '+fmtM(S));
     showRMulti('anu', [{label:`VALOR FUTURO ACUMULADO (S)`, val:fmtM(S), cls:'is-money', extra:fmtM6(S)}],
       [['Renta (R)', fmtM(R)], ...baseItems, ['Total aportado (n·R)', fmtM6(aportado)], ['Interés ganado', fmtM6(S-aportado)]],
       {svg:svgAnualidad(n,{noC:true, tipo:tipoTxt.toLowerCase(), periodName:freqRateName(freq), bandLabel:rateNameLabel('anu')}), steps});
@@ -4871,7 +4950,16 @@ function cANU(){
     const R = gv('anu-r'); if(isNaN(R)||R<=0) return showE('anu','Ingresa la renta R.');
     let C = R*(f-1)/(TEP*f);
     if(adel) C = C*(1+TEP);
-    const steps = ['§ Valor presente / prepago', `TEP = ${pct10(TEP)}`, `C = R·[(1+TEP)ⁿ−1]/[TEP·(1+TEP)ⁿ] = ${fmtM6(R*(f-1)/(TEP*f))}`, adel?`C adelantada = C×(1+TEP) = ${fmtM6(C)}`:`C = ${fmtM6(C)}`];
+    const aFac = anVP(TEP, n);
+    const steps = [];
+    steps.push('§ Datos');
+    steps.push('Renta (R) = '+fmtM(R)+'     Nº de cuotas (n) = '+n+'     Tipo: '+tipoTxt);
+    steps.push('§ Tasa efectiva del período');
+    effRateSteps('anu', freq, nameTEP).forEach(l=>steps.push(l));
+    steps.push('§ Valor presente / prepago');
+    steps.push('a('+nameTEP+',n) = [ (1+'+nameTEP+')^n − 1 ] / [ '+nameTEP+'·(1+'+nameTEP+')^n ] = '+aFac.toFixed(10));
+    steps.push('C = R · a('+nameTEP+',n) = '+fmtM(R)+' · '+aFac.toFixed(10)+' = '+fmtM(R*(f-1)/(TEP*f))+'  (vencida)');
+    if(adel) steps.push('C adelantada = C · (1+'+nameTEP+') = '+fmtM(C));
     showRMulti('anu', [{label:`VALOR PRESENTE / PREPAGO (C)`, val:fmtM(C), cls:'is-money', extra:fmtM6(C)}],
       [['Renta (R)', fmtM(R)], ...baseItems, ['Suma simple de cuotas (n·R)', fmtM6(R*n)]],
       {svg:svgAnualidad(n,{cLabel:'C='+fmtM(C), tipo:tipoTxt.toLowerCase(), periodName:freqRateName(freq), bandLabel:rateNameLabel('anu')}), steps});
@@ -4949,12 +5037,22 @@ function cPLZ(){
 
   const CI = ciPct*PV;
   let C = PV - CI;
+  const C0 = C;
+  const ivp = gv('plz-i');
+  const rateModeP = rateMode('plz');
+  const nameTEP = freqRateName(freq);
 
   const steps = [];
-  steps.push('§ Datos base');
-  steps.push(`TEP (período cuota ${freq}d) = ${pct10(TEP)}`);
-  steps.push(`CI = ${(ciPct*100).toFixed(2)}% × ${fmtM(PV)} = ${fmtM6(CI)}`);
-  steps.push(`C = PV − CI = ${fmtM6(C)}`);
+  steps.push('§ Datos');
+  steps.push('Precio de venta (PV) = '+fmtM(PV));
+  steps.push('% de cuota inicial = '+(ciPct*100).toFixed(2)+'%');
+  steps.push('Tasa '+({nom:'nominal',efe:'efectiva',desc:'descontada'}[rateModeP])+' = '+ivp+'%'+(rateModeP==='nom'?(' (período '+(gs('plz-pt')||360)+'d, cap. '+(gs('plz-pc')||1)+'d)'):''));
+  steps.push('Frecuencia de pago = cada '+freq+' días     Nº de cuotas (No) = '+n);
+  steps.push('§ Cuota inicial y capital a financiar');
+  steps.push('Cuota inicial = % CI × PV = '+(ciPct*100).toFixed(2)+'% × '+fmtM(PV)+' = '+fmtM(CI));
+  steps.push('C = PV − CI = '+fmtM(PV)+' − '+fmtM(CI)+' = '+fmtM(C0));
+  steps.push('§ Tasa efectiva de la cuota');
+  effRateSteps('plz', freq, nameTEP).forEach(l=>steps.push(l));
 
   // Gracia — total: capitaliza C ; parcial: paga solo interés (C no crece).
   // La app ajusta el nº de cuotas según sea parte/adicional del plazo.
@@ -4966,27 +5064,28 @@ function cPLZ(){
     grTipo = (document.getElementById('plz-grtipo')||{}).value || 'total';
     const graceMode = (document.getElementById('plz-gr-mode')||{}).value || 'parte';
     graceN = Math.round(grDays/freq);
-    steps.push('§ Plazo de gracia ('+(grTipo==='parcial'?'PARCIAL':'TOTAL')+')');
+    steps.push('§ Plazo de gracia '+(grTipo==='parcial'?'PARCIAL':'TOTAL')+' ('+graceN+' períodos)');
     if(grTipo==='parcial'){
       // se paga solo el interés del período durante la gracia; el capital se mantiene
       Rgracia = C*TEP;
       graceFactor = 1;
-      steps.push(`Gracia PARCIAL: se paga solo el interés. El capital no varía: C = ${fmtM6(C)}`);
-      steps.push(`Rg (interés por período) = C × TEP = ${fmtM6(C)} × ${r10(TEP).toFixed(10)} = ${fmtM6(Rgracia)}`);
-      steps.push(`Se pagan ${graceN} cuota(s) de interés Rg durante la gracia.`);
+      steps.push('Gracia PARCIAL: se paga solo el interés; el capital no varía (C = '+fmtM(C)+').');
+      steps.push('Rg = C × TEP');
+      steps.push('Rg = '+fmtM(C)+' × '+pct7(TEP)+' = '+fmtM(Rgracia)+'   (se paga '+graceN+' veces)');
     } else {
       graceFactor = 1 + effRate('plz', grDays);
-      const C0 = C;
       C = C*graceFactor;
-      steps.push(`C' = C × factor(${grDays}d) = ${fmtM6(C0)} × ${r10(graceFactor).toFixed(10)} = ${fmtM6(C)}`);
+      steps.push('Gracia TOTAL: el capital capitaliza durante la gracia.');
+      steps.push("C' = C × "+factorText('plz',grDays));
+      steps.push("C' = "+fmtM(C0)+' × '+r10(graceFactor).toFixed(10)+' = '+fmtM(C));
     }
     if(graceMode==='parte'){
       nOrd = n - graceN;
       if(nOrd<=0) return showE('plz','La gracia consume todas las cuotas; revisa n o el plazo de gracia.');
-      steps.push(`Gracia PARTE del plazo: nº cuotas ordinarias = ${n} − ${graceN} = ${nOrd}`);
+      steps.push('Gracia PARTE del plazo: Nº de cuotas ordinarias = '+n+' − '+graceN+' = '+nOrd);
     } else {
       nOrd = n;
-      steps.push(`Gracia ADICIONAL: nº cuotas ordinarias = ${n} (no se descuenta)`);
+      steps.push('Gracia ADICIONAL: Nº de cuotas ordinarias = '+n+' (no se descuenta)');
     }
   }
 
@@ -5002,10 +5101,11 @@ function cPLZ(){
     ne = isNaN(neRaw) ? Math.floor(nOrd*freq/exFreq) : neRaw;
     if(ne<=0) return showE('plz','Nº de extraordinarias inválido.');
     vpEx = Re*anVP(TEPe, ne);
-    steps.push('§ Cuotas extraordinarias');
-    steps.push(`TEPe (${exFreq}d) = ${pct10(TEPe)}`);
-    steps.push(`ne = ${ne}`);
-    steps.push(`VP extra = ${fmtM(Re)} × a(TEPe,${ne}) = ${fmtM(Re)} × ${r10(anVP(TEPe,ne)).toFixed(10)} = ${fmtM6(vpEx)}`);
+    steps.push('§ Cuotas extraordinarias (Re = '+fmtM(Re)+', cada '+exFreq+' días)');
+    effRateSteps('plz', exFreq, freqRateName(exFreq)).forEach(l=>steps.push(l));
+    steps.push('Ne (nº de extraordinarias) = '+ne);
+    steps.push('VP extra = Re · a('+freqRateName(exFreq)+',Ne)');
+    steps.push('VP extra = '+fmtM(Re)+' · '+anVP(TEPe,ne).toFixed(10)+' = '+fmtM(vpEx));
   }
 
   // Cuota final / balloon: VP de CF al período nOrd
@@ -5013,16 +5113,25 @@ function cPLZ(){
   if(hasCF){
     vpCF = CF/Math.pow(1+TEP, nOrd);
     steps.push('§ Cuota final (balloon)');
-    steps.push(`VP cuota final = CF / (1+TEP)^${nOrd} = ${fmtM6(CF)} / ${r10(Math.pow(1+TEP,nOrd)).toFixed(10)} = ${fmtM6(vpCF)}`);
+    steps.push('VP cuota final = CF / ( 1 + '+nameTEP+' )^No');
+    steps.push('VP cuota final = '+fmtM(CF)+' / ( 1 + '+pct7(TEP)+' )^'+nOrd+' = '+fmtM(vpCF));
   }
 
   // Resolver R:  C = R·a(TEP,nOrd) + vpEx + vpCF   →  R = (C − vpEx − vpCF)/a(TEP,nOrd)
   const aOrd = anVP(TEP, nOrd);
   const R = (C - vpEx - vpCF)/aOrd;
-  steps.push('§ Despeje de R');
-  steps.push(`a(TEP,${nOrd}) = ${r10(aOrd).toFixed(10)}`);
-  steps.push(`R = (C${hasEx?' − VP extra':''}${hasCF?' − VP cuota final':''}) / a(TEP,${nOrd}) = (${fmtM6(C)}${hasEx?' − '+fmtM6(vpEx):''}${hasCF?' − '+fmtM6(vpCF):''}) / ${r10(aOrd).toFixed(10)}`);
-  steps.push(`R = ${fmtM6(R)}`);
+  const aTxt = aOrd.toFixed(10);
+  steps.push('§ Despeje de la cuota ordinaria R');
+  if(hasGr){
+    steps.push("C' = R · a("+nameTEP+",No)"+(hasEx?' + Re · a('+freqRateName(exFreq)+',Ne)':'')+(hasCF?' + CF/(1+'+nameTEP+')^No':''));
+    steps.push(fmtM(C)+' = R · '+aTxt+(hasEx?' + '+fmtM(vpEx):'')+(hasCF?' + '+fmtM(vpCF):''));
+    steps.push('R = ( '+fmtM(C)+(hasEx?' − '+fmtM(vpEx):'')+(hasCF?' − '+fmtM(vpCF):'')+' ) / '+aTxt);
+  } else {
+    steps.push('PV = CI + R · a('+nameTEP+',No)'+(hasEx?' + Re · a('+freqRateName(exFreq)+',Ne)':'')+(hasCF?' + CF/(1+'+nameTEP+')^No':''));
+    steps.push(fmtM(PV)+' = '+fmtM(CI)+' + R · '+aTxt+(hasEx?' + '+fmtM(vpEx):'')+(hasCF?' + '+fmtM(vpCF):''));
+    steps.push('R = ( '+fmtM(PV)+' − '+fmtM(CI)+(hasEx?' − '+fmtM(vpEx):'')+(hasCF?' − '+fmtM(vpCF):'')+' ) / '+aTxt);
+  }
+  steps.push('R = '+fmtM(R));
 
   const items = [
     ['Precio de venta (PV)', fmtM(PV)],
@@ -5049,17 +5158,23 @@ function cPLZ(){
       return showE('plz','Nº de cuota de prepago inválido (válido '+lo+'..'+hi+', contando desde la firma).');
     }
     const Rr = r2(R); // se redondea R como en los apuntes
-    let pre = Rr; // la cuota k que se paga hoy
-    steps.push('§ Prepago en la cuota '+kAbs+(hasGr?(' (ordinaria nº '+k+', sin contar la gracia)'):''));
-    steps.push(`Cuota ${kAbs} (hoy) = ${fmtM(Rr)}`);
-    for(let j=k+1;j<=nOrd;j++){ const v=Rr/Math.pow(1+TEP, j-k); pre+=v; }
+    const nRest = nOrd - k;                 // cuotas ordinarias que faltan después de k
+    const aRest = anVP(TEP, nRest);
+    const vpRest = Rr*aRest;                // VP de las cuotas ordinarias restantes
+    let vpExRest = 0, neRest = 0; const exExps = [];
     let exRatio = hasEx ? Math.round(exFreq/freq) : 0;
-    if(hasEx && exRatio>0){
-      for(let e=exRatio; e<=nOrd; e+=exRatio){ if(e>k){ const v=Re/Math.pow(1+TEP, e-k); pre+=v; } }
-    }
-    if(hasCF && nOrd>k){ pre += CF/Math.pow(1+TEP, nOrd-k); }
-    steps.push(`Prepago = cuota ${kAbs} + Σ VP(cuotas restantes${hasEx?' + extras':''}${hasCF?' + cuota final':''})`);
-    steps.push(`Prepago = ${fmtM6(pre)}`);
+    if(hasEx && exRatio>0){ for(let e=exRatio; e<=nOrd; e+=exRatio){ if(e>k){ vpExRest += Re/Math.pow(1+TEP, e-k); neRest++; exExps.push(e-k); } } }
+    const cfFut = hasCF && nOrd>k;
+    const vpCFrest = cfFut ? CF/Math.pow(1+TEP, nOrd-k) : 0;
+    const pre = Rr + vpRest + vpExRest + vpCFrest;
+    // las extraordinarias restantes se descuentan una a una al TEP de la cuota
+    const exForm = neRest===0 ? '' : (neRest===1 ? ' + Re/(1+'+nameTEP+')^'+exExps[0] : ' + Σ Re/(1+'+nameTEP+')^t');
+    const exSub  = neRest===0 ? '' : (neRest===1 ? ' + '+fmtM(Re)+'/(1+'+pct7(TEP)+')^'+exExps[0] : ' + '+fmtM(vpExRest));
+    steps.push('§ Prepago en la cuota '+kAbs+(hasGr?(' (ordinaria nº '+k+', sin contar la gracia)'):''));
+    steps.push('Nº de cuotas ordinarias restantes (No) = '+nOrd+' − '+k+' = '+nRest+(neRest?('     extraordinarias restantes (Ne) = '+neRest):''));
+    steps.push('PP = R + R · a('+nameTEP+',No)'+exForm+(cfFut?' + CF/(1+'+nameTEP+')^'+(nOrd-k):''));
+    steps.push('PP = '+fmtM(Rr)+' + '+fmtM(Rr)+' · '+aRest.toFixed(10)+exSub+(cfFut?' + '+fmtM(CF)+'/(1+'+pct7(TEP)+')^'+(nOrd-k):''));
+    steps.push('PP = '+fmtM(Rr)+' + '+fmtM(vpRest)+(neRest?' + '+fmtM(vpExRest):'')+(cfFut?' + '+fmtM(vpCFrest):'')+' = '+fmtM(pre));
     heroes.push({label:'PREPAGO EN CUOTA '+kAbs, val:fmtM(pre), cls:'is-money', extra:fmtM6(pre)});
     items.push(['Prepago (cuota '+kAbs+')', fmtM6(pre)]);
   }
@@ -5129,8 +5244,10 @@ function cAHO(){
   if(T<=0) return showE('aho','Mes de valuación inválido.');
 
   let total=0;
-  const steps=['§ Tasa(s) efectiva(s) mensual(es)', 'TEM = '+pct10(TEM)+(hasChg?(' (meses 1–'+chgMes+')'):'')];
-  if(hasChg) steps.push('TEM₂ = '+pct10(TEM2)+' (meses '+(chgMes+1)+'–'+T+')');
+  const steps=[];
+  steps.push('§ Tasa efectiva mensual (TEM)');
+  effRateSteps('aho', 30, 'TEM').forEach(l=>steps.push(l));
+  if(hasChg){ steps.push('A partir del mes '+(chgMes+1)+' cambia la tasa:'); effRateSteps('aho2', 30, 'TEM₂').forEach(l=>steps.push(l)); }
   const items=[['TEM (10 dec)',pct10(TEM)]];
   if(hasChg) items.push(['TEM₂ (desde mes '+(chgMes+1)+')',pct10(TEM2)]);
   items.push(['Mes de valuación T',T.toString()]);
@@ -5139,7 +5256,7 @@ function cAHO(){
   streams.forEach((st,si)=>{
     let pays=[]; for(let p=st.from;p<=st.to;p+=st.freq) pays.push(p);
     const groups = (!hasChg)?[pays]:[pays.filter(p=>p<=chgMes),pays.filter(p=>p>chgMes)].filter(g=>g.length);
-    steps.push('§ Renta '+(si+1)+': R='+fmtM(st.R)+(st.sign<0?' (retiro)':' (depósito)')+', cada '+st.freq+' mes(es), mes '+st.from+'→'+st.to);
+    steps.push('§ Renta '+(si+1)+': R = '+fmtM(st.R)+(st.sign<0?' (retiro)':' (depósito)')+', cada '+st.freq+' mes(es), meses '+st.from+'→'+st.to);
     groups.forEach(g=>{
       sIdx++;
       const cnt=g.length, lastP=g[g.length-1], TEMg=temAt(lastP);
@@ -5149,15 +5266,17 @@ function cAHO(){
       const ScapT=r2(Send*factor);
       total+=st.sign*ScapT;
       const ipName = st.freq===1?'TEM':(st.freq===2?'TEB':(st.freq===3?'TET':(st.freq===6?'TES':(st.freq===12?'TEA':'TEP'))));
-      steps.push('  S'+sIdx+' (mes '+g[0]+'–'+lastP+', '+cnt+' pagos, '+ipName+'='+pct4(ip)+'): S@'+lastP+' = '+fmtM(st.R)+'·[((1+i)^'+cnt+'−1)/i] = '+fmtM(Send));
-      if(factor!==1) steps.push('     capitalizado a mes '+T+': '+fmtM(Send)+' × '+r10(factor).toFixed(10)+' = '+fmtM(ScapT));
+      if(st.freq>1) steps.push(ipName+' = (1+TEM)^'+st.freq+' − 1 = '+pct7(ip));
+      steps.push('S'+sIdx+' = R · [ (1+'+ipName+')^n − 1 ] / '+ipName+'     (n = '+cnt+' aportes, meses '+g[0]+'–'+lastP+')');
+      steps.push('S'+sIdx+' = '+fmtM(st.R)+' · [ (1+'+pct7(ip)+')^'+cnt+' − 1 ] / '+pct7(ip)+' = '+fmtM(Send)+'   (valor en el mes '+lastP+')');
+      if(factor!==1) steps.push('S'+sIdx+' al mes '+T+' = '+fmtM(Send)+' × (1+TEM)^'+(T-lastP)+' = '+fmtM(Send)+' × '+r10(factor).toFixed(10)+' = '+fmtM(ScapT));
       items.push(['S'+sIdx+' @ mes '+lastP, fmtM(Send)]);
       items.push(['S'+sIdx+' → mes '+T, (st.sign<0?'−':'+')+fmtM(ScapT)]);
     });
   });
   total=r2(total);
-  steps.push('§ Total acumulado al mes '+T);
-  steps.push('ST = '+fmtM(total));
+  steps.push('§ Monto total acumulado al mes '+T);
+  steps.push('ST = '+(streams.length>1?'Σ Si = ':'')+fmtM(total));
 
   const heroes = [{label:'MONTO ACUMULADO AL MES '+T, val:fmtM(total), cls:'is-money', extra:fmtM6(total)}];
 
@@ -5174,11 +5293,12 @@ function cAHO(){
     if(isNaN(nRet)||nRet<=0) return showE('aho','Ingresa el nº de retiros (o los años) de la fase de retiro.');
     const aRet = anVP(iRet, nRet);
     const Rret = total/aRet;
+    const nameRet = freqRateName(retFreq);
     steps.push('§ Fase de retiro / Pensión');
-    steps.push('i de retiro ('+retFreq+'d) = '+pct10(iRet));
-    steps.push('N retiros = '+nRet+(yrs>0?(' ('+yrs+' años × '+(360/retFreq)+')'):''));
-    steps.push('a(i,'+nRet+') = '+r10(aRet).toFixed(10));
-    steps.push('Pensión R = Fondo / a(i,N) = '+fmtM(total)+' / '+r10(aRet).toFixed(10)+' = '+fmtM6(Rret));
+    effRateSteps('ahoret', retFreq, nameRet).forEach(l=>steps.push(l));
+    steps.push('N (nº de retiros) = '+nRet+(yrs>0?(' ('+yrs+' años × '+(360/retFreq)+')'):''));
+    steps.push('a('+nameRet+',N) = [ (1+'+nameRet+')^N − 1 ] / [ '+nameRet+'·(1+'+nameRet+')^N ] = '+aRet.toFixed(10));
+    steps.push('R = Fondo / a('+nameRet+',N) = '+fmtM(total)+' / '+aRet.toFixed(10)+' = '+fmtM(Rret));
     items.push(['Tasa de retiro (10 dec)', pct10(iRet)]);
     items.push(['Nº de retiros (N)', nRet.toString()]);
     items.push(['Pensión / retiro', fmtM6(Rret)]);
@@ -5444,24 +5564,46 @@ function cMOV(){
   let S = r2(hitos[0].amt);
   let cur = hitos[0].rate;
   let X = null;
+  const pp = v=>parseFloat((v*100).toFixed(6));   // % sin ruido de punto flotante
   const steps = [];
   const segs = []; // para SVG: {x0idx,x1idx,rate}
-  steps.push(`S(${fmtHito(hitos[0].tDays)}) = ${fmtM(S)}  ·  apertura @ ${movRateLabel(cur)}`);
+  steps.push('§ Datos');
+  steps.push('Monto inicial ('+fmtHito(hitos[0].tDays)+') = '+fmtM(S));
+  steps.push('Tasa inicial: '+movRateLabel(cur));
   for(let k=1;k<hitos.length;k++){
+    const h = hitos[k];
     const days = Math.round(hitos[k].tDays - hitos[k-1].tDays);
     const factor = movGrowth(cur, days);
     const Sbefore = S;
     const cap = S*factor;
     S = r2(cap);
     segs.push({i0:k-1, i1:k, rate:cur});
-    let movTxt='', resTxt;
-    const h = hitos[k];
-    if(h.mv==='dep'){ S = r2(S + h.amt); movTxt = ' + '+fmtM(h.amt); resTxt = fmtM(S); }
-    else if(h.mv==='ret'){ S = r2(S - h.amt); movTxt = ' − '+fmtM(h.amt); resTxt = fmtM(S); }
-    else if(h.mv==='X'){ X = S; movTxt = ' − X = 0'; resTxt = 'X = '+fmtM(X); }
-    else { resTxt = fmtM(S); }
-    steps.push(`S(${fmtHito(h.tDays)}) = ${fmtM(Sbefore)} × ${movFactorStr(cur,days)} = ${fmtM6(cap)}${movTxt}  →  ${resTxt}`);
-    if(h.rate){ cur = h.rate; steps.push(`   ↳ cambia tasa a ${movRateLabel(cur)} (aplica al siguiente tramo)`); }
+    let op='', isX=false;
+    if(h.mv==='dep'){ S=r2(S+h.amt); op=' + '+fmtM(h.amt); }
+    else if(h.mv==='ret'){ S=r2(S-h.amt); op=' − '+fmtM(h.amt); }
+    else if(h.mv==='X'){ X=S; isX=true; }
+    // fórmula del traslado según el tipo de tasa del tramo
+    let sym, sub; const pre=[];
+    if(cur.tipo==='nom'){ const m=cur.pt/cur.pc, n=days/cur.pc;
+      sym='S(anterior) × ( 1 + TN / m )^n';
+      sub='( 1 + '+pp(cur.val)+'% / '+m+' )^'+(Number.isInteger(n)?n:r10(n));
+    } else if(cur.tipo==='efe'){
+      sym='S(anterior) × ( 1 + TEP )^( días / período )';
+      sub='( 1 + '+pp(cur.val)+'% )^( '+days+' / '+cur.pt+' )';
+    } else {
+      const TEPc=cur.val/(1-cur.val);
+      pre.push('TEM = d / ( 1 − d ) = '+pp(cur.val)+'% / ( 1 − '+pp(cur.val)+'% ) = '+pct7(TEPc));
+      sym='S(anterior) × ( 1 + TEM )^( días / período )';
+      sub='( 1 + '+pct7(TEPc)+' )^( '+days+' / '+cur.pt+' )';
+    }
+    steps.push('§ Saldo de la deuda al '+fmtHito(h.tDays)+' (N° de días: '+days+')');
+    pre.forEach(l=>steps.push(l));
+    steps.push('S = '+sym);
+    steps.push('S = '+fmtM(Sbefore)+' × '+sub+op);
+    if(op){ steps.push('S = '+fmtM(cap)+op); steps.push('S = '+fmtM(S)); }
+    else if(isX){ steps.push('S = '+fmtM(cap)); steps.push('X = '+fmtM(X)+'   (retiro que deja saldo 0)'); }
+    else { steps.push('S = '+fmtM(S)); }
+    if(h.rate){ cur=h.rate; steps.push('↳ a partir de aquí la tasa cambia a '+movRateLabel(cur)); }
   }
 
   const hero = (X!==null)
@@ -5470,7 +5612,9 @@ function cMOV(){
 
   // Render: hero + SVG + procedimiento + grid breve
   const svg = movSVG(hitos);
-  const procLines = steps.map(s=>`<div style="padding:3px 0;border-bottom:1px solid var(--line)">${s}</div>`).join('');
+  const procLines = steps.map(s=> s.startsWith('§')
+    ? `<div style="color:var(--accent);font-family:var(--ff-display);letter-spacing:0.1em;font-size:0.82rem;padding:8px 0 3px">${s.slice(1)}</div>`
+    : `<div style="padding:3px 0;border-bottom:1px solid var(--line)">${s}</div>`).join('');
   const proc = `<div style="margin-top:14px;background:var(--bg-deep);border-left:3px solid var(--accent);padding:14px 16px;font-family:var(--ff-mono);font-size:0.8rem;color:var(--text-2);line-height:1.55;overflow-x:auto">
     <div style="font-family:var(--ff-display);letter-spacing:0.16em;color:var(--accent);font-size:0.85rem;margin-bottom:10px">PROCEDIMIENTO</div>${procLines}</div>`;
 
