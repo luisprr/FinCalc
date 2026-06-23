@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#121614">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 <title>FinCalc</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap');
@@ -95,19 +97,12 @@ body {
   margin-bottom: var(--s-2);
 }
 .brand-logo {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 0;
-  background: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--bg);
-  font-family: var(--ff-display);
-  font-weight: 400;
-  font-size: 1.25rem;
-  letter-spacing: 0;
-  box-shadow: 4px 4px 0 0 var(--bg);
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .brand-text .brand-name {
   font-family: var(--ff-display);
@@ -1323,10 +1318,10 @@ select:focus-visible,
 </head>
 <body>
 
-<nav class="sidebar"><div class="brand"><div class="brand-logo">F</div><div class="brand-text"><div class="brand-name">FinCalc</div><div class="brand-desc">Matemática Financiera</div></div></div><div class="nav-group"><div class="nav-group-label">Interés Simple</div><div class="nav-item active" data-p="ss" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="si" onclick="go(this)"><span class="nav-icon">💰</span>Interés (I)</div><div class="nav-item" data-p="sc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="st" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (i)</div><div class="nav-item" data-p="sti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (t)</div></div><div class="nav-group"><div class="nav-group-label">Interés Compuesto</div><div class="nav-item" data-p="cs" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="cc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="ct" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (TN)</div><div class="nav-item" data-p="cti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (n)</div></div><div class="nav-group"><div class="nav-group-label">Tasa Efectiva</div><div class="nav-item" data-p="tep" onclick="go(this)"><span class="nav-icon">⚡</span>Calcular con TEP</div><div class="nav-item" data-p="tas" onclick="go(this)"><span class="nav-icon">🔄</span>Convertir tasas</div></div><div class="nav-group"><div class="nav-group-label">Escenarios</div><div class="nav-item" data-p="fci" onclick="go(this)"><span class="nav-icon">🧾</span>Factura con Cuota Inicial</div><div class="nav-item" data-p="trea" onclick="go(this)"><span class="nav-icon">◇</span>Inversión 2 Bancos · TREA</div><div class="nav-item" data-p="dif" onclick="go(this)"><span class="nav-icon">🔍</span>Pago Diferido (simple)</div><div class="nav-item" data-p="eqv" onclick="go(this)"><span class="nav-icon">◇</span>Equivalencia Cronogramas</div></div><div class="nav-group"><div class="nav-group-label">Descuento &amp; Rentas</div><div class="nav-item" data-p="tdesc" onclick="go(this)"><span class="nav-icon">▸</span>Tasa Descontada (TCEA)</div><div class="nav-item" data-p="anu" onclick="go(this)"><span class="nav-icon">▸</span>Anualidades</div><div class="nav-item" data-p="plz" onclick="go(this)"><span class="nav-icon">▸</span>Compra a Plazos / Crédito</div><div class="nav-item" data-p="aho" onclick="go(this)"><span class="nav-icon">▸</span>Ahorro / Rentas múltiples</div><div class="nav-item" data-p="cmp" onclick="go(this)"><span class="nav-icon">▸</span>Comparar Préstamos</div><div class="nav-item" data-p="amort" onclick="go(this)"><span class="nav-icon">▸</span>Tabla de Amortización</div></div><div class="nav-group"><div class="nav-group-label">Inversión</div><div class="nav-item" data-p="acc" onclick="go(this)"><span class="nav-icon">▸</span>Valoración de Acciones</div></div><div class="nav-group"><div class="nav-group-label">Flujo de Caja</div><div class="nav-item" data-p="mov" onclick="go(this)"><span class="nav-icon">▸</span>Depósitos / Retiros (línea de tiempo)</div></div><div class="nav-group"><div class="nav-group-label">Referencia</div><div class="nav-item" data-p="form" onclick="go(this)"><span class="nav-icon">📐</span>Formulario</div></div></nav>
+<nav class="sidebar"><div class="brand"><img class="brand-logo" src="logo.png" alt="FinCalc"><div class="brand-text"><div class="brand-name">FinCalc</div><div class="brand-desc">Matemática Financiera</div></div></div><div class="nav-group"><div class="nav-group-label">Interés Simple</div><div class="nav-item active" data-p="ss" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="si" onclick="go(this)"><span class="nav-icon">💰</span>Interés (I)</div><div class="nav-item" data-p="sc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="st" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (i)</div><div class="nav-item" data-p="sti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (t)</div></div><div class="nav-group"><div class="nav-group-label">Interés Compuesto</div><div class="nav-item" data-p="cs" onclick="go(this)"><span class="nav-icon">📈</span>Monto final (S)</div><div class="nav-item" data-p="cc" onclick="go(this)"><span class="nav-icon">🏦</span>Capital / Pre-pago (C)</div><div class="nav-item" data-p="ct" onclick="go(this)"><span class="nav-icon">📊</span>Tasa (TN)</div><div class="nav-item" data-p="cti" onclick="go(this)"><span class="nav-icon">⏱</span>Tiempo (n)</div></div><div class="nav-group"><div class="nav-group-label">Tasa Efectiva</div><div class="nav-item" data-p="tep" onclick="go(this)"><span class="nav-icon">⚡</span>Calcular con TEP</div><div class="nav-item" data-p="tas" onclick="go(this)"><span class="nav-icon">🔄</span>Convertir tasas</div></div><div class="nav-group"><div class="nav-group-label">Escenarios</div><div class="nav-item" data-p="fci" onclick="go(this)"><span class="nav-icon">🧾</span>Factura con Cuota Inicial</div><div class="nav-item" data-p="trea" onclick="go(this)"><span class="nav-icon">◇</span>Inversión 2 Bancos · TREA</div><div class="nav-item" data-p="dif" onclick="go(this)"><span class="nav-icon">🔍</span>Pago Diferido (simple)</div><div class="nav-item" data-p="eqv" onclick="go(this)"><span class="nav-icon">◇</span>Equivalencia Cronogramas</div></div><div class="nav-group"><div class="nav-group-label">Descuento &amp; Rentas</div><div class="nav-item" data-p="tdesc" onclick="go(this)"><span class="nav-icon">▸</span>Tasa Descontada (TCEA)</div><div class="nav-item" data-p="anu" onclick="go(this)"><span class="nav-icon">▸</span>Anualidades</div><div class="nav-item" data-p="plz" onclick="go(this)"><span class="nav-icon">▸</span>Compra a Plazos / Crédito</div><div class="nav-item" data-p="aho" onclick="go(this)"><span class="nav-icon">▸</span>Ahorro / Rentas múltiples</div><div class="nav-item" data-p="cmp" onclick="go(this)"><span class="nav-icon">▸</span>Comparar Préstamos</div><div class="nav-item" data-p="amort" onclick="go(this)"><span class="nav-icon">▸</span>Tabla de Amortización</div></div><div class="nav-group"><div class="nav-group-label">Inversión</div><div class="nav-item" data-p="acc" onclick="go(this)"><span class="nav-icon">▸</span>Valoración de Acciones</div><div class="nav-item" data-p="cau" onclick="go(this)"><span class="nav-icon">▸</span>CAUE · Costo Anual</div><div class="nav-item" data-p="cap" onclick="go(this)"><span class="nav-icon">▸</span>Costo Capitalizado</div></div><div class="nav-group"><div class="nav-group-label">Flujo de Caja</div><div class="nav-item" data-p="mov" onclick="go(this)"><span class="nav-icon">▸</span>Depósitos / Retiros (línea de tiempo)</div></div><div class="nav-group"><div class="nav-group-label">Referencia</div><div class="nav-item" data-p="form" onclick="go(this)"><span class="nav-icon">📐</span>Formulario</div></div></nav>
 
 <main class="main">
-<nav class="mobnav"><button class="mob-btn active" onclick="gm('ss',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('si',this)">💰 Interés (I)</button><button class="mob-btn" onclick="gm('sc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('st',this)">📊 Tasa (i)</button><button class="mob-btn" onclick="gm('sti',this)">⏱ Tiempo (t)</button><button class="mob-btn" onclick="gm('cs',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('cc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('ct',this)">📊 Tasa (TN)</button><button class="mob-btn" onclick="gm('cti',this)">⏱ Tiempo (n)</button><button class="mob-btn" onclick="gm('tep',this)">⚡ Calcular</button><button class="mob-btn" onclick="gm('tas',this)">🔄 Convertir tasas</button><button class="mob-btn" onclick="gm('fci',this)">🧾 Factura + CI</button><button class="mob-btn" onclick="gm('trea',this)">◇ TREA 2 Bancos</button><button class="mob-btn" onclick="gm('dif',this)">🔍 Pago Diferido</button><button class="mob-btn" onclick="gm('eqv',this)">◇ Equivalencia</button><button class="mob-btn" onclick="gm('tdesc',this)">▸ Tasa Descontada</button><button class="mob-btn" onclick="gm('anu',this)">▸ Anualidades</button><button class="mob-btn" onclick="gm('plz',this)">▸ Compra a Plazos</button><button class="mob-btn" onclick="gm('aho',this)">▸ Ahorro múltiple</button><button class="mob-btn" onclick="gm('cmp',this)">▸ Comparar Préstamos</button><button class="mob-btn" onclick="gm('amort',this)">▸ Tabla Amortización</button><button class="mob-btn" onclick="gm('acc',this)">▸ Acciones (Gordon)</button><button class="mob-btn" onclick="gm('mov',this)">▸ Flujo de Caja</button><button class="mob-btn" onclick="gm('form',this)">📐 Formulario</button></nav>
+<nav class="mobnav"><button class="mob-btn active" onclick="gm('ss',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('si',this)">💰 Interés (I)</button><button class="mob-btn" onclick="gm('sc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('st',this)">📊 Tasa (i)</button><button class="mob-btn" onclick="gm('sti',this)">⏱ Tiempo (t)</button><button class="mob-btn" onclick="gm('cs',this)">📈 Monto final (S)</button><button class="mob-btn" onclick="gm('cc',this)">🏦 Capital</button><button class="mob-btn" onclick="gm('ct',this)">📊 Tasa (TN)</button><button class="mob-btn" onclick="gm('cti',this)">⏱ Tiempo (n)</button><button class="mob-btn" onclick="gm('tep',this)">⚡ Calcular</button><button class="mob-btn" onclick="gm('tas',this)">🔄 Convertir tasas</button><button class="mob-btn" onclick="gm('fci',this)">🧾 Factura + CI</button><button class="mob-btn" onclick="gm('trea',this)">◇ TREA 2 Bancos</button><button class="mob-btn" onclick="gm('dif',this)">🔍 Pago Diferido</button><button class="mob-btn" onclick="gm('eqv',this)">◇ Equivalencia</button><button class="mob-btn" onclick="gm('tdesc',this)">▸ Tasa Descontada</button><button class="mob-btn" onclick="gm('anu',this)">▸ Anualidades</button><button class="mob-btn" onclick="gm('plz',this)">▸ Compra a Plazos</button><button class="mob-btn" onclick="gm('aho',this)">▸ Ahorro múltiple</button><button class="mob-btn" onclick="gm('cmp',this)">▸ Comparar Préstamos</button><button class="mob-btn" onclick="gm('amort',this)">▸ Tabla Amortización</button><button class="mob-btn" onclick="gm('acc',this)">▸ Acciones (Gordon)</button><button class="mob-btn" onclick="gm('cau',this)">▸ CAUE</button><button class="mob-btn" onclick="gm('cap',this)">▸ Costo Capitalizado</button><button class="mob-btn" onclick="gm('mov',this)">▸ Flujo de Caja</button><button class="mob-btn" onclick="gm('form',this)">📐 Formulario</button></nav>
 <section id="p-ss" class="page active"><div class="page-header">
   <div class="page-crumb">Interés Simple</div>
   <h1 class="page-title">¿Cuánto tendré al final? <span class="accent">→ S</span></h1>
@@ -3336,6 +3331,119 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
 <button class="btn-primary" onclick="calc('acc')" type="button">Calcular precio<span class="arrow">→</span></button>
 <div class="result-box" id="res-acc"></div>
 <div class="error-box" id="err-acc"></div>
+</section><section id="p-cau" class="page">
+<div class="page-header">
+  <div class="page-crumb">Inversión</div>
+  <h1 class="page-title">CAUE · <span class="accent">Costo Anual Equivalente</span></h1>
+  <p class="page-subtitle">Compara N alternativas de inversión con vidas útiles distintas. Para cada una calcula el Costo Anual Uniforme Equivalente: CAUE = P·(A/P,i,n) − S·(A/F,i,n) + A. Se elige la opción con MENOR CAUE.</p>
+</div>
+
+<div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Para cada alternativa ingresas: <strong>P</strong> = inversión inicial, <strong>A</strong> = costos anuales de operación (suma fija anual), <strong>S</strong> = valor de salvataje al final de la vida útil, <strong>n</strong> = años de vida útil. La tasa se ingresa una sola vez (común a todas las alternativas).</span></div>
+
+<div class="card highlight">
+  <div class="card-header"><div class="card-num">1</div><div class="card-title">Tasa de rendimiento</div></div>
+  <div class="card-body">
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn" onclick="rateTipo('cau','nom',this)">Nominal (TN)</button>
+        <button type="button" class="toggle-btn active" onclick="rateTipo('cau','efe',this)">Efectiva (TEA)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="cau-i" placeholder="Ej: 8" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="cau-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trim. (90)</option><option value="60">Bimestral (60)</option><option value="30">Mensual (30)</option><option value="1">Diario (1)</option></select></div>
+      <div class="field full" id="cau-pc-wrap" style="display:none"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="cau-pc"><option value="1">Diaria (1)</option><option value="30">Mensual (30)</option><option value="60">Bimestral (60)</option><option value="90" selected>Trim. (90)</option><option value="120">Cuatrim. (120)</option><option value="180">Semestral (180)</option><option value="360">Anual (360)</option></select></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">2</div><div class="card-title">Alternativas / Equipos a comparar</div></div>
+  <div class="card-body">
+    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Agrega cada alternativa con su nombre y parámetros. Si una alternativa no tiene salvataje, deja S en 0 (no en blanco). Mínimo 2 opciones.</span></div>
+    <div id="cau-rows"></div>
+    <button type="button" class="btn-parse" onclick="cauAddRow()" style="margin-left:0;margin-top:6px">+ Agregar alternativa</button>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="calc('cau')" type="button">Calcular CAUE y comparar<span class="arrow">→</span></button>
+<div class="result-box" id="res-cau"></div>
+<div class="error-box" id="err-cau"></div>
+</section><section id="p-cap" class="page">
+<div class="page-header">
+  <div class="page-crumb">Inversión</div>
+  <h1 class="page-title">Costo <span class="accent">Capitalizado</span></h1>
+  <p class="page-subtitle">Valor presente de una inversión con costos a lo largo del tiempo, incluyendo una perpetuidad final. Sirve para proyectos de duración indefinida (puentes, parques, infraestructura pública).</p>
+</div>
+
+<div class="notice info"><span class="notice-icon">i</span><span class="notice-body">CC = Inversión inicial + Σ VP(tramos finitos) + Σ VP(pagos únicos) + VP(perpetuidad final). Todos los flujos están en la <strong>unidad del período</strong> que elijas (mensual, anual, etc.); la tasa se convierte automáticamente a esa unidad.</span></div>
+
+<div class="card highlight">
+  <div class="card-header"><div class="card-num">1</div><div class="card-title">Tasa &amp; unidad del período</div></div>
+  <div class="card-body">
+    <div class="toggle-wrap">
+      <div class="toggle-label">Tipo de tasa</div>
+      <div class="toggle">
+        <button type="button" class="toggle-btn" onclick="rateTipo('cap','nom',this)">Nominal (TN)</button>
+        <button type="button" class="toggle-btn active" onclick="rateTipo('cap','efe',this)">Efectiva (TEA)</button>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="cap-i" placeholder="Ej: 4.1" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="cap-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim.</option><option value="90">Trim.</option><option value="60">Bimestral</option><option value="30">Mensual (30)</option><option value="1">Diario</option></select></div>
+      <div class="field full" id="cap-pc-wrap" style="display:none"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="cap-pc"><option value="1">Diaria</option><option value="30" selected>Mensual (30)</option><option value="60">Bimestral</option><option value="90">Trim.</option><option value="120">Cuatrim.</option><option value="180">Semestral</option><option value="360">Anual</option></select></div>
+      <div class="field full"><div class="field-label"><span class="label-main">Unidad de los flujos</span><span class="label-required">*</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Unidad</span>El período en el que ocurren tus costos (mensual, anual, etc.). La app convierte la tasa a la efectiva de esa unidad.</div></div></div><select id="cap-unit"><option value="30" selected>Mensual (30)</option><option value="60">Bimestral</option><option value="90">Trimestral</option><option value="120">Cuatrimestral</option><option value="180">Semestral</option><option value="360">Anual</option></select></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">2</div><div class="card-title">Inversión inicial (en t=0)</div></div>
+  <div class="card-body">
+    <div class="form-grid"><div class="field full"><div class="field-label"><span class="label-main">Monto P0</span><span class="label-chip">t=0</span></div><div class="label-hint">Vacío = 0 (sin inversión al inicio)</div><input type="number" id="cap-p0" placeholder="Ej: 744 200.00" step="any"></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">3</div><div class="card-title">Tramos de costos periódicos</div><span class="card-optional">Opcional</span></div>
+  <div class="card-body">
+    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Tramo = serie de cuotas iguales entre el período "desde" y el período "hasta" (en la unidad de arriba). Ej: mantenimiento mensual de 32 200 del mes 1 al 48 → desde 1, hasta 48, monto 32 200.</span></div>
+    <div id="cap-tramos"></div>
+    <button type="button" class="btn-parse" onclick="capAddTramo()" style="margin-left:0;margin-top:6px">+ Agregar tramo</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">4</div><div class="card-title">Pagos únicos (en un período específico)</div><span class="card-optional">Opcional</span></div>
+  <div class="card-body">
+    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Inversiones adicionales o pagos puntuales en un período específico. Ej: inversión adicional de 148 840 en el mes 48.</span></div>
+    <div id="cap-pagos"></div>
+    <button type="button" class="btn-parse" onclick="capAddPago()" style="margin-left:0;margin-top:6px">+ Agregar pago único</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-num">5</div><div class="card-title">Perpetuidad final</div><span class="card-optional">Opcional</span></div>
+  <div class="card-body">
+    <div class="check-toggle" id="cap-perp-t" onclick="tog('cap-perp-t','cap-perp-b')">
+      <div class="check-box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Hay costo perpetuo a partir de cierto período</span>
+    </div>
+    <div class="cond" id="cap-perp-b" style="margin-top:12px">
+      <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">P<sub>M</sub> = A∞·(1+g)/(i−g), valor de la perpetuidad creciente en el período M (último antes de iniciar). Si g=0 (constante), P<sub>M</sub> = A∞/i. Luego VP = P<sub>M</sub>/(1+i)^M.</span></div>
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Período del último flujo previo (M)</span><span class="label-chip">M</span></div><div class="label-hint">La perpetuidad inicia en M+1</div><input type="number" id="cap-perpM" placeholder="Ej: 48" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">Monto perpetuo (A∞)</span><span class="label-chip">por período</span></div><input type="number" id="cap-perpA" placeholder="Ej: 35 742.00" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">Crecimiento (g)</span><span class="label-chip">% por período</span></div><div class="label-hint">0 = constante para siempre</div><input type="number" id="cap-perpG" placeholder="0" step="any"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="calc('cap')" type="button">Calcular Costo Capitalizado<span class="arrow">→</span></button>
+<div class="result-box" id="res-cap"></div>
+<div class="error-box" id="err-cap"></div>
 </section><section id="p-mov" class="page">
 <div class="page-header">
   <div class="page-crumb">Flujo de caja</div>
@@ -3693,7 +3801,7 @@ function gcP(p){
 
 // ═══ DISPATCHER ═══════════════════════════════════
 function calc(p){
-  ({ss:cSS,si:cSI,sc:cSC,st:cST,sti:cSTI,cs:cCS,cc:cCC,ct:cCT,cti:cCTI,dif:cDIF,tp:cTP,tn:cTN,ip:cIP,ttn:cTTN,ttep:cTTEP,ttt:cTTT,stp:cSTP,tep:calcTEP,fci:cFCI,trea:cTREA,eqv:cEQV,tdesc:cTDESC,anu:cANU,mov:cMOV,plz:cPLZ,dsc:cDSC,aho:cAHO,cmp:cCMP,acc:cACC,amort:cAMORT})[p]?.();
+  ({ss:cSS,si:cSI,sc:cSC,st:cST,sti:cSTI,cs:cCS,cc:cCC,ct:cCT,cti:cCTI,dif:cDIF,tp:cTP,tn:cTN,ip:cIP,ttn:cTTN,ttep:cTTEP,ttt:cTTT,stp:cSTP,tep:calcTEP,fci:cFCI,trea:cTREA,eqv:cEQV,tdesc:cTDESC,anu:cANU,mov:cMOV,plz:cPLZ,dsc:cDSC,aho:cAHO,cmp:cCMP,acc:cACC,amort:cAMORT,cau:cCAU,cap:cCAP})[p]?.();
 }
 
 // ═══ INTERÉS SIMPLE ═══════════════════════════════
@@ -5987,6 +6095,318 @@ function cAMORT(){
   ];
 
   showRMulti('amort', heroes, items, {svg:tableHTML, steps});
+}
+
+// ═══ CAUE · COSTO ANUAL UNIFORME EQUIVALENTE ═══════
+let CAU_N = 0;
+function cauRowHTML(i){
+  return `<div class="cau-row" data-idx="${i}" style="border-left:2px solid var(--line-2);padding:10px 0 10px 12px;margin-bottom:14px">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+      <span style="font-family:var(--ff-display);font-size:0.95rem;letter-spacing:0.1em;color:var(--accent);min-width:62px">OPC ${i+1}</span>
+      <input type="text" id="cau-nm${i}" placeholder="Nombre (ej: Apple, HP)" style="flex:2;min-width:150px">
+      <button type="button" onclick="cauDelRow(${i})" title="Quitar" style="background:transparent;border:1px solid var(--line-2);color:var(--text-3);cursor:pointer;border-radius:0;padding:6px 10px;font-family:var(--ff-mono)">×</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <input type="number" id="cau-p${i}" placeholder="P (inversión)" step="any" style="flex:1.2;min-width:120px">
+      <input type="number" id="cau-a${i}" placeholder="A (costo anual)" step="any" style="flex:1.2;min-width:120px">
+      <input type="number" id="cau-s${i}" placeholder="S (salvataje)" step="any" style="flex:1.2;min-width:120px">
+      <input type="number" id="cau-n${i}" placeholder="n (años)" step="any" style="flex:0.8;min-width:80px">
+    </div>
+  </div>`;
+}
+function cauAddRow(){ const c=document.getElementById('cau-rows'); if(!c) return; const d=document.createElement('div'); d.innerHTML=cauRowHTML(CAU_N); c.appendChild(d.firstChild); CAU_N++; }
+function cauDelRow(i){ const r=document.querySelector('.cau-row[data-idx="'+i+'"]'); if(r) r.remove(); }
+document.addEventListener('DOMContentLoaded', ()=>{ for(let k=0;k<2;k++) cauAddRow(); });
+
+function cCAU(){
+  const r = effRate('cau', 360);
+  if(r===null) return showE('cau','Ingresa la tasa de rendimiento.');
+  const rows = Array.from(document.querySelectorAll('#cau-rows .cau-row'));
+  const opts = [];
+  for(const row of rows){
+    const i = row.getAttribute('data-idx');
+    const P = gv('cau-p'+i), A = gv('cau-a'+i), S = gv('cau-s'+i), n = gv('cau-n'+i);
+    if(isNaN(P) && isNaN(A) && isNaN(S) && isNaN(n)) continue;
+    if(isNaN(P)||P<=0) return showE('cau','Alternativa '+(opts.length+1)+': falta o es inválida la inversión P.');
+    if(isNaN(n)||n<=0) return showE('cau','Alternativa '+(opts.length+1)+': falta o es inválida la vida útil n.');
+    const Av = isNaN(A)?0:A;
+    const Sv = isNaN(S)?0:S;
+    const nmEl = document.getElementById('cau-nm'+i);
+    const nm = (nmEl && nmEl.value.trim()) ? nmEl.value.trim() : ('Opción '+(opts.length+1));
+    const fac = Math.pow(1+r, n);
+    const AP = r*fac/(fac-1);
+    const AF = r/(fac-1);
+    const Pap = P*AP;
+    const Saf = Sv*AF;
+    const CAUE = Pap - Saf + Av;
+    opts.push({nm, P, A:Av, S:Sv, n, AP, AF, Pap, Saf, CAUE});
+  }
+  if(opts.length<2) return showE('cau','Agrega al menos 2 alternativas para comparar.');
+  const ranked = [...opts].sort((a,b)=>a.CAUE-b.CAUE);
+  const best = ranked[0], worst = ranked[ranked.length-1];
+
+  const ivc = gv('cau-i');
+  const modeTxt = {nom:'nominal',efe:'efectiva',desc:'descontada'}[rateMode('cau')];
+  const steps = [];
+  steps.push('§ Datos comunes');
+  steps.push('Tasa '+modeTxt+' = '+ivc+'%'+(rateMode('cau')==='nom'?(' (período '+(gs('cau-pt')||360)+'d, cap. '+(gs('cau-pc')||1)+'d)'):''));
+  steps.push('§ Conversión a TEA');
+  effRateSteps('cau', 360, 'TEA').forEach(l=>steps.push(l));
+  steps.push('i = TEA = '+pct7(r));
+  opts.forEach((o,k)=>{
+    steps.push('§ Alternativa: '+o.nm+'  (P='+fmtM(o.P)+', A='+fmtM(o.A)+', S='+fmtM(o.S)+', n='+o.n+')');
+    steps.push('(A/P, i, n) = i·(1+i)^n / [ (1+i)^n − 1 ]');
+    steps.push('(A/P, '+pct7(r)+', '+o.n+') = '+pct7(r)+'·(1+'+pct7(r)+')^'+o.n+' / [ (1+'+pct7(r)+')^'+o.n+' − 1 ] = '+o.AP.toFixed(10));
+    steps.push('(A/F, i, n) = i / [ (1+i)^n − 1 ]');
+    steps.push('(A/F, '+pct7(r)+', '+o.n+') = '+pct7(r)+' / [ (1+'+pct7(r)+')^'+o.n+' − 1 ] = '+o.AF.toFixed(10));
+    steps.push('CAUE = P·(A/P) − S·(A/F) + A');
+    steps.push('CAUE = '+fmtM(o.P)+'·'+o.AP.toFixed(7)+' − '+fmtM(o.S)+'·'+o.AF.toFixed(7)+' + '+fmtM(o.A));
+    steps.push('CAUE = '+fmtM(o.Pap)+' − '+fmtM(o.Saf)+' + '+fmtM(o.A)+' = '+fmtM(o.CAUE));
+  });
+  steps.push('§ Comparación y recomendación');
+  ranked.forEach((o,k)=>{ steps.push((k+1)+'º '+o.nm+': CAUE = '+fmtM(o.CAUE)+(k===0?'   ◀ menor costo (mejor)':(k===ranked.length-1?'   ◀ mayor costo':''))); });
+  if(ranked.length>1) steps.push('Ahorro al elegir '+best.nm+' vs '+worst.nm+' = '+fmtM(worst.CAUE-best.CAUE)+' por año');
+
+  const heroes = [{label:'MEJOR ALTERNATIVA: '+best.nm.toUpperCase(), val:fmtM(best.CAUE), cls:'is-money', extra:'CAUE = '+fmtM6(best.CAUE)}];
+  const items = [['Tasa (TEA)', pct7(r)]];
+  ranked.forEach((o,k)=>{ items.push([(k+1)+'º '+o.nm+' · CAUE', fmtM(o.CAUE)]); });
+  opts.forEach(o=>{ items.push([o.nm+' · A/P', o.AP.toFixed(10)]); items.push([o.nm+' · A/F', o.AF.toFixed(10)]); });
+
+  const svg = cauSVG(ranked);
+  showRMulti('cau', heroes, items, {svg, steps});
+}
+// Gráfico de barras horizontal CAUE: verde=mejor (menor), rojo=peor (mayor)
+function cauSVG(ranked){
+  const W=720, padL=130, padR=215, top=30, rowH=34;
+  const H = top + ranked.length*rowH + 14;
+  const maxC = Math.max(...ranked.map(o=>o.CAUE));
+  const x0=padL, xMax=W-padR;
+  const GR='#1f9d57', RED='#c0392b', MUT='#555', AX='#222', AMB='#b8860b';
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin-top:14px;background:#ffffff;border:1px solid var(--line-2);border-radius:4px">`;
+  s+=`<text x="${x0}" y="18" fill="${MUT}" font-size="9" font-family="monospace">CAUE por alternativa — barra más corta = menor costo anual</text>`;
+  ranked.forEach((o,r)=>{
+    const y=top+r*rowH;
+    const w=Math.max((o.CAUE/maxC)*(xMax-x0),1);
+    const col = r===0?GR:(r===ranked.length-1?RED:AMB);
+    const nm = o.nm.length>15?o.nm.slice(0,14)+'…':o.nm;
+    s+=`<text x="${x0-8}" y="${y+16}" fill="${AX}" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="end">${nm}</text>`;
+    s+=`<rect x="${x0}" y="${y+4}" width="${w}" height="18" fill="${col}" opacity="0.85"/>`;
+    s+=`<text x="${x0+w+6}" y="${y+17}" fill="${AX}" font-size="9" font-family="monospace">${fmtM(o.CAUE)} (n=${o.n}a)</text>`;
+  });
+  s+=`</svg>`;
+  return s;
+}
+
+// ═══ COSTO CAPITALIZADO · VP CON PERPETUIDAD ═══════
+let CAP_NT = 0, CAP_NP = 0;
+function capTramoHTML(i){
+  return `<div class="cap-tramo" data-idx="${i}" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+    <span style="font-family:var(--ff-display);font-size:0.9rem;letter-spacing:0.08em;color:var(--accent);min-width:64px">TR ${i+1}</span>
+    <input type="number" id="cap-tra${i}" placeholder="Desde período" step="any" style="flex:1;min-width:100px">
+    <input type="number" id="cap-trb${i}" placeholder="Hasta período" step="any" style="flex:1;min-width:100px">
+    <input type="number" id="cap-trd${i}" placeholder="Monto por período" step="any" style="flex:1.4;min-width:130px">
+    <button type="button" onclick="capDelTramo(${i})" title="Quitar" style="background:transparent;border:1px solid var(--line-2);color:var(--text-3);cursor:pointer;border-radius:0;padding:6px 10px;font-family:var(--ff-mono)">×</button>
+  </div>`;
+}
+function capPagoHTML(i){
+  return `<div class="cap-pago" data-idx="${i}" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+    <span style="font-family:var(--ff-display);font-size:0.9rem;letter-spacing:0.08em;color:var(--accent);min-width:64px">PG ${i+1}</span>
+    <input type="number" id="cap-pgt${i}" placeholder="Período (t)" step="any" style="flex:1;min-width:100px">
+    <input type="number" id="cap-pgm${i}" placeholder="Monto" step="any" style="flex:1.4;min-width:130px">
+    <button type="button" onclick="capDelPago(${i})" title="Quitar" style="background:transparent;border:1px solid var(--line-2);color:var(--text-3);cursor:pointer;border-radius:0;padding:6px 10px;font-family:var(--ff-mono)">×</button>
+  </div>`;
+}
+function capAddTramo(){ const c=document.getElementById('cap-tramos'); if(!c) return; const d=document.createElement('div'); d.innerHTML=capTramoHTML(CAP_NT); c.appendChild(d.firstChild); CAP_NT++; }
+function capDelTramo(i){ const r=document.querySelector('.cap-tramo[data-idx="'+i+'"]'); if(r) r.remove(); }
+function capAddPago(){ const c=document.getElementById('cap-pagos'); if(!c) return; const d=document.createElement('div'); d.innerHTML=capPagoHTML(CAP_NP); c.appendChild(d.firstChild); CAP_NP++; }
+function capDelPago(i){ const r=document.querySelector('.cap-pago[data-idx="'+i+'"]'); if(r) r.remove(); }
+document.addEventListener('DOMContentLoaded', ()=>{ for(let k=0;k<2;k++) capAddTramo(); capAddPago(); });
+
+function cCAP(){
+  const unit = gs('cap-unit')||30;
+  const i = effRate('cap', unit);
+  if(i===null) return showE('cap','Ingresa la tasa.');
+  if(i<=0) return showE('cap','La tasa efectiva debe ser positiva.');
+  const P0 = gv('cap-p0')||0;
+  if(P0<0) return showE('cap','La inversión inicial no puede ser negativa.');
+  // tramos
+  const trRows = Array.from(document.querySelectorAll('#cap-tramos .cap-tramo'));
+  const tramos = [];
+  for(const row of trRows){
+    const k = row.getAttribute('data-idx');
+    const a = gv('cap-tra'+k), b = gv('cap-trb'+k), D = gv('cap-trd'+k);
+    if(isNaN(D)) continue;
+    if(D<0) return showE('cap','El monto de un tramo no puede ser negativo.');
+    if(isNaN(a)||a<1) return showE('cap','Tramo con monto '+fmtM(D)+': "Desde período" debe ser ≥ 1.');
+    if(isNaN(b)||b<a) return showE('cap','Tramo con monto '+fmtM(D)+': "Hasta período" debe ser ≥ "Desde".');
+    tramos.push({a, b, D});
+  }
+  // pagos únicos
+  const pgRows = Array.from(document.querySelectorAll('#cap-pagos .cap-pago'));
+  const pagos = [];
+  for(const row of pgRows){
+    const k = row.getAttribute('data-idx');
+    const t = gv('cap-pgt'+k), M = gv('cap-pgm'+k);
+    if(isNaN(M)) continue;
+    if(M<0) return showE('cap','Pago único: el monto no puede ser negativo.');
+    if(isNaN(t)||t<0) return showE('cap','Pago único: período inválido.');
+    pagos.push({t, M});
+  }
+  // perpetuidad
+  const usePerp = document.getElementById('cap-perp-t').classList.contains('active');
+  let pM=0, pA=0, pG=0, pPM=0, pPV=0;
+  if(usePerp){
+    pM = gv('cap-perpM'); pA = gv('cap-perpA'); pG = (gv('cap-perpG')||0)/100;
+    if(isNaN(pM)||pM<0) return showE('cap','Perpetuidad: ingresa el período M.');
+    if(isNaN(pA)||pA<=0) return showE('cap','Perpetuidad: ingresa el monto perpetuo A∞.');
+    if(pG>=i) return showE('cap','Perpetuidad: el crecimiento g debe ser menor que la tasa i.');
+    pPM = pA*(1+pG)/(i-pG);    // valor en período M
+    pPV = pPM/Math.pow(1+i, pM);
+  }
+  if(P0===0 && tramos.length===0 && pagos.length===0 && !usePerp) return showE('cap','Ingresa al menos una inversión, tramo o perpetuidad.');
+
+  const unitName = {30:'mensual',60:'bimestral',90:'trimestral',120:'cuatrimestral',180:'semestral',360:'anual',1:'diario',15:'quincenal'}[unit]||('cada '+unit+'d');
+  const tName = {30:'TEM',60:'TEB',90:'TET',120:'TEC',180:'TES',360:'TEA',1:'TED',15:'TEQ'}[unit]||('TE'+unit+'d');
+
+  const steps = [];
+  steps.push('§ Datos');
+  steps.push('Inversión inicial P0 = '+fmtM(P0));
+  if(tramos.length) tramos.forEach((t,k)=>steps.push('Tramo '+(k+1)+': monto '+fmtM(t.D)+' por período, del período '+t.a+' al '+t.b));
+  if(pagos.length) pagos.forEach((p,k)=>steps.push('Pago único '+(k+1)+': '+fmtM(p.M)+' en el período '+p.t));
+  if(usePerp) steps.push('Perpetuidad: '+fmtM(pA)+' por período, desde el período '+(pM+1)+(pG>0?(' con crecimiento g = '+gv('cap-perpG')+'%'):' (constante)'));
+  steps.push('Unidad de los flujos: '+unitName);
+  steps.push('§ Tasa efectiva del período ('+tName+')');
+  effRateSteps('cap', unit, tName).forEach(l=>steps.push(l));
+  steps.push('i = '+tName+' = '+pct7(i));
+
+  let total = P0;
+  if(P0>0){ steps.push('§ Inversión inicial'); steps.push('VP0 = P0 = '+fmtM(P0)); }
+  const trRes = [];
+  tramos.forEach((t,k)=>{
+    const n = t.b - t.a + 1;
+    const aFac = anVP(i, n);
+    const shift = Math.pow(1+i, t.a-1);
+    const pv = t.D * aFac / shift;
+    steps.push('§ Tramo '+(k+1)+' (períodos '+t.a+'–'+t.b+', n = '+n+', monto = '+fmtM(t.D)+')');
+    if(t.a===1 && n===1){
+      steps.push('VP = D / (1+i)^1');
+      steps.push('VP = '+fmtM(t.D)+' / (1+'+pct7(i)+') = '+fmtM(pv));
+    } else if(t.a===1){
+      steps.push('VP = D · a(i, n) = D · [(1+i)^n − 1] / [i·(1+i)^n]');
+      steps.push('VP = '+fmtM(t.D)+' · '+aFac.toFixed(10)+' = '+fmtM(pv));
+    } else if(n===1){
+      steps.push('VP = D / (1+i)^'+t.a+'   (pago único en el período '+t.a+')');
+      steps.push('VP = '+fmtM(t.D)+' / (1+'+pct7(i)+')^'+t.a+' = '+fmtM(pv));
+    } else {
+      steps.push('VP = D · a(i,n) / (1+i)^(a−1)   (renta diferida)');
+      steps.push('VP = '+fmtM(t.D)+' · '+aFac.toFixed(10)+' / (1+'+pct7(i)+')^'+(t.a-1)+' = '+fmtM(pv));
+    }
+    trRes.push(pv);
+    total += pv;
+  });
+  const pgRes = [];
+  pagos.forEach((p,k)=>{
+    const pv = p.M / Math.pow(1+i, p.t);
+    steps.push('§ Pago único '+(k+1)+' (período '+p.t+', monto = '+fmtM(p.M)+')');
+    steps.push('VP = M / (1+i)^t');
+    steps.push('VP = '+fmtM(p.M)+' / (1+'+pct7(i)+')^'+p.t+' = '+fmtM(pv));
+    pgRes.push(pv);
+    total += pv;
+  });
+  if(usePerp){
+    steps.push('§ Perpetuidad (desde el período '+(pM+1)+')');
+    if(pG>0){
+      steps.push('A_{M+1} = A∞ · (1+g) = '+fmtM(pA)+' · (1+'+gv('cap-perpG')+'%) = '+fmtM(pA*(1+pG)));
+      steps.push('P'+pM+' = A_{M+1} / (i − g) = '+fmtM(pA*(1+pG))+' / ('+pct7(i)+' − '+gv('cap-perpG')+'%) = '+fmtM(pPM));
+    } else {
+      steps.push('P'+pM+' = A∞ / i = '+fmtM(pA)+' / '+pct7(i)+' = '+fmtM(pPM));
+    }
+    if(pM>0){
+      steps.push('VP = P'+pM+' / (1+i)^'+pM+' = '+fmtM(pPM)+' / (1+'+pct7(i)+')^'+pM+' = '+fmtM(pPV));
+    } else { steps.push('VP = P0 = '+fmtM(pPV)); }
+    total += pPV;
+  }
+  steps.push('§ Costo Capitalizado total');
+  const parts = [];
+  if(P0>0) parts.push(fmtM(P0));
+  trRes.forEach(v=>parts.push(fmtM(v)));
+  pgRes.forEach(v=>parts.push(fmtM(v)));
+  if(usePerp) parts.push(fmtM(pPV));
+  steps.push('CC = '+parts.join(' + ')+' = '+fmtM(total));
+
+  const heroes = [{label:'COSTO CAPITALIZADO (CC)', val:fmtM(total), cls:'is-money', extra:fmtM6(total)}];
+  const items = [
+    ['Tasa del período ('+tName+')', pct7(i)],
+    ['Inversión inicial (P0)', fmtM(P0)]
+  ];
+  tramos.forEach((t,k)=>items.push(['Tramo '+(k+1)+' ('+t.a+'–'+t.b+', '+fmtM(t.D)+'/per) · VP', fmtM6(trRes[k])]));
+  pagos.forEach((p,k)=>items.push(['Pago '+(k+1)+' (t='+p.t+', '+fmtM(p.M)+') · VP', fmtM6(pgRes[k])]));
+  if(usePerp){ items.push(['P'+pM+' (perpetuidad valuada en M)', fmtM6(pPM)]); items.push(['VP de la perpetuidad a t=0', fmtM6(pPV)]); }
+  items.push(['COSTO CAPITALIZADO total', fmtM6(total)]);
+
+  const svg = capSVG({P0, tramos, pagos, usePerp, pM, pA, pG, total, unitName});
+  showRMulti('cap', heroes, items, {svg, steps});
+}
+// Línea de tiempo del costo capitalizado: P0 abajo (azul), tramos como brackets, pagos como flechas, perpetuidad con ∞.
+function capSVG(o){
+  const RED='#c0392b', BLU='#16458f', GR='#1f9d57', MUT='#555', AX='#222', AMB='#b8860b';
+  const W=780, padL=70, padR=70, axisY=80;
+  let lastT = 0;
+  o.tramos.forEach(t=>{ if(t.b>lastT) lastT=t.b; });
+  o.pagos.forEach(p=>{ if(p.t>lastT) lastT=p.t; });
+  if(o.usePerp && o.pM+1>lastT) lastT = o.pM+1;
+  lastT = Math.max(lastT, 4) + (o.usePerp?2:1);
+  const xOf = t => padL + (t/lastT)*(W-padL-padR);
+  const H = axisY + 130;
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;background:#ffffff;border:1px solid var(--line-2);border-radius:4px;margin-top:14px">`;
+  // eje
+  s += `<line x1="${padL-14}" y1="${axisY}" x2="${W-padR+10}" y2="${axisY}" stroke="${AX}" stroke-width="1.5"/>`;
+  s += `<path d="M${W-padR+3},${axisY-4} L${W-padR+10},${axisY} L${W-padR+3},${axisY+4} Z" fill="${AX}"/>`;
+  // marca 0
+  const x0 = xOf(0);
+  s += `<text x="${x0}" y="${axisY+14}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">0</text>`;
+  // P0 azul abajo
+  if(o.P0>0){
+    s += `<line x1="${x0}" y1="${axisY}" x2="${x0}" y2="${axisY+44}" stroke="${BLU}" stroke-width="2.5"/>`;
+    s += `<path d="M${x0-5},${axisY+36} L${x0},${axisY+45} L${x0+5},${axisY+36} Z" fill="${BLU}"/>`;
+    s += `<text x="${x0}" y="${axisY+58}" fill="${BLU}" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">P0 = ${fmtM(o.P0)}</text>`;
+  }
+  // tramos: bracket rojo arriba con etiqueta del monto
+  let upRow = 0;
+  o.tramos.forEach((t,k)=>{
+    const xa = xOf(t.a), xb = xOf(t.b);
+    const y = axisY - 22 - upRow*22;
+    s += `<line x1="${xa}" y1="${y}" x2="${xb}" y2="${y}" stroke="${RED}" stroke-width="2"/>`;
+    s += `<line x1="${xa}" y1="${y}" x2="${xa}" y2="${y+5}" stroke="${RED}" stroke-width="2"/>`;
+    s += `<line x1="${xb}" y1="${y}" x2="${xb}" y2="${y+5}" stroke="${RED}" stroke-width="2"/>`;
+    s += `<text x="${(xa+xb)/2}" y="${y-4}" fill="${RED}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">Tr${k+1}: ${fmtM(t.D)} (per ${t.a}–${t.b})</text>`;
+    upRow++;
+  });
+  // pagos únicos: flecha roja
+  o.pagos.forEach((p,k)=>{
+    const x = xOf(p.t);
+    const y = axisY - 22 - upRow*22;
+    s += `<line x1="${x}" y1="${y}" x2="${x}" y2="${axisY}" stroke="${RED}" stroke-width="2"/>`;
+    s += `<path d="M${x-4},${y+8} L${x},${y} L${x+4},${y+8} Z" fill="${RED}"/>`;
+    s += `<text x="${x}" y="${y-4}" fill="${RED}" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">Pg${k+1}: ${fmtM(p.M)} @${p.t}</text>`;
+    upRow++;
+  });
+  // perpetuidad: arco verde + ∞
+  if(o.usePerp){
+    const xm = xOf(o.pM), xLast = xOf(lastT);
+    const y = axisY - 22 - upRow*22;
+    s += `<path d="M${xm+4},${y+12} Q${(xm+xLast)/2},${y-12} ${xLast-4},${y+12}" stroke="${GR}" stroke-width="1.5" fill="none"/>`;
+    s += `<text x="${(xm+xLast)/2}" y="${y-2}" fill="${GR}" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">A∞ = ${fmtM(o.pA)} desde per ${o.pM+1} · ∞${o.pG>0?(' (g='+(o.pG*100)+'%)'):''}</text>`;
+    // marcador en M
+    s += `<line x1="${xm}" y1="${axisY-6}" x2="${xm}" y2="${axisY+6}" stroke="${AMB}" stroke-width="1" stroke-dasharray="2 2"/>`;
+    s += `<text x="${xm}" y="${axisY+14}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="middle">M=${o.pM}</text>`;
+  }
+  // marcas finales del eje
+  s += `<text x="${xOf(lastT)-10}" y="${axisY+14}" fill="${MUT}" font-size="8" font-family="monospace" text-anchor="middle">···</text>`;
+  // unidad
+  s += `<text x="${(padL+W-padR)/2}" y="${H-6}" fill="${MUT}" font-size="8.5" font-family="monospace" text-anchor="middle">(período = ${o.unitName})</text>`;
+  s += `</svg>`;
+  return s;
 }
 
 // ═══ FLUJO DE CAJA · DEPÓSITOS / RETIROS ═══════════
