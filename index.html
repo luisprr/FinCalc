@@ -3540,6 +3540,7 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
       <div class="field"><div class="field-label"><span class="label-main">Prima al vencimiento</span><span class="label-chip">% VN</span></div><div class="label-hint">Vacío = 0</div><input type="number" id="bono-prima" placeholder="Ej: 1" step="any"></div>
     </div>
     <div class="divider">▸ Tasa cupón</div>
+    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Regla del curso: la tasa del cupón se calcula al <strong>período del cupón</strong> (el del análisis), sin pasar por diaria. Si el enunciado dice solo "TNA X%" sin capitalización, pon capitalización = <strong>igual a la frecuencia del cupón</strong> (así TEC = TNA·período/año). Solo usa otra capitalización si el enunciado la especifica (ej: "TNA X% con capitalización mensual").</span></div>
     <div class="toggle-wrap">
       <div class="toggle-label">Tipo de tasa cupón</div>
       <div class="toggle">
@@ -3548,9 +3549,9 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
       </div>
     </div>
     <div class="form-grid">
-      <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="bonoc-i" placeholder="Ej: 7" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="bonoc-i" placeholder="Ej: 8.5" step="any"></div>
       <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="bonoc-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trim. (90)</option><option value="30">Mensual (30)</option></select></div>
-      <div class="field full" id="bonoc-pc-wrap"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="bonoc-pc"><option value="1">Diaria (1)</option><option value="30" selected>Mensual (30)</option><option value="60">Bimestral</option><option value="90">Trim.</option><option value="120">Cuatrim.</option><option value="180">Semestral</option><option value="360">Anual</option></select></div>
+      <div class="field full" id="bonoc-pc-wrap"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="bonoc-pc"><option value="1">Diaria (1)</option><option value="30">Mensual (30)</option><option value="60">Bimestral</option><option value="90">Trim.</option><option value="120" selected>Cuatrim.</option><option value="180">Semestral</option><option value="360">Anual</option></select></div>
     </div>
   </div>
 </div>
@@ -3567,9 +3568,10 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
       </div>
       <input type="hidden" id="bono-met" value="F">
     </div>
+    <div class="notice info" style="margin-top:12px"><span class="notice-icon">i</span><span class="notice-body">La gracia se cuenta en <strong>períodos de cupón</strong>, primero los TOTALES y luego los PARCIALES. Ej: "1 cuatrimestre total + 2 cuatrimestres parcial" → Total = 1, Parcial = 2. Total: no se paga nada y el interés capitaliza (el saldo sube). Parcial: se paga solo el interés (el saldo se mantiene).</span></div>
     <div class="form-grid" style="margin-top:12px">
-      <div class="field"><div class="field-label"><span class="label-main">Períodos de gracia</span><span class="label-chip">cupones</span><div class="tip-wrap"><button class="tip-btn" type="button">?</button><div class="tip-body"><span class="tip-title">Gracia</span>Nº de PERÍODOS DE CUPÓN en gracia al inicio. Ej: gracia de 8 meses con cupón cuatrimestral = 2 períodos. Gracia del 1er año con cupón cuatrimestral = 3.</div></div></div><div class="label-hint">Vacío = sin gracia</div><input type="number" id="bono-gr" placeholder="Ej: 2" step="any"></div>
-      <div class="field"><div class="field-label"><span class="label-main">Tipo de gracia</span></div><select id="bono-grtipo"><option value="P" selected>Parcial (paga solo interés)</option><option value="T">Total (capitaliza)</option></select></div>
+      <div class="field"><div class="field-label"><span class="label-main">Períodos de gracia TOTAL</span><span class="label-chip">T</span></div><div class="label-hint">Vacío = 0</div><input type="number" id="bono-grt" placeholder="Ej: 1" step="any"></div>
+      <div class="field"><div class="field-label"><span class="label-main">Períodos de gracia PARCIAL</span><span class="label-chip">P</span></div><div class="label-hint">Van después de los totales</div><input type="number" id="bono-grp" placeholder="Ej: 2" step="any"></div>
     </div>
   </div>
 </div>
@@ -6837,29 +6839,31 @@ function cBONO(){
   const N = Math.round(anios*360/freq);
   const TEPc = effRate('bonoc', freq);
   if(TEPc===null) return showE('bono','Ingresa la tasa cupón.');
-  const kG = gv('bono-gr')||0;
-  if(kG<0||kG>=N) return showE('bono','Períodos de gracia inválidos (0..'+(N-1)+').');
-  const grTipo = (document.getElementById('bono-grtipo')||{}).value || 'P';
+  const kT = gv('bono-grt')||0;
+  const kP = gv('bono-grp')||0;
+  if(kT<0||kP<0) return showE('bono','Períodos de gracia inválidos.');
+  const kG = kT + kP;
+  if(kG>=N) return showE('bono','La gracia ('+kG+') no puede consumir todos los cupones (N='+N+').');
   const primaPct = (gv('bono-prima')||0)/100;
   const prima = primaPct*VN;
   const met = document.getElementById('bono-met').value || 'F';
   const iInv = effRate('bonoi', freq);
   if(iInv===null) return showE('bono','Ingresa la tasa del inversionista.');
+  const nPay = N - kG;   // nº de cupones con amortización (después de la gracia)
 
   const tName = freqRateName(freq);
-  // cronograma
+  // cronograma — gracia: primero kT TOTAL (capitaliza), luego kP PARCIAL (solo interés), luego amortiza
   const rows = [];
-  let SI = VN;
+  let SI = VN, ncPay = 0;
   for(let nc=1; nc<=N; nc++){
     const I = SI*TEPc;
     let R=0, A=0, SF=SI, PG='S';
-    if(nc<=kG){
-      PG = grTipo;
-      if(grTipo==='T'){ R=0; A=0; SF=SI+I; }
-      else { R=I; A=0; SF=SI; }
-    } else {
-      if(met==='F'){ const m=N-nc+1; const f=Math.pow(1+TEPc,m); R=SI*TEPc*f/(f-1); A=R-I; SF=SI-A; }
-      else if(met==='A'){ A=SI/(N-nc+1); R=I+A; SF=SI-A; }
+    if(nc<=kT){ PG='T'; R=0; A=0; SF=SI+I; }
+    else if(nc<=kT+kP){ PG='P'; R=I; A=0; SF=SI; }
+    else {
+      ncPay++;
+      if(met==='F'){ const m=nPay-ncPay+1; const f=Math.pow(1+TEPc,m); R=SI*TEPc*f/(f-1); A=R-I; SF=SI-A; }
+      else if(met==='A'){ A=SI/(nPay-ncPay+1); R=I+A; SF=SI-A; }
       else { A = (nc===N)?SI:0; R=I+A; SF=SI-A; }
     }
     const flujo = R + (nc===N?prima:0);
@@ -6872,14 +6876,15 @@ function cBONO(){
   const steps = [];
   steps.push('§ Datos');
   steps.push('Valor Nominal = '+fmtM(VN)+' · Plazo = '+anios+' año(s) · Cupón cada '+freq+'d → N = '+N+' períodos');
-  if(kG>0) steps.push('Gracia '+(grTipo==='T'?'TOTAL':'PARCIAL')+' los primeros '+kG+' período(s) de cupón');
+  if(kG>0) steps.push('Gracia: '+kT+' período(s) TOTAL + '+kP+' período(s) PARCIAL → '+nPay+' cupones con amortización');
   steps.push('Método: '+metName+(primaPct>0?(' · Prima al vencimiento = '+(primaPct*100)+'% × VN = '+fmtM(prima)):''));
-  steps.push('§ Tasa cupón del período ('+tName+')');
+  steps.push('§ Tasa cupón del período ('+tName+') — al período del cupón, sin pasar por diaria');
   effRateSteps('bonoc', freq, tName).forEach(l=>steps.push(l));
   steps.push('§ Cronograma del bono (ver tabla)');
-  if(kG>0 && grTipo==='P') steps.push('Gracia parcial: cupón = interés = VN × '+tName+' = '+fmtM(VN)+' × '+pct7(TEPc)+' = '+fmtM(VN*TEPc));
-  if(met==='F') steps.push('Cuota (sin gracia): R = SI · [TEP·(1+TEP)^(N−NC+1)] / [(1+TEP)^(N−NC+1) − 1]');
-  steps.push('§ Tasa del inversionista (COK del período de cupón)');
+  if(kT>0) steps.push('Gracia TOTAL ('+kT+'): no se paga; el interés capitaliza y el saldo sube (SF = SI + I).');
+  if(kP>0) steps.push('Gracia PARCIAL ('+kP+'): se paga solo el interés = SI × '+tName+'; el saldo se mantiene.');
+  if(met==='F') steps.push('Cuota francesa (tras la gracia): R = SI · [TEP·(1+TEP)^(m)] / [(1+TEP)^(m) − 1], m = cupones que faltan.');
+  steps.push('§ Tasa del inversionista (COK del período de cupón) — directa, sin pasar por diaria');
   effRateSteps('bonoi', freq, 'i').forEach(l=>steps.push(l));
   steps.push('§ Precio máximo del bono');
   steps.push('Precio = Σ FCt / (1+i)^t');
