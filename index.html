@@ -3298,6 +3298,18 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
     <div class="cond" id="acc-pn-b" style="margin-top:12px">
       <div class="form-grid"><div class="field full"><div class="field-label"><span class="label-main">N años en el futuro</span><span class="label-chip">N</span></div><input type="number" id="acc-sn" placeholder="Ej: 3" step="any"></div></div>
     </div>
+    <div class="check-toggle" id="acc-gan-t" onclick="tog('acc-gan-t','acc-gan-b')" style="margin-top:14px">
+      <div class="check-box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Calcular la ganancia de una compra de acciones</span>
+      <span class="check-meta">(precio − costo) × nº acciones</span>
+    </div>
+    <div class="cond" id="acc-gan-b" style="margin-top:12px">
+      <div class="notice info"><span class="notice-icon">i</span><span class="notice-body"><strong>Regla del curso:</strong> al liquidar/vender, el precio <strong>por acción</strong> se redondea al 2do decimal ANTES de multiplicar por el nº de acciones (del 3er decimal en adelante no tiene significado monetario).</span></div>
+      <div class="form-grid">
+        <div class="field"><div class="field-label"><span class="label-main">Nº de acciones</span><span class="label-chip">q</span></div><input type="number" id="acc-sq" placeholder="Ej: 920" step="any"></div>
+        <div class="field"><div class="field-label"><span class="label-main">Precio de compra por acción</span><span class="label-chip">costo</span></div><input type="number" id="acc-scp" placeholder="Ej: 57.36" step="any"></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -3504,6 +3516,7 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
   <div class="card-header"><div class="card-num">2</div><div class="card-title">Fuentes de PATRIMONIO (capital propio)</div></div>
   <div class="card-body">
     <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Por cada fuente: tipo, monto y sus parámetros. f = costo de flotación en % (0 si no aplica). Para preferentes el campo "D" es el dividendo preferente Dp y g no aplica.</span></div>
+    <div class="notice warn"><span class="notice-icon">!</span><span class="notice-body"><strong>Si te piden "el NUEVO WACC de la EMPRESA"</strong> debes incluir también el <strong>patrimonio que la empresa ya tenía</strong> antes del proyecto, no solo el financiamiento nuevo. Ej: si la empresa ya tenía 25M en acciones comunes y ahora emite 18M más + retiene 2M, la ponderación es sobre 45M (43M comunes + 2M retenidas). Agrégalo como una fila más de acciones comunes con el monto existente.</span></div>
     <div id="wacc-s-rows"></div>
     <button type="button" class="btn-parse" onclick="waccAddS()" style="margin-left:0;margin-top:6px">+ Agregar fuente de patrimonio</button>
   </div>
@@ -3540,7 +3553,7 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
       <div class="field"><div class="field-label"><span class="label-main">Prima al vencimiento</span><span class="label-chip">% VN</span></div><div class="label-hint">Vacío = 0</div><input type="number" id="bono-prima" placeholder="Ej: 1" step="any"></div>
     </div>
     <div class="divider">▸ Tasa cupón</div>
-    <div class="notice info"><span class="notice-icon">i</span><span class="notice-body">Regla del curso: la tasa del cupón se calcula al <strong>período del cupón</strong> (el del análisis), sin pasar por diaria. Si el enunciado dice solo "TNA X%" sin capitalización, pon capitalización = <strong>igual a la frecuencia del cupón</strong> (así TEC = TNA·período/año). Solo usa otra capitalización si el enunciado la especifica (ej: "TNA X% con capitalización mensual").</span></div>
+    <div class="notice warn"><span class="notice-icon">!</span><span class="notice-body"><strong>Convención del curso:</strong> si el enunciado NO indica la capitalización (solo dice "TNA X%"), se asume <strong>capitalización DIARIA</strong> → la app calcula TEC = (1 + TNA/360)^(días del cupón) − 1 en UN SOLO paso, sin redondear ninguna tasa intermedia (esa es la razón de "no pasar por la tasa diaria": el error viene de redondearla, no de la fórmula). Si el enunciado sí especifica la capitalización (ej: "con capitalización mensual"), selecciónala abajo.</span></div>
     <div class="toggle-wrap">
       <div class="toggle-label">Tipo de tasa cupón</div>
       <div class="toggle">
@@ -3551,7 +3564,7 @@ Formato típico: <strong>"X, Y/d₁, n/d₂"</strong> · <strong>X</strong>=% cu
     <div class="form-grid">
       <div class="field"><div class="field-label"><span class="label-main">Valor</span><span class="label-required">*</span><span class="label-chip">%</span></div><input type="number" id="bonoc-i" placeholder="Ej: 8.5" step="any"></div>
       <div class="field"><div class="field-label"><span class="label-main">Período de la tasa</span></div><select id="bonoc-pt"><option value="360" selected>Anual (360)</option><option value="180">Semestral (180)</option><option value="120">Cuatrim. (120)</option><option value="90">Trim. (90)</option><option value="30">Mensual (30)</option></select></div>
-      <div class="field full" id="bonoc-pc-wrap"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><select id="bonoc-pc"><option value="1">Diaria (1)</option><option value="30">Mensual (30)</option><option value="60">Bimestral</option><option value="90">Trim.</option><option value="120" selected>Cuatrim.</option><option value="180">Semestral</option><option value="360">Anual</option></select></div>
+      <div class="field full" id="bonoc-pc-wrap"><div class="field-label"><span class="label-main">Capitalización</span><span class="label-chip">cap.</span></div><div class="label-hint">Si el enunciado no la indica → Diaria</div><select id="bonoc-pc"><option value="1" selected>Diaria (1)</option><option value="30">Mensual (30)</option><option value="60">Bimestral</option><option value="90">Trim.</option><option value="120">Cuatrim.</option><option value="180">Semestral</option><option value="360">Anual</option></select></div>
     </div>
   </div>
 </div>
@@ -5948,6 +5961,34 @@ function cACC(){
     if(Pn!==null) heroes.push({label:'PRECIO EN '+N+' AÑOS (P'+N+')', val:fmtM(Pn), cls:'is-money', extra:fmtM6(Pn)});
     const items = [['D0',fmtM(D0)],['g',gv('acc-sg')+'%'],['r (TEA)',pct7(r)],['D1',fmtM6(D1)],['Po',fmtM6(Po)]];
     if(Pn!==null) items.push(['P'+N, fmtM6(Pn)]);
+
+    // Ganancia de una compra: el precio POR ACCIÓN se redondea a 2 dec antes de multiplicar
+    const ganT = document.getElementById('acc-gan-t');
+    if(ganT && ganT.classList.contains('active')){
+      const q = gv('acc-sq'), costo = gv('acc-scp');
+      if(isNaN(q)||q<=0) return showE('acc','Ingresa el nº de acciones.');
+      if(isNaN(costo)||costo<0) return showE('acc','Ingresa el precio de compra por acción.');
+      const Por = r2(Po);
+      const gHoy = (Por - costo)*q;
+      steps.push('§ Ganancia si vende HOY');
+      steps.push('Precio por acción (redondeado al 2do decimal) = '+fmtM(Po));
+      steps.push('Ganancia = (Po − costo) × q');
+      steps.push('Ganancia = ('+fmtM(Po)+' − '+fmtM(costo)+') × '+q+' = '+fmtM(Por-costo)+' × '+q+' = '+fmtM(gHoy));
+      heroes.push({label:'GANANCIA SI VENDE HOY', val:fmtM(gHoy), cls:'is-money', extra:fmtM6(gHoy)});
+      items.push(['Nº de acciones', q.toString()]);
+      items.push(['Costo por acción', fmtM(costo)]);
+      items.push(['Ganancia hoy', fmtM(gHoy)]);
+      if(Pn!==null){
+        const Pnr = r2(Pn);
+        const gN = (Pnr - costo)*q;
+        steps.push('§ Ganancia si vende en '+N+' años');
+        steps.push('Precio por acción en '+N+' años (redondeado) = '+fmtM(Pn));
+        steps.push('Ganancia = ('+fmtM(Pn)+' − '+fmtM(costo)+') × '+q+' = '+fmtM(Pnr-costo)+' × '+q+' = '+fmtM(gN));
+        heroes.push({label:'GANANCIA SI VENDE EN '+N+' AÑOS', val:fmtM(gN), cls:'is-money', extra:fmtM6(gN)});
+        items.push(['Ganancia en '+N+' años', fmtM(gN)]);
+      }
+    }
+
     const svg = svgAccion({simple:true, D0, g, r, Po, Pn, N});
     showRMulti('acc', heroes, items, {svg, steps});
     return;
@@ -6583,6 +6624,21 @@ function vanAddRow(){ const c=document.getElementById('van-rows'); if(!c) return
 function vanDelRow(i){ const r=document.querySelector('.van-row[data-idx="'+i+'"]'); if(r) r.remove(); }
 document.addEventListener('DOMContentLoaded', ()=>{ for(let k=0;k<2;k++) vanAddRow(); });
 
+// Convierte un PRD (en unidades de 'unitDays' días) a años/meses/días.
+// Convención financiera del curso: los DÍAS se redondean al entero SUPERIOR.
+function prdBreak(prd, unitDays){
+  const totalDias = prd*unitDays;
+  const a = Math.floor(totalDias/360);
+  let resto = totalDias - a*360;
+  const m = Math.floor(resto/30);
+  resto = resto - m*30;
+  let d = Math.ceil(resto - 1e-9);
+  let aa=a, mm=m;
+  if(d>=30){ d-=30; mm++; }        // por si el ceil desborda el mes
+  if(mm>=12){ mm-=12; aa++; }
+  return {a:aa, m:mm, d, totalDias};
+}
+
 function tirSolve(inv, fcs){
   const f = r => fcs.reduce((a,fc,t)=>a+fc/Math.pow(1+r,t+1), -inv);
   let lo=-0.9999, hi=10;
@@ -6651,11 +6707,17 @@ function cVAN(){
       steps.push('TIR = '+pct4(p.TIR)+'   ('+(p.TIR>COK?'TIR > COK: conviene':'TIR < COK: no conviene')+')');
     } else steps.push('No se encontró TIR (flujo no convencional).');
     steps.push('§ '+p.nm+' — B/C');
-    steps.push('B/C = VA / Inversión = '+fmtM(p.VA)+' / '+fmtM(p.inv)+' = '+p.BC.toFixed(7)+(p.BC>1?'   (B/C > 1: se acepta)':'   (B/C ≤ 1: se rechaza)'));
+    steps.push('B/C = VA / Inversión = '+fmtM(p.VA)+' / '+fmtM(p.inv)+' = '+p.BC.toFixed(7)+'  →  '+p.BC.toFixed(3)+(p.BC>1?'   (B/C > 1: se acepta)':'   (B/C ≤ 1: se rechaza)'));
     steps.push('§ '+p.nm+' — PRD (período de recuperación descontado)');
     let cum2=0;
     p.pvs.forEach((v,t)=>{ cum2+=v; steps.push('  '+unitW+' '+(t+1)+': VP = '+fmtM(v)+'  ·  acumulado = '+fmtM(cum2)+(cum2>=p.inv?' ✔':'')); });
-    if(p.PRD!==null) steps.push('PRD = '+p.PRD.toFixed(2)+' '+unitW+'s (la inversión se recupera dentro del '+unitW+' '+Math.ceil(p.PRD)+')');
+    if(p.PRD!==null){
+      const B = prdBreak(p.PRD, unit);
+      p.brk = B;
+      steps.push('PRD = '+Math.floor(p.PRD)+' '+unitW+'s completos + fracción = '+p.PRD.toFixed(6)+' '+unitW+'s');
+      steps.push('Fracción → tiempo: '+fmtM6(B.totalDias)+' días en total');
+      steps.push('PRD = '+B.a+' año(s), '+B.m+' mes(es), '+B.d+' día(s)   (los días se redondean al entero SUPERIOR)');
+    }
     else steps.push('PRD: la inversión NO se recupera en el horizonte analizado.');
   });
 
@@ -6680,8 +6742,8 @@ function cVAN(){
   projs.forEach(p=>{
     items.push([p.nm+' · VAN', fmtM(p.VAN)]);
     items.push([p.nm+' · TIR', p.TIR!==null?pct4(p.TIR):'—']);
-    items.push([p.nm+' · B/C', p.BC.toFixed(4)]);
-    items.push([p.nm+' · PRD', p.PRD!==null?(p.PRD.toFixed(2)+' '+unitW+'s'):'no recupera']);
+    items.push([p.nm+' · B/C (3 dec)', p.BC.toFixed(3)]);
+    items.push([p.nm+' · PRD', p.PRD!==null?(p.brk.a+' años, '+p.brk.m+' meses, '+p.brk.d+' días'):'no recupera']);
     if(!sameLife) items.push([p.nm+' · VAE', fmtM(p.VAE)]);
   });
   const svg = projs.length>1 ? vanSVG(ranked, key) : '';
